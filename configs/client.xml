@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<client>
+	<daemon>
+		<socketinfo>
+			<tcpport>5151</tcpport>
+		</socketinfo>
+		<network>
+			<IP>10.27.2.115</IP>
+		</network>
+	</daemon>
+	<dispatcher>
+		<port>
+			<value>7566</value>
+		</port>
+	</dispatcher>
+</client>

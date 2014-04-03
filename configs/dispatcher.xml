@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<dispatcher>
+	<network>
+		<socket>
+			<port>7566</port>
+			<ip>10.27.2.115</ip>
+		</socket>
+		<daemon>
+			<ip>192.168.254.128</ip>
+			<tcpport>5151</tcpport>
+			<sitekey>default</sitekey>
+		</daemon>
+	</network>
+	<run>
+		<feedback>
+			<icon>yes</icon>
+			<display>service</display>
+		</feedback>
+		<behavior>
+			<startup-errors>ignore</startup-errors>
+		</behavior>
+	</run>
+</dispatcher>
