@@ -2,6 +2,7 @@
 #define _INTEGER_WRAPPER_H_
 
 #include "Number.h"
+#include <string>
 
 /**
  * Class wrapper for the primitive int type. Objects of this class can be added to the messages
@@ -26,7 +27,7 @@ public:
      * Constructs an Integer from the given string representing an int value
      * @param ser - a number as string
      */
-    Integer ( const string& _sval );
+    Integer ( const std::string& _sval );
 
     /**
      * Destructor
@@ -42,12 +43,12 @@ public:
      * Returns the type description of the Integer class.
      * @return the type description of the Integer class
      */
-    virtual const string& type() const;
+    virtual const std::string& type() const;
 
     /**
      * Returns a string representation of the given number
      */
-    virtual const string toString() const;
+    virtual const std::string toString() const;
 
 };
 

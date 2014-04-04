@@ -3,6 +3,8 @@
 
 #include "PnmsGenericClientImpl.h"
 
+#include <string>
+
 /**
  * The implementation class of the dynamic clients
  */
@@ -12,11 +14,9 @@ public:
     /**
      * Constructor
      */
-    PnmsDynamicClientImpl ( const string& name );
+    PnmsDynamicClientImpl ( const std::string& name );
 
     ~PnmsDynamicClientImpl();
-
-
 };
 
 #endif

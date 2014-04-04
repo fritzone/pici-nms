@@ -1,6 +1,8 @@
 #include "ClientConfiguration.h"
 #include "ConfigReader.h"
 
+using namespace std;
+
 /**
  * Search for the config file
  */

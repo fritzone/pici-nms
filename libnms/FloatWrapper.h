@@ -3,6 +3,8 @@
 
 #include "Number.h"
 
+#include <string>
+
 /**
  * Wrapper class to allow serialization of float values. Also, provides methods for converting
  * floats to string and vice-versa.
@@ -26,7 +28,7 @@ public:
      * Constructs a new Float value from the given string.
      * @param _sval - the string
      */
-    Float ( const string& _sval );
+    Float ( const std::string& _sval );
 
     /**
      * Destructor
@@ -42,12 +44,12 @@ public:
      * Returns the type description of the Float class.
      * @return the type description of the Float class
      */
-    virtual const string& type() const;
+    virtual const std::string& type() const;
 
     /**
      * Returns a string representation of the given number
      */
-    virtual const string toString() const;
+    virtual const std::string toString() const;
 
 };
 

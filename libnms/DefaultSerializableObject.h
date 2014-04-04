@@ -5,8 +5,6 @@
 
 #include<string>
 
-using namespace std;
-
 /**
  * A very basic class for defining serializable objects
  */
@@ -23,7 +21,7 @@ public:
      * @param ser - the serialized string, containing just the serialized form of the object, without the XML tags
      * @return true in case of success, false in case of failure
      */
-    virtual bool deserialize ( const string& ser );
+    virtual bool deserialize ( const std::string& ser );
 
 };
 

@@ -4,10 +4,9 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class Message;
 class Parameter;
+
 /**
  * This class is responsible for encapsulating the messages that are sent through the network.
  * Messages contain:
@@ -41,43 +40,43 @@ public:
      * Serializes this object. The result is the XML of all the parameters of the message
      * @return the serialized string as XML
      */
-    string serialize();
+    std::string serialize();
 
     /**
      * Returns the string value associated to the variable stringName
      * if no string variable was defined with the given name empty string is returned
      * @param stringName: the name of the string vatriable
      */
-    string getString ( const string& stringName );
+    std::string getString ( const std::string& stringName );
 
     /**
      * Returns the numeric variable associated with the given name
      * if no numeric variable was defined for the given name 0 (zero) is returned
      * @param intName: the name of the numeric variable
      */
-    int getInt ( const string& intName );
+    int getInt ( const std::string& intName );
 
     /**
      * Returns the real number variable associated to the given name
      * if no variable was defined for the given name 0 (zero) is returned
      * @param floatName: the name of the real number
      */
-    float getFloat ( const string& floatName );
+    float getFloat ( const std::string& floatName );
 
     /**
      * Returns the bool associated to the given name
      */
-    bool getBool ( const string& boolName );
+    bool getBool ( const std::string& boolName );
 
     /**
      * Returns the long associated to the given name
      */
-    long getLong ( const string& longName );
+    long getLong ( const std::string& longName );
 
     /**
      * Returns the double associated to the given name
      */
-    double getDouble ( const string& doubleName );
+    double getDouble ( const std::string& doubleName );
 
 
     /**
@@ -97,7 +96,7 @@ public:
     /**
      * Retrieves the parameter with the given value
      */
-    Parameter* getParameter ( const string& name );
+    Parameter* getParameter ( const std::string& name );
 
 public:
 
@@ -110,19 +109,19 @@ public:
 private:
 
     // all the data of this class
-    vector<Parameter*> parameters;
+    std::vector<Parameter*> parameters;
 
     // the subject to which this message will be sent
-    string sendSubject;
+    std::string sendSubject;
 
     // the ID of the message (each message has a unique ID based on timestamp and an index)
-    string messageId;
+    std::string messageId;
 
     // this counts the messages sent by an application
     static int messageCounter;
 
     // this can be or the subject, where it was sent, or the sync-requester's ID
-    string dest;
+    std::string dest;
 
     // the time to live of the message
     long ttl;

@@ -3,6 +3,8 @@
 
 #include "DefaultSerializableObject.h"
 
+#include <string>
+
 /**
  * Wrapper class to allow serialization of String values.
  */
@@ -25,7 +27,7 @@ public:
      * Constructs a new String value from the given string.
      * @param _sval - the string
      */
-    String ( const string& _val );
+    String ( const std::string& _val );
 
     /**
      * Destructor
@@ -41,12 +43,12 @@ public:
      * Returns the type description of the String class.
      * @return the type description of the String class
      */
-    virtual const string& type() const;
+    virtual const std::string& type() const;
 
     /**
      * Returns a string representation of the String object
      */
-    virtual const string toString() const;
+    virtual const std::string toString() const;
 
 };
 

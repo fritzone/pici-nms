@@ -6,7 +6,6 @@
 #include "ObjImplMapper.h"
 
 #include <string>
-using namespace std;
 
 /**
  * Class representing the implementation of an Long
@@ -28,7 +27,7 @@ public:
     /**
      * Constructor. Buidls the object from the given string.
      */
-    LongImpl ( const string& sv );
+    LongImpl ( const std::string& sv );
 
     /**
      * Serializes the object. Returns the serialized XML string, the Content node:
@@ -39,14 +38,14 @@ public:
      * </Content>
      * @return the serialized Content XML
      */
-    string serialize();
+    std::string serialize();
 
     /**
      * Deserializes this object from the given string. The string should be a plain number, NOT XML
      * @param ser - the number, as a string
      * @return true in case of success, false in case of failure
      */
-    bool deserialize ( const string& ser );
+    bool deserialize ( const std::string& ser );
 
     /**
      * Deserializes the Long from the node (which is the Content node)
@@ -62,7 +61,7 @@ public:
      * @param ser - the string containing a serialized Long
      * @return true in case of success, false in case of a failure
      */
-    bool buildFromString ( const string& ser );
+    bool buildFromString ( const std::string& ser );
 
     /**
      * Returns the value of this Long as an Long value
@@ -87,7 +86,7 @@ public:
      * SERIALIZER function.
      * Serializes the given object to a string that can be sent over the wire
      */
-    static string serializeLong ( SerializableObject* LongToSer );
+    static std::string serializeLong ( SerializableObject* LongToSer );
 
 private:
 
@@ -96,7 +95,7 @@ private:
 
 public:
 
-    static string TYPESTR_LONG;
+    static std::string TYPESTR_LONG;
 
 };
 

@@ -6,8 +6,6 @@
 #include "ObjImplMapper.h"
 
 #include <string>
-using namespace std;
-
 
 /**
  * Implementation class for a Bool
@@ -29,7 +27,7 @@ public:
     /**
      * Constructor. Builds the object from the given string.
      */
-    BoolImpl ( const string& sv );
+    BoolImpl ( const std::string& sv );
 
     /**
      * Serializes the object. Returns the serialized XML string, the Content node:
@@ -40,14 +38,14 @@ public:
      * </Content>
      * @return the serialized Content XML
      */
-    string serialize();
+    std::string serialize();
 
     /**
      * Deserializes this object from the given string. The string should be plain string, NOT XML
      * @param ser - the number, as a string
      * @return true in case of success, false in case of failure
      */
-    bool deserialize ( const string& ser );
+    bool deserialize ( const std::string& ser );
 
     /**
      * Deserializes the Bool from the node (which is the Content node)
@@ -76,14 +74,14 @@ public:
      * SERIALIZER function.
      * Serializes the given object to a string that can be sent over the wire
      */
-    static string serializeBool ( SerializableObject* boolToSer );
+    static std::string serializeBool ( SerializableObject* boolToSer );
 
 private:
 
     /**
      * Builds this bool
      */
-    bool buildFromString ( const string& str );
+    bool buildFromString ( const std::string& str );
 
 private:
 
@@ -92,7 +90,7 @@ private:
 
 public:
 
-    static string TYPESTR_BOOL;
+    static std::string TYPESTR_BOOL;
 
 };
 

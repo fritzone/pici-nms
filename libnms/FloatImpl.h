@@ -7,7 +7,6 @@
 #include "ObjImplMapper.h"
 
 #include <string>
-using namespace std;
 
 /**
  * Implementation class for a float
@@ -29,7 +28,7 @@ public:
     /**
      * Constructor. Builds the object from the given string.
      */
-    FloatImpl ( const string& sv );
+    FloatImpl ( const std::string& sv );
 
     /**
      * Serializes the object. Returns the serialized XML string, the Content node:
@@ -40,14 +39,14 @@ public:
      * </Content>
      * @return the serialized Content XML
      */
-    string serialize();
+    std::string serialize();
 
     /**
      * Deserializes this object from the given string. The string should be a plain number, NOT XML
      * @param ser - the number, as a string
      * @return true in case of success, false in case of failure
      */
-    bool deserialize ( const string& ser );
+    bool deserialize ( const std::string& ser );
 
     /**
      * Deserializes the Float from the node (which is the Content node)
@@ -83,7 +82,7 @@ private:
     /**
      * Builds this float
      */
-    bool buildFromString ( const string& str );
+    bool buildFromString ( const std::string& str );
 
 private:
 
@@ -92,7 +91,7 @@ private:
 
 public:
 
-    static string TYPESTR_FLOAT;
+    static std::string TYPESTR_FLOAT;
 
 };
 

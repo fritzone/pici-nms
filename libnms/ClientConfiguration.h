@@ -3,8 +3,6 @@
 
 #include <string>
 
-using namespace std;
-
 class ConfigReader;
 
 /**
@@ -30,7 +28,7 @@ public:
     /**
      * Constructor. Provided is the configuration file
      */
-    ClientConfiguration ( const string& directory );
+    ClientConfiguration ( const std::string& directory );
 
     /**
      * Tells us if this was initialized or not
@@ -45,7 +43,7 @@ public:
     /**
      * Returns the IP address of the daemon
      */
-    string getDaemonIP();
+    std::string getDaemonIP();
 
     /**
      * Returns the TCP port of the daemon

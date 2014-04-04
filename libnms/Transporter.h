@@ -2,8 +2,6 @@
 
 #include <string>
 
-using namespace std;
-
 class Message;
 class Receiver;
 class TransporterImpl;
@@ -79,14 +77,14 @@ public:
      * @param theReceiver: The receiver that will subscribe to the subject
      * @return false in case of a failure
      */
-    bool subscribe ( const string& subject, Receiver* theReceiver );
+    bool subscribe ( const std::string& subject, Receiver* theReceiver );
 
     /**
      * Unsubscribes from the given subject
      * @param subject: The subject from which the receiver will unsubscribe
      * @return false in case of a failure
      */
-    bool unsubscribe ( const string& subject );
+    bool unsubscribe ( const std::string& subject );
 
     /**
      * Sends the given message to the given subject.
@@ -94,7 +92,7 @@ public:
      * @param msg: The message that will be sent
      * @return false in case of a failure
      */
-    bool sendMessage ( const string& subject, const Message& msg );
+    bool sendMessage ( const std::string& subject, const Message& msg );
 
     /**
      * Sends the Message to the given subject, and waits for an answer to come back from the
@@ -106,7 +104,7 @@ public:
      * @return the response that was sent by the receiver which was subscribed to the 'subject'. The caller is
      * responsible for deleting this object.
      */
-    Message* sendAndWaitAnswer ( const string& subject, Message* msg, int timeout );
+    Message* sendAndWaitAnswer ( const std::string& subject, Message* msg, int timeout );
 
     /**
      * Returns the identity of the client

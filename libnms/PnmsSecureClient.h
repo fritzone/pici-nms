@@ -5,8 +5,6 @@
 
 #include <string>
 
-using namespace std;
-
 class Message;
 class Receiver;
 
@@ -30,7 +28,7 @@ public:
      * be loaded from the configuration file stored in the location mentioned above.
      * @param name - the name of the client as known to the application developer using it
      */
-    PnmsSecureClient ( const string& name );
+    PnmsSecureClient ( const std::string& name );
 
     /**
      * Destructor
@@ -43,7 +41,7 @@ public:
      * @param name - the name of the client as known to the application developer using it
      * @param configFileLocation - the configuration file holding the settings of the Pici NMS network.
      */
-    PnmsSecureClient ( const string& name, const string& configFileLocation );
+    PnmsSecureClient ( const std::string& name, const std::string& configFileLocation );
 
     /**
      * Returns the initialization state of the object
@@ -58,7 +56,7 @@ public:
      * @param theReceiver - The receiver that will subscribe to the subject
      * @return false in case of a failure
      */
-    bool subscribe ( const string& subject, Receiver* receiver );
+    bool subscribe ( const std::string& subject, Receiver* receiver );
 
     /**
      * Publishes the given message to the PICI-NMS network for other clients that are subscribed
@@ -70,7 +68,7 @@ public:
      * @param msg - The message that will be sent
      * @return false in case of a failure
      */
-    bool publishMessage ( const string& subject, const Message& msg );
+    bool publishMessage ( const std::string& subject, const Message& msg );
 
 private:
 

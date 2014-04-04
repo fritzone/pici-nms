@@ -3,7 +3,7 @@
 /**
  * Returns the value of the node named "nodeName" being a child of "node"
  */
-string getXmlValue ( xmlDocPtr doc, xmlNodePtr node, string nodeName )
+std::string getXmlValue ( xmlDocPtr doc, xmlNodePtr node, std::string nodeName )
 {
     xmlNodePtr cur = node->xmlChildrenNode;
     while ( cur != NULL )
@@ -15,7 +15,7 @@ string getXmlValue ( xmlDocPtr doc, xmlNodePtr node, string nodeName )
             {
                 return "";
             }
-            string result = string ( ( char* ) value );
+            std::string result = std::string ( ( char* ) value );
             xmlFree ( value );
             return result;
         }
@@ -27,9 +27,9 @@ string getXmlValue ( xmlDocPtr doc, xmlNodePtr node, string nodeName )
 /**
  * Returns a list of nodes starting from node, all having the same name.
  */
-vector<xmlNodePtr> getNodeList ( xmlDocPtr /*doc*/ , xmlNodePtr node, string nodeName )
+std::vector<xmlNodePtr> getNodeList ( xmlDocPtr /*doc*/ , xmlNodePtr node, std::string nodeName )
 {
-    vector<xmlNodePtr> result;
+    std::vector<xmlNodePtr> result;
     result.clear();
     xmlNodePtr cur = node->xmlChildrenNode;
     while ( cur != NULL )
@@ -46,7 +46,7 @@ vector<xmlNodePtr> getNodeList ( xmlDocPtr /*doc*/ , xmlNodePtr node, string nod
 /**
  * Returns the node with the given name
  */
-xmlNodePtr getNamedNode ( xmlDocPtr /*doc*/ , xmlNodePtr node, string nodeName )
+xmlNodePtr getNamedNode ( xmlDocPtr /*doc*/ , xmlNodePtr node, std::string nodeName )
 {
     xmlNodePtr cur = node->xmlChildrenNode;
     while ( cur != NULL )

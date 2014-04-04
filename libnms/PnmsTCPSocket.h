@@ -4,6 +4,8 @@
 #include "TcpSocket.h"
 #include "CommandInterface.h"
 
+#include <string>
+
 class PnmsTCPSocket : public TCPSocket
 {
 public:
@@ -22,13 +24,13 @@ public:
      * currently in the dispatcher.
      * @param cmd - the command to send
      */
-    string send ( CommandInterface* cmd, bool needsAck = true );
+    std::string send ( CommandInterface* cmd, bool needsAck = true );
 
     /**
      * Sends the given command through the socket, and waits for timeout milliseconds for a reply before
      * returning
      */
-    string send ( CommandInterface* cmd, int timeout );
+    std::string send ( CommandInterface* cmd, int timeout );
 };
 
 #endif

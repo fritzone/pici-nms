@@ -2,6 +2,8 @@
 #include "Logger.h"
 #include "BoolWrapper.h"
 
+using namespace std;
+
 string BoolImpl::TYPESTR_BOOL ( "BOOL" );
 
 /**

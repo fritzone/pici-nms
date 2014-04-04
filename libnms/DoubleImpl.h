@@ -6,8 +6,6 @@
 #include "ObjImplMapper.h"
 
 #include <string>
-using namespace std;
-
 
 /**
  * Implementation class for a Double
@@ -29,7 +27,7 @@ public:
     /**
      * Constructor. Builds the object from the given string.
      */
-    DoubleImpl ( const string& sv );
+    DoubleImpl ( const std::string& sv );
 
     /**
      * Serializes the object. Returns the serialized XML string, the Content node:
@@ -40,14 +38,14 @@ public:
      * </Content>
      * @return the serialized Content XML
      */
-    string serialize();
+    std::string serialize();
 
     /**
      * Deserializes this object from the given string. The string should be plain string, NOT XML
      * @param ser - the number, as a string
      * @return true in case of success, false in case of failure
      */
-    bool deserialize ( const string& ser );
+    bool deserialize ( const std::string& ser );
 
     /**
      * Deserializes the Double from the node (which is the Content node)
@@ -92,7 +90,7 @@ private:
 
 public:
 
-    static string TYPESTR_DOUBLE;
+    static std::string TYPESTR_DOUBLE;
 
 };
 

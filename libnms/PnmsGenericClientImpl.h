@@ -3,8 +3,6 @@
 
 #include <string>
 
-using namespace std;
-
 class Transporter;
 class ClientIdentity;
 class Receiver;
@@ -31,7 +29,7 @@ public:
      * Constructor. Creates a new instance of a client. Based on the clientType parameter the constructor
      * decides whether it's a dynamic client or a secure client.
      */
-    PnmsGenericClientImpl (const string& _name, int clientType );
+    PnmsGenericClientImpl (const std::string& _name, int clientType );
 
     /**
      * Returns the transporter object of the client.
@@ -56,14 +54,14 @@ public:
      * @param theReceiver: The receiver that will subscribe to the subject
      * @return false in case of a failure
      */
-    bool subscribe ( const string& subject, Receiver* receiver );
+    bool subscribe ( const std::string& subject, Receiver* receiver );
 
     /**
      * Unsubscribes from the given subject
      * @param subject: The subject from which the receiver will unsubscribe
      * @return false in case of a failure
      */
-    bool unsubscribe ( const string& subject );
+    bool unsubscribe ( const std::string& subject );
 
     /**
      * Publishes the given message to the PICI-NMS network for other clients that are subscribed
@@ -75,7 +73,7 @@ public:
      * @param msg: The message that will be sent
      * @return false in case of a failure
      */
-    bool publishMessage ( const string& subject, const Message& msg );
+    bool publishMessage ( const std::string& subject, const Message& msg );
 
 protected:
 
@@ -86,7 +84,7 @@ protected:
     Transporter* transporter;
 
     // the name of the client, as used in synchronous communication
-    string name;
+    std::string name;
 
 };
 

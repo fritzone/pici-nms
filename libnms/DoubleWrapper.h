@@ -3,6 +3,8 @@
 
 #include "DefaultSerializableObject.h"
 
+#include <string>
+
 /**
  * Wrapper class to allow serialization of doubleean (double) values. Also, provides methods for converting
  * doubleean values to string and vice-versa.
@@ -26,7 +28,7 @@ public:
      * Constructs a new Double value from the given string.
      * @param _sval - the string (either "true" or "false")
      */
-    Double ( const string& _sval );
+    Double ( const std::string& _sval );
 
     /**
      * Destructor
@@ -42,12 +44,12 @@ public:
      * Returns the type description of the Double class.
      * @return the type description of the Double class
      */
-    virtual const string& type() const;
+    virtual const std::string& type() const;
 
     /**
      * Returns a string representation of the Double object
      */
-    virtual const string toString() const;
+    virtual const std::string toString() const;
 
 };
 

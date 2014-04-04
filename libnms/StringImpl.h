@@ -6,8 +6,6 @@
 #include "SerializableObject.h"
 
 #include <string>
-using namespace std;
-
 
 /**
  * Implementation class for a String
@@ -29,7 +27,7 @@ public:
     /**
      * Constructor. Builds the object from the given string.
      */
-    StringImpl ( const string& sv );
+    StringImpl ( const std::string& sv );
 
     /**
      * Serializes the object. Returns the serialized XML string, the Content node:
@@ -47,7 +45,7 @@ public:
      * @param ser - the number, as a string
      * @return true in case of success, false in case of failure
      */
-    bool deserialize ( const string& ser );
+    bool deserialize ( const std::string& ser );
 
     /**
      * Deserializes the String from the node (which is the Content node)
@@ -57,7 +55,7 @@ public:
      */
     bool deserialize ( xmlDocPtr doc , xmlNodePtr node );
 
-    const string& getValue() const
+    const std::string& getValue() const
     {
         return val;
     }
@@ -76,16 +74,16 @@ public:
      * SERIALIZER function.
      * Serializes the given object to a string that can be sent over the wire
      */
-    static string serializeString ( SerializableObject* stringToSer );
+    static std::string serializeString ( SerializableObject* stringToSer );
 
 private:
 
     // the actual value of the String
-    string val;
+    std::string val;
 
 public:
 
-    static string TYPESTR_STRING;
+    static std::string TYPESTR_STRING;
 
 };
 

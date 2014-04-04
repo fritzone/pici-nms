@@ -5,8 +5,6 @@
 
 #include <string>
 
-using namespace std;
-
 class Parameter;
 
 /**
@@ -76,49 +74,49 @@ public:
      * @param name - is the name of the integer parameter
      * @param value - is the value of the integer parameter (a primitive int)
      */
-    bool add ( const string& name, int value );
+    bool add ( const std::string& name, int value );
 
     /**
      * Adds a string parameter to this message
      * @param name - the name of the string parameter
      * @param value - the value of the string parameter
      */
-    bool add ( const string& name, const char* value );
+    bool add ( const std::string& name, const char* value );
 
     /**
      * Adds a string parameter to this message
      * @param name - the name of the string parameter
      * @param value - the value of the string parameter
      */
-    bool add ( const string& name, const string& value );
+    bool add ( const std::string& name, const string& value );
 
     /**
      * Adds a float parameter to the message
      * @param name - the name of the parameter
      * @param value - the value of the real parameter
      */
-    bool add ( const string& name, float value );
+    bool add ( const std::string& name, float value );
 
     /**
      * Adds a long parameter to the message
      * @param name - the name of the parameter
      * @param value - the value of the real parameter
      */
-    bool add ( const string& name, long value );
+    bool add ( const std::string& name, long value );
 
     /**
      * Adds a boolean value to this message
      * @param name - the name of the boolean parameter
      * @param value - true or false
      */
-    bool add ( const string& name, bool value );
+    bool add ( const std::string& name, bool value );
 
     /**
      * Adds a double value to this message
      * @param name - the name of the double parameter
      * @param value - the value
      */
-    bool add ( const string& name, double value );
+    bool add ( const std::string& name, double value );
 
     /**
      * Adds a Parameter to the message. Actually you should not use this message unless you
@@ -133,7 +131,7 @@ public:
      * specify the values for the
      * @param name - the name of the parameter to retrieve or create
      */
-    Parameter& operator[] ( const string& name );
+    Parameter& operator[] ( const std::string& name );
 
 
     /*
@@ -148,7 +146,7 @@ public:
      * @param stringName: the name of the string parameter
      * @return the value of the string parameter with the specified name.
      */
-    string getString ( const string& stringName ) throw();
+    string getString ( const std::string& stringName ) throw();
 
     /**
      * Returns the integer variable associated with the given name
@@ -157,7 +155,7 @@ public:
      * @param intName: the name of the integer parameter
      * @return the value of the int parameter with the specified name
      */
-    int getInt ( const string& intName ) throw();
+    int getInt ( const std::string& intName ) throw();
 
     /**
      * Returns the real number variable associated to the given name
@@ -166,7 +164,7 @@ public:
      * @param floatName: the name of the float parameter
      * @return the value of the float parameter with the specified name
      */
-    float getFloat ( const string& floatName ) throw();
+    float getFloat ( const std::string& floatName ) throw();
 
     /**
      * Returns the boolean value associated to the given name
@@ -175,7 +173,7 @@ public:
      * @param floatName: the name of the boolean parameter
      * @return the value of the boolean parameter with the specified name
      */
-    bool getBool ( const string& boolName ) throw();
+    bool getBool ( const std::string& boolName ) throw();
 
     /**
      * Returns the long value associated to the given name
@@ -184,7 +182,7 @@ public:
      * @param floatName: the name of the long parameter
      * @return the value of the long parameter with the specified name
      */
-    long getLong ( const string& longName ) throw();
+    long getLong ( const std::string& longName ) throw();
 
     /**
      * Returns the double value associated to the given name
@@ -193,7 +191,7 @@ public:
      * @param floatName: the name of the real number
      * @return the of the double parameter with the specified name
      */
-    double getDouble ( const string& doubleName ) throw();
+    double getDouble ( const std::string& doubleName ) throw();
 
     /**
      * Retrieves a parameter (read-only access only). In case there is no parameter with the
@@ -203,7 +201,7 @@ public:
      * is "const Message&" so there be prepared to catch this exception.
      * @param name - the name of the parameter
      */
-    const Parameter& operator[] ( const string& name ) const throw ( parameter_not_found );
+    const Parameter& operator[] ( const std::string& name ) const throw ( parameter_not_found );
 
 private:
 

@@ -3,6 +3,8 @@
 
 #include "Number.h"
 
+#include <string>
+
 /**
  * Wrapper class to allow serialization of Long values. Also, provides methods for converting
  * Longs to string and vice-versa.
@@ -26,7 +28,7 @@ public:
      * Constructs a new Long value from the given string.
      * @param _sval - the string
      */
-    Long ( const string& _sval );
+    Long ( const std::string& _sval );
 
     /**
      * Destructor
@@ -42,12 +44,12 @@ public:
      * Returns the type description of the Long class.
      * @return the type description of the Long class
      */
-    virtual const string& type() const;
+    virtual const std::string& type() const;
 
     /**
      * Returns a string representation of the given number
      */
-    virtual const string toString() const;
+    virtual const std::string toString() const;
 
 };
 

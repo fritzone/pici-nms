@@ -6,8 +6,6 @@
 #include "xml_handler.h"
 #include "Object.h"
 
-using namespace std;
-
 class SerializableObject;
 
 /**
@@ -25,12 +23,12 @@ public:
     /**
      * Creates a new parameter implementation with the given name
      */
-    ParameterImpl ( const string& nm );
+    ParameterImpl ( const std::string& nm );
 
     /**
      * Creates a new parameter implementation with the given name and value
      */
-    ParameterImpl ( const string& nm, SerializableObject* val );
+    ParameterImpl ( const std::string& nm, SerializableObject* val );
 
     /**
      * Serializes this parameter in the following XML format:
@@ -41,14 +39,14 @@ public:
      * </Parameter>
      * @return the serialized parameter
      */
-    string serialize();
+    std::string serialize();
 
     /**
      * Deserializes the object from the given string
      * @param ser - the serialized XML form of the parameter
      * @return true in case of success, false in case of failure
      */
-    bool deserialize ( const string& ser );
+    bool deserialize ( const std::string& ser );
 
     /**
      * Deserializes the Object from the node (which is the Content node)
@@ -71,7 +69,7 @@ public:
      * Returns the name of the parameter
      * @return the name of the parameter
      */
-    const string& getName() const
+    const std::string& getName() const
     {
         return name;
     }
@@ -98,19 +96,19 @@ public:
     /**
      * SERIALIZER function to serialize one parameter object (transmitted in the parToSer parameter)
      */
-    static string serializeParameter ( SerializableObject* parToSer );
+    static std::string serializeParameter ( SerializableObject* parToSer );
 
 private:
 
     // the name of the parameter
-    string name;
+    std::string name;
 
     // the value of the parameter
     SerializableObject* value;
 
 public:
 
-    static string TYPESTR_PARAMETER;
+    static std::string TYPESTR_PARAMETER;
 
     friend class Parameter;
 };

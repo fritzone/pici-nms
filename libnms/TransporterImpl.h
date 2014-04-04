@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class Subscription;
 class Receiver;
 class Message;
@@ -62,14 +60,14 @@ public:
      * @param subject: The subject to which the receiver will subscribe
      * @param theReceiver: The receiver that will subscribeto the subject
      */
-    bool subscribe ( const string& subject, Receiver* theReceiver );
+    bool subscribe ( const std::string& subject, Receiver* theReceiver );
 
     /**
      * Sends the given message to the given subject.
      * @param subject: The subject to where to send the message
      * @param msg: The message that will be sent
      */
-    bool sendMessage ( const string& subject, const Message& msg );
+    bool sendMessage ( const std::string& subject, const Message& msg );
 
     /**
      * Sends the Message to the given subject, and waits for an answer to come back from the
@@ -79,7 +77,7 @@ public:
      * @param timeout: is the time in seconds that we wait for the response to arrive. If you specify
      *                 zero we don't wait for the answer to come, specify quite a big value if you need...
      */
-    Message* sendAndWaitAnswer ( string subject, Message* msg, int timeout );
+    Message* sendAndWaitAnswer ( std::string subject, Message* msg, int timeout );
 
     /**
      * Returns the client identity for those who might need it
@@ -97,12 +95,12 @@ public:
     /**
      * Unsubscribes from the given subject
      */
-    bool unsubscribe ( const string& );
+    bool unsubscribe ( const std::string& );
 
     /**
      * Checks whether this transporter implementation is subscriebd or not to this subject
      */
-    bool isSubscribed ( const string& );
+    bool isSubscribed ( const std::string& );
 
 private:
 
@@ -114,7 +112,7 @@ private:
     /**
      * This method handles the objects messages, i.e. it sends them to the proper Receiver object
      */
-    void handleMessage ( const string&, const Message& );
+    void handleMessage ( const std::string&, const Message& );
 
     /**
      * Sends the "HELLO" message to the dispatcher (dynamic clients only)
@@ -133,7 +131,7 @@ private:
     NetworkAddress* dispatcherAddress;
 
     // the subscriptions in this transporter object
-    vector<Subscription*> subscriptions;
+    std::vector<Subscription*> subscriptions;
 
     // the port, on which this objects TCP server is running
     int freePort;

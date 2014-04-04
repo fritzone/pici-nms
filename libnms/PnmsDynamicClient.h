@@ -5,8 +5,6 @@
 
 #include <string>
 
-using namespace std;
-
 class Message;
 class Receiver;
 
@@ -28,7 +26,7 @@ public:
      * be discovered automatically.
      * @param name - the logical name of the client, as known to the application programmer
      */
-    PnmsDynamicClient ( const string& name );
+    PnmsDynamicClient ( const std::string& name );
 
     /**
      * Destructor
@@ -48,7 +46,7 @@ public:
      * @param theReceiver: The receiver that will subscribe to the subject
      * @return false in case of a failure
      */
-    bool subscribe ( const string& subject, Receiver* receiver );
+    bool subscribe ( const std::string& subject, Receiver* receiver );
 
     /**
      * Publishes the given message to the PICI-NMS network for other clients that are subscribed
@@ -60,7 +58,7 @@ public:
      * @param msg: The message that will be sent
      * @return false in case of a failure
      */
-    bool publishMessage ( const string& subject, const Message& msg );
+    bool publishMessage ( const std::string& subject, const Message& msg );
 
 private:
 

@@ -3,8 +3,6 @@
 #include <vector>
 #include <string>
 
-using namespace std;
-
 class Receiver;
 
 /**
@@ -16,19 +14,19 @@ class Subscription
 {
 public:
     // creates a new subscription class
-    Subscription ( string, Receiver* );
+    Subscription ( const std::string&, Receiver* );
 
     /// the subject
-    string subject;
+    std::string subject;
 
     /// The receiver, that is subscribed
     Receiver* theReceiver;
 
     /// return true when this object must receive the given message
-    bool receives ( string );
+    bool receives ( std::string );
 
 private:
     /// message field mechanism
-    vector<string> fields;
+    std::vector<std::string> fields;
 
 };

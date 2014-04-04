@@ -19,14 +19,14 @@ public:
      * Builds a new Parameter object with the given name
      * @param name - the name of the parameter
      */
-    Parameter ( const string& _name );
+    Parameter ( const std::string& _name );
 
     /**
      * Creates a new parameter object with the given name and the given value
      * @param _name - the name of the object
      * @param _value - the value of the object
      */
-    Parameter ( const string& _name, SerializableObject* _value );
+    Parameter ( const std::string& _name, SerializableObject* _value );
 
     /**
      * Destructor
@@ -37,12 +37,12 @@ public:
      * Returns the type of the data as a string that can be put into the XML without too much complication
      * @return the type of this class as a text
      */
-    virtual const string& type() const ;
+    virtual const std::string& type() const ;
 
     /**
      * Returns the name of the parameter
      */
-    const string& name() const;
+    const std::string& name() const;
 
     /**
      * Assigns an int value to this parameter

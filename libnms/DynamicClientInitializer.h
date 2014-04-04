@@ -5,8 +5,6 @@
 
 #include <string>
 
-using namespace std;
-
 class PnmsUDPSocket;
 class NetworkAddress;
 
@@ -53,7 +51,7 @@ private:
     NetworkAddress* broadcastAddress;
 
     // the response which is received as a reply to the udp broadcast from the Daemon
-    string daemonFirstResponse;
+    std::string daemonFirstResponse;
 };
 
 #endif

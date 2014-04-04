@@ -5,8 +5,6 @@
 
 #include <string>
 
-using namespace std;
-
 class ClientConfiguration;
 
 /**
@@ -29,7 +27,7 @@ public:
     /**
      * Initializer from the given config file
      */
-    SecureClientInitializer ( const string& configFile );
+    SecureClientInitializer ( const std::string& configFile );
 
     /**
      * Initializes the client

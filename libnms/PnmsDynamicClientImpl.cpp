@@ -1,6 +1,8 @@
 #include "PnmsDynamicClientImpl.h"
 #include "Transporter.h"
 
+using namespace std;
+
 /**
  * Constructor
  */

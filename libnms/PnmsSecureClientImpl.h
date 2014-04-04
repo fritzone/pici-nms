@@ -3,6 +3,8 @@
 
 #include "PnmsGenericClientImpl.h"
 
+#include <string>
+
 class SecureClientInitializer;
 
 /**
@@ -15,7 +17,7 @@ public:
     /**
      * Constructor
      */
-    PnmsSecureClientImpl ( const string& name );
+    PnmsSecureClientImpl ( const std::string& name );
 
     /**
      * Destructor
@@ -25,7 +27,7 @@ public:
     /**
      * Constructor
      */
-    PnmsSecureClientImpl ( const string& _name, const string& configFileLocation );
+    PnmsSecureClientImpl ( const std::string& _name, const std::string& configFileLocation );
 
     /**
      * Initialized? MUST be used before PnmsGenericClientImpl::isInitialized

@@ -6,7 +6,6 @@
 #include "ObjImplMapper.h"
 
 #include <string>
-using namespace std;
 
 /**
  * Class representing the implementation of an integer
@@ -28,7 +27,7 @@ public:
     /**
      * Constructor. Buidls the object from the given string.
      */
-    IntImpl ( const string& sv );
+    IntImpl ( const std::string& sv );
 
     /**
      * Serializes the object. Returns the serialized XML string, the Content node:
@@ -39,14 +38,14 @@ public:
      * </Content>
      * @return the serialized Content XML
      */
-    string serialize();
+    std::string serialize();
 
     /**
      * Deserializes this object from the given string. The string should be a plain number, NOT XML
      * @param ser - the number, as a string
      * @return ture in case of success, false in case of failure
      */
-    bool deserialize ( const string& ser );
+    bool deserialize ( const std::string& ser );
 
     /**
      * Deserializes the Integer from the node (which is the Content node)
@@ -62,7 +61,7 @@ public:
      * @param ser - the string containing a serialized integer
      * @return true in case of success, false in case of a failure
      */
-    bool buildFromString ( const string& ser );
+    bool buildFromString ( const std::string& ser );
 
     /**
      * Returns the value of this integer as an integer value
@@ -96,7 +95,7 @@ private:
 
 public:
 
-    static string TYPESTR_INTEGER;
+    static std::string TYPESTR_INTEGER;
 
 };
 

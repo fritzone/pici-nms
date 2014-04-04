@@ -1,10 +1,12 @@
 #include "Subscription.h"
 #include "Receiver.h"
 
+using namespace std;
+
 /**
  * Creates a new subscription object
  **/
-Subscription::Subscription ( string subj, Receiver* receiver )
+Subscription::Subscription (const std::string &subj, Receiver* receiver )
 {
     subject = subj;
     theReceiver = receiver;
