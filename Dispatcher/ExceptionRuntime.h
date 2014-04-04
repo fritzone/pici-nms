@@ -7,8 +7,8 @@
 
 class ExceptionRuntime : public std::runtime_error
 {
-	public:
-		ExceptionRuntime( std::string msg );
+public:
+    ExceptionRuntime ( std::string msg );
 };
 
 

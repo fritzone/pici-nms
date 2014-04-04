@@ -12,29 +12,29 @@ class UDPServerThread : public Thread
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	UDPServerThread():Thread(), server(NULL)
-	{
-	}
+    /**
+     * Constructor
+     */
+    UDPServerThread() : Thread(), server ( NULL )
+    {
+    }
 
-	/**
-	 * Sets the server object of this class
-	 */
-	void setServer(ThreadedUDPServer* srv);
-
-protected:
-
-	/**
-	 * This method must be overridden by thread classes
-	 */
-	virtual void* process() = 0;
+    /**
+     * Sets the server object of this class
+     */
+    void setServer ( ThreadedUDPServer* srv );
 
 protected:
 
-	// the server object
-	ThreadedUDPServer* server;
+    /**
+     * This method must be overridden by thread classes
+     */
+    virtual void* process() = 0;
+
+protected:
+
+    // the server object
+    ThreadedUDPServer* server;
 };
 
 #endif

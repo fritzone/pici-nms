@@ -14,41 +14,41 @@ using namespace std;
  */
 Integer::Integer()
 {
-IntImpl* iimpl = new(std::nothrow) IntImpl();
-	if(NULL == iimpl)
-	{
-		LOG_ERR("Not enough memory to create a new int implementation");
-		return;
-	}
-	ObjImplMapper<Integer,IntImpl>::mapObjToImpl(this, iimpl);
+    IntImpl* iimpl = new ( std::nothrow ) IntImpl();
+    if ( NULL == iimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new int implementation" );
+        return;
+    }
+    ObjImplMapper<Integer, IntImpl>::mapObjToImpl ( this, iimpl );
 }
 
 /**
  * Constructor, creates an integer with the given value
  */
-Integer::Integer(int _val)
+Integer::Integer ( int _val )
 {
-IntImpl* iimpl = new(std::nothrow) IntImpl(_val);
-	if(NULL == iimpl)
-	{
-		LOG_ERR("Not enough memory to create a new int implementation");
-		return;
-	}
-	ObjImplMapper<Integer,IntImpl>::mapObjToImpl(this, iimpl);
+    IntImpl* iimpl = new ( std::nothrow ) IntImpl ( _val );
+    if ( NULL == iimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new int implementation" );
+        return;
+    }
+    ObjImplMapper<Integer, IntImpl>::mapObjToImpl ( this, iimpl );
 }
 
 /**
  * Constructor, creates an integer with the value from the given string
  */
-Integer::Integer(const string& _sval)
+Integer::Integer ( const string& _sval )
 {
-IntImpl* iimpl = new(std::nothrow) IntImpl(_sval);
-	if(NULL == iimpl)
-	{
-		LOG_ERR("Not enough memory to create a new int implementation");
-		return;
-	}
-	ObjImplMapper<Integer,IntImpl>::mapObjToImpl(this, iimpl);
+    IntImpl* iimpl = new ( std::nothrow ) IntImpl ( _sval );
+    if ( NULL == iimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new int implementation" );
+        return;
+    }
+    ObjImplMapper<Integer, IntImpl>::mapObjToImpl ( this, iimpl );
 }
 
 /**
@@ -56,8 +56,8 @@ IntImpl* iimpl = new(std::nothrow) IntImpl(_sval);
  */
 Integer::~Integer()
 {
-	delete ObjImplMapper<Integer,IntImpl>::getImpl(this);
-	ObjImplMapper<Integer,IntImpl>::removeImpl(this);
+    delete ObjImplMapper<Integer, IntImpl>::getImpl ( this );
+    ObjImplMapper<Integer, IntImpl>::removeImpl ( this );
 }
 
 /**
@@ -65,7 +65,7 @@ Integer::~Integer()
  */
 Integer::operator int () const
 {
-	return ObjImplMapper<Integer,IntImpl>::getImpl(const_cast<Integer*>(this))->getValue();
+    return ObjImplMapper<Integer, IntImpl>::getImpl ( const_cast<Integer*> ( this ) )->getValue();
 }
 
 /**
@@ -73,7 +73,7 @@ Integer::operator int () const
  */
 const string& Integer::type() const
 {
-	return IntImpl::TYPESTR_INTEGER;
+    return IntImpl::TYPESTR_INTEGER;
 }
 
 /**
@@ -81,7 +81,7 @@ const string& Integer::type() const
  */
 const string Integer::toString() const
 {
-stringstream ss;
-	ss << (ObjImplMapper<Integer,IntImpl>::getImpl(const_cast<Integer*>(this)))->getValue();
-	return ss.str();
+    stringstream ss;
+    ss << ( ObjImplMapper<Integer, IntImpl>::getImpl ( const_cast<Integer*> ( this ) ) )->getValue();
+    return ss.str();
 }

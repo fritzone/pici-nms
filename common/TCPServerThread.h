@@ -12,42 +12,42 @@ class TCPServerThread : public Thread
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	TCPServerThread():Thread(), server(NULL)
-	{
-	}
+    /**
+     * Constructor
+     */
+    TCPServerThread() : Thread(), server ( NULL )
+    {
+    }
 
-	/**
-	 * Sets the server object of this class
-	 */
-	void setServer(ThreadedTCPServer* srv);
+    /**
+     * Sets the server object of this class
+     */
+    void setServer ( ThreadedTCPServer* srv );
 
-	/**
-	 * Stops this thread
-	 */
-	bool stop();
+    /**
+     * Stops this thread
+     */
+    bool stop();
 
-	bool isAlive() const
-	{
-		return alive;
-	}
+    bool isAlive() const
+    {
+        return alive;
+    }
 
 protected:
 
-	/**
-	 * This method must be overridden by thread classes
-	 */
-	virtual void* process();
+    /**
+     * This method must be overridden by thread classes
+     */
+    virtual void* process();
 
 private:
 
-	// the server object
-	ThreadedTCPServer* server;
+    // the server object
+    ThreadedTCPServer* server;
 
-	// whether this thread is alive or not
-	bool alive;
+    // whether this thread is alive or not
+    bool alive;
 };
 
 #endif

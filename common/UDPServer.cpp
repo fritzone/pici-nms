@@ -7,20 +7,20 @@
  */
 UDPServer::UDPServer() : BasicServerImpl()
 {
-	sock = new(std::nothrow) UDPSocket();
-	if(NULL == sock)
-	{
-		LOG_ERR("Not enough memory to create a new UDPSocket");
-	}
+    sock = new ( std::nothrow ) UDPSocket();
+    if ( NULL == sock )
+    {
+        LOG_ERR ( "Not enough memory to create a new UDPSocket" );
+    }
 }
 
-UDPServer::UDPServer(ClientAcceptor* acc) : BasicServerImpl(acc)
+UDPServer::UDPServer ( ClientAcceptor* acc ) : BasicServerImpl ( acc )
 {
-	sock = new(std::nothrow) UDPSocket();
-	if(NULL == sock)
-	{
-		LOG_ERR("Not enough memory to create a new UDPSocket");
-	}
+    sock = new ( std::nothrow ) UDPSocket();
+    if ( NULL == sock )
+    {
+        LOG_ERR ( "Not enough memory to create a new UDPSocket" );
+    }
 }
 
 /**
@@ -29,5 +29,5 @@ UDPServer::UDPServer(ClientAcceptor* acc) : BasicServerImpl(acc)
  */
 UDPSocket* UDPServer::getSocket() const
 {
-	return dynamic_cast<UDPSocket*>(sock);
+    return dynamic_cast<UDPSocket*> ( sock );
 }

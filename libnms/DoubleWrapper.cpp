@@ -13,41 +13,41 @@ using namespace std;
  */
 Double::Double()
 {
-DoubleImpl* bimpl = new(std::nothrow) DoubleImpl();
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Double implementation");
-		return;
-	}
-	ObjImplMapper<Double,DoubleImpl>::mapObjToImpl(this, bimpl);
+    DoubleImpl* bimpl = new ( std::nothrow ) DoubleImpl();
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Double implementation" );
+        return;
+    }
+    ObjImplMapper<Double, DoubleImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
  * Constructor, creates an Double with the given value
  */
-Double::Double(double _val)
+Double::Double ( double _val )
 {
-DoubleImpl* bimpl = new(std::nothrow) DoubleImpl(_val);
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Double implementation");
-		return;
-	}
-	ObjImplMapper<Double,DoubleImpl>::mapObjToImpl(this, bimpl);
+    DoubleImpl* bimpl = new ( std::nothrow ) DoubleImpl ( _val );
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Double implementation" );
+        return;
+    }
+    ObjImplMapper<Double, DoubleImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
  * Constructor, creates an Double with the value from the given string
  */
-Double::Double(const string& _sval)
+Double::Double ( const string& _sval )
 {
-DoubleImpl* bimpl = new(std::nothrow) DoubleImpl(_sval);
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Double implementation");
-		return;
-	}
-	ObjImplMapper<Double,DoubleImpl>::mapObjToImpl(this, bimpl);
+    DoubleImpl* bimpl = new ( std::nothrow ) DoubleImpl ( _sval );
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Double implementation" );
+        return;
+    }
+    ObjImplMapper<Double, DoubleImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
@@ -55,8 +55,8 @@ DoubleImpl* bimpl = new(std::nothrow) DoubleImpl(_sval);
  */
 Double::~Double()
 {
-	delete ObjImplMapper<Double,DoubleImpl>::getImpl(this);
-	ObjImplMapper<Double,DoubleImpl>::removeImpl(this);
+    delete ObjImplMapper<Double, DoubleImpl>::getImpl ( this );
+    ObjImplMapper<Double, DoubleImpl>::removeImpl ( this );
 }
 
 /**
@@ -64,7 +64,7 @@ Double::~Double()
  */
 Double::operator double () const
 {
-	return ObjImplMapper<Double,DoubleImpl>::getImpl(const_cast<Double*>(this))->getValue();
+    return ObjImplMapper<Double, DoubleImpl>::getImpl ( const_cast<Double*> ( this ) )->getValue();
 }
 
 /**
@@ -72,7 +72,7 @@ Double::operator double () const
  */
 const string& Double::type() const
 {
-	return DoubleImpl::TYPESTR_DOUBLE;
+    return DoubleImpl::TYPESTR_DOUBLE;
 }
 
 /**
@@ -80,8 +80,8 @@ const string& Double::type() const
  */
 const string Double::toString() const
 {
-stringstream ss;
-	ss << (ObjImplMapper<Double,DoubleImpl>::getImpl(const_cast<Double*>(this)))->getValue();
-	return ss.str();
+    stringstream ss;
+    ss << ( ObjImplMapper<Double, DoubleImpl>::getImpl ( const_cast<Double*> ( this ) ) )->getValue();
+    return ss.str();
 }
 

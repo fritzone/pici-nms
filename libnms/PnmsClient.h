@@ -17,20 +17,20 @@ class PnmsClient
 {
 public:
 
-	PnmsClient(string name);
+    PnmsClient ( string name );
 
-	/**
-	 * Makes a new subscription for this client in the PICI/NMS network. After this call is being made the
-	 * receiver object will receive all the messages that have been sent to the given subject.
-	 * @param subject - the subject to which this client wants to subscribe
-	 * @param receiver - the receiver object which will get all the messages that are sent to the given subject
-	 */
-	bool subscribe(const string& subject, Receiver* receiver);
+    /**
+     * Makes a new subscription for this client in the PICI/NMS network. After this call is being made the
+     * receiver object will receive all the messages that have been sent to the given subject.
+     * @param subject - the subject to which this client wants to subscribe
+     * @param receiver - the receiver object which will get all the messages that are sent to the given subject
+     */
+    bool subscribe ( const string& subject, Receiver* receiver );
 
 private:
 
-	// the name of the client
-	string name;
+    // the name of the client
+    string name;
 };
 
 #endif

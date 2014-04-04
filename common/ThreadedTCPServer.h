@@ -13,27 +13,27 @@ class ThreadedTCPServer : public TCPServer
 {
 public:
 
-	/**
-	 * Constructor. The thread object SHOULD NOT be started, this server does it.
-	 */
-	ThreadedTCPServer(TCPServerThread* thrd) : TCPServer(), serverThread(thrd)
-	{
-	}
+    /**
+     * Constructor. The thread object SHOULD NOT be started, this server does it.
+     */
+    ThreadedTCPServer ( TCPServerThread* thrd ) : TCPServer(), serverThread ( thrd )
+    {
+    }
 
-	/**
-	 * Starts the thread of the server
-	 */
-	bool start();
+    /**
+     * Starts the thread of the server
+     */
+    bool start();
 
-	/**
-	 * Stops the server
-	 */
-	bool stop();
+    /**
+     * Stops the server
+     */
+    bool stop();
 
 private:
 
-	// this is the thread of the server
-	TCPServerThread* serverThread;
+    // this is the thread of the server
+    TCPServerThread* serverThread;
 };
 
 #endif

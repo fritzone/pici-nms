@@ -13,42 +13,42 @@ using namespace std;
 class RegisteredDispatcher
 {
 public:
-	/**
-	 * Creates a new RegisteredDispatcher object
-	 */
-	RegisteredDispatcher(const string& strip, const string& strport, const string& ssitekey);
+    /**
+     * Creates a new RegisteredDispatcher object
+     */
+    RegisteredDispatcher ( const string& strip, const string& strport, const string& ssitekey );
 
-	/**
-	 * returns the port of the dispatcher
-	 */
-	int getPort() const
-	{
-		return port;
-	}
+    /**
+     * returns the port of the dispatcher
+     */
+    int getPort() const
+    {
+        return port;
+    }
 
-	/**
-	 * Return the IP
-	 */
-	string getIp()
-	{
-		return addr.getIp();
-	}
+    /**
+     * Return the IP
+     */
+    string getIp()
+    {
+        return addr.getIp();
+    }
 
-	/**
-	 * Pings this dispatcher
-	 */
-	bool ping();
-	
+    /**
+     * Pings this dispatcher
+     */
+    bool ping();
+
 private:
 
-	// the IP of the dispatcher
-	NetworkAddress addr;
+    // the IP of the dispatcher
+    NetworkAddress addr;
 
-	// the port of the dispatcher
-	int port;
+    // the port of the dispatcher
+    int port;
 
-	// the sitekey of the dispatcher
-	string sitekey;
+    // the sitekey of the dispatcher
+    string sitekey;
 };
 
 #endif

@@ -14,15 +14,15 @@ class Number : public DefaultSerializableObject
 {
 public:
 
-	/**
-	 * Returns the type of the data as a string that can be put into the XML without too much complication
-	 */
-	virtual const string& type() const = 0;
+    /**
+     * Returns the type of the data as a string that can be put into the XML without too much complication
+     */
+    virtual const string& type() const = 0;
 
-	/**
-	 * Returns a string representation of the given number
-	 */
-	virtual const string toString() const = 0;
+    /**
+     * Returns a string representation of the given number
+     */
+    virtual const string toString() const = 0;
 
 };
 

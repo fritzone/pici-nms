@@ -4,6 +4,7 @@ set(${project}_files
     ${CMAKE_CURRENT_SOURCE_DIR}/AbstractSocket.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/BasicServerImpl.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/ConfigReader.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/constants.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Host.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/Logger.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/MessageDigest.cpp

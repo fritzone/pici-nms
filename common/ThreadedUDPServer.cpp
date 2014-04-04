@@ -8,19 +8,19 @@
  */
 bool ThreadedUDPServer::start()
 {
-	serverThread->setServer(this);
-	LOG("Starting UDP server");
-	if(serverThread->isStarted()) 
-	{
-		return false;
-	}
-bool succ = serverThread->start();	
-	if(succ)
-	{		
-		return true;
-	}
-	LOG_ERR("Could not start the UDP Server's thread");
-	return false;
+    serverThread->setServer ( this );
+    LOG ( "Starting UDP server" );
+    if ( serverThread->isStarted() )
+    {
+        return false;
+    }
+    bool succ = serverThread->start();
+    if ( succ )
+    {
+        return true;
+    }
+    LOG_ERR ( "Could not start the UDP Server's thread" );
+    return false;
 }
 
 /**
@@ -28,8 +28,8 @@ bool succ = serverThread->start();
  */
 bool ThreadedUDPServer::stop()
 {
-	serverThread->stop();
-	this->getSocket()->close();
-	serverThread->waitToFinish();
-	return true;
+    serverThread->stop();
+    this->getSocket()->close();
+    serverThread->waitToFinish();
+    return true;
 }

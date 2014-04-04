@@ -12,29 +12,29 @@ class Object
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	Object()
-	{
-	}
+    /**
+     * Constructor
+     */
+    Object()
+    {
+    }
 
-	/**
-	 * Destructor
-	 */
-	virtual ~Object()
-	{
-	}
+    /**
+     * Destructor
+     */
+    virtual ~Object()
+    {
+    }
 
-	/**
-	 * Returns a unique MD5 hash-code for this object
-	 */
-	virtual string getHashCode() = 0;
+    /**
+     * Returns a unique MD5 hash-code for this object
+     */
+    virtual string getHashCode() = 0;
 
-	/**
-	 * Returns the type of the data as a string that can be put into the XML without too much complication
-	 */
-	virtual const string& type() const = 0;
+    /**
+     * Returns the type of the data as a string that can be put into the XML without too much complication
+     */
+    virtual const string& type() const = 0;
 };
 
 #endif

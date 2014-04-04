@@ -2,10 +2,10 @@
 
 string DefaultSerializableObject::serialize()
 {
-    return string("");
+    return string ( "" );
 }
 
-bool DefaultSerializableObject::deserialize(const string& ser)
+bool DefaultSerializableObject::deserialize ( const string& )
 {
     return false;
 }

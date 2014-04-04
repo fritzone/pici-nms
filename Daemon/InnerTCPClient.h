@@ -14,20 +14,20 @@ class InnerTCPClient : public AbstractServerClient
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	InnerTCPClient(Daemon* dmn);
+    /**
+     * Constructor
+     */
+    InnerTCPClient ( Daemon* dmn );
 
-	/**
-	 * Called when a client connected to the daemon from the inner network
-	 */
-	bool onConnect(AbstractSocket* sock, NetworkAddress* addr);
+    /**
+     * Called when a client connected to the daemon from the inner network
+     */
+    bool onConnect ( AbstractSocket* sock, NetworkAddress* addr );
 
 private:
 
-	// the daemon object of this client
-	Daemon* daemon;
+    // the daemon object of this client
+    Daemon* daemon;
 };
 
 #endif

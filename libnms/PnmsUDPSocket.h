@@ -11,18 +11,18 @@ class PnmsUDPSocket : public UDPSocket
 {
 public:
 
-	/**
-	 * Constructor, creates a PICI-NMS UDP socket
-	 */
-	PnmsUDPSocket() : UDPSocket()
-	{
-	}
+    /**
+     * Constructor, creates a PICI-NMS UDP socket
+     */
+    PnmsUDPSocket() : UDPSocket()
+    {
+    }
 
-	/**
-	 * Sends a message to the Network Address connected to this socket
-	 * @param message - the message that is sent through the wire to the other components
-	 */
-	bool send(CommandInterface* message);
+    /**
+     * Sends a message to the Network Address connected to this socket
+     * @param message - the message that is sent through the wire to the other components
+     */
+    bool send ( CommandInterface* message );
 
 };
 

@@ -14,7 +14,7 @@ class Parameter;
  * Messages contain:
  * 1. different kind and type parameters that are added by the specific add*** functions,
  *    or can be queried by the get*** functions. These parameters are uniquely identified by
- *    their name. Each parameter has also a type (such as Integer, Float, String, Bool ...) and 
+ *    their name. Each parameter has also a type (such as Integer, Float, String, Bool ...) and
  *    a value (such as 1, 3.1415, "Hello World", true, ...)
  * 2. a time to live value, which is set automatically to IMMEDIATE for synchronously sent messages
  *    or a default of 24 hours for asynchornous messages, or a user set timeout. the TTL is being calculated
@@ -43,178 +43,178 @@ class LIBNMS_API Message
 {
 public:
 
-	// the default 24 hours Time To Live of a Message
-	static const int TTL_24H = 1000 * 60 * 60 * 24;
+    // the default 24 hours Time To Live of a Message
+    static const int TTL_24H = 1000 * 60 * 60 * 24;
 
 public:
 
-	/**
-	 * Creates a new Message with a default Time To Live set to 24 hours
-	 */
-	Message();
+    /**
+     * Creates a new Message with a default Time To Live set to 24 hours
+     */
+    Message();
 
-	/**
-	 * Creates a new message with the specified Time to Live (in milliseconds)
-	 * @param ttl - time to live, the period for which this message is being kept in the system 
-	 *              (if sent asynchronously) before being deleted by the Dispatcher.
-	 */
-	Message(int ttl);
+    /**
+     * Creates a new message with the specified Time to Live (in milliseconds)
+     * @param ttl - time to live, the period for which this message is being kept in the system
+     *              (if sent asynchronously) before being deleted by the Dispatcher.
+     */
+    Message ( int ttl );
 
-	/**
-	 * Destructor.
-	 */
-	virtual ~Message(void);
-
-	
-	/*
-	 * Methods below add different values to the message
-	 */
+    /**
+     * Destructor.
+     */
+    virtual ~Message ( void );
 
 
-	/**
-	 * Adds an integer to this message
-	 * @param name - is the name of the integer parameter
-	 * @param value - is the value of the integer parameter (a primitive int)
-	 */
-	bool add(const string& name, int value);
-
-	/**
-	 * Adds a string parameter to this message
-	 * @param name - the name of the string parameter
-	 * @param value - the value of the string parameter
-	 */
-	bool add(const string& name, const char* value);
-
-	/**
-	 * Adds a string parameter to this message
-	 * @param name - the name of the string parameter
-	 * @param value - the value of the string parameter
-	 */
-	bool add(const string& name, const string& value);
-
-	/**
-	 * Adds a float parameter to the message
-	 * @param name - the name of the parameter
-	 * @param value - the value of the real parameter
-	 */
-	bool add(const string& name, float value);
-
-	/**
-	 * Adds a long parameter to the message
-	 * @param name - the name of the parameter
-	 * @param value - the value of the real parameter
-	 */
-	bool add(const string& name, long value);
-
-	/**
-	 * Adds a boolean value to this message
-	 * @param name - the name of the boolean parameter
-	 * @param value - true or false
-	 */
-	bool add(const string& name, bool value);
-
-	/**
-	 * Adds a double value to this message
-	 * @param name - the name of the double parameter
-	 * @param value - the value
-	 */
-	bool add(const string& name, double value);
-
-	/**
-	 * Adds a Parameter to the message. Actually you should not use this message unless you
-	 * want to create the parameters by hand.
-	 */
-	bool addParameter(Parameter* param);
-
-	/**
-	 * Retrieves the parameter with the given name in case it exists. This has a read/write
-	 * access on the message, so with this you are actually creating the parameters. This
-	 * method is used in the phase where the message is just being constructed and you
-	 * specify the values for the 
-	 * @param name - the name of the parameter to retrieve or create
-	 */
-	Parameter& operator[](const string& name);
+    /*
+     * Methods below add different values to the message
+     */
 
 
-	/*
-	 * Methods below are used to retrieve values from the message
-	 */
+    /**
+     * Adds an integer to this message
+     * @param name - is the name of the integer parameter
+     * @param value - is the value of the integer parameter (a primitive int)
+     */
+    bool add ( const string& name, int value );
+
+    /**
+     * Adds a string parameter to this message
+     * @param name - the name of the string parameter
+     * @param value - the value of the string parameter
+     */
+    bool add ( const string& name, const char* value );
+
+    /**
+     * Adds a string parameter to this message
+     * @param name - the name of the string parameter
+     * @param value - the value of the string parameter
+     */
+    bool add ( const string& name, const string& value );
+
+    /**
+     * Adds a float parameter to the message
+     * @param name - the name of the parameter
+     * @param value - the value of the real parameter
+     */
+    bool add ( const string& name, float value );
+
+    /**
+     * Adds a long parameter to the message
+     * @param name - the name of the parameter
+     * @param value - the value of the real parameter
+     */
+    bool add ( const string& name, long value );
+
+    /**
+     * Adds a boolean value to this message
+     * @param name - the name of the boolean parameter
+     * @param value - true or false
+     */
+    bool add ( const string& name, bool value );
+
+    /**
+     * Adds a double value to this message
+     * @param name - the name of the double parameter
+     * @param value - the value
+     */
+    bool add ( const string& name, double value );
+
+    /**
+     * Adds a Parameter to the message. Actually you should not use this message unless you
+     * want to create the parameters by hand.
+     */
+    bool addParameter ( Parameter* param );
+
+    /**
+     * Retrieves the parameter with the given name in case it exists. This has a read/write
+     * access on the message, so with this you are actually creating the parameters. This
+     * method is used in the phase where the message is just being constructed and you
+     * specify the values for the
+     * @param name - the name of the parameter to retrieve or create
+     */
+    Parameter& operator[] ( const string& name );
 
 
-	/**
-	 * Returns the string associated to stringName
-	 * If no string parameter exists with the given name empty string is returned.
-	 * This method does not throw.
-	 * @param stringName: the name of the string parameter
-	 * @return the value of the string parameter with the specified name. 
-	 */
-	string getString(const string& stringName) throw();
+    /*
+     * Methods below are used to retrieve values from the message
+     */
 
-	/**
-	 * Returns the integer variable associated with the given name
-	 * if no parameter was defined for the given name 0 (zero) is returned.
-	 * This method does not throw.
-	 * @param intName: the name of the integer parameter
-	 * @return the value of the int parameter with the specified name
-	 */
-	int getInt(const string& intName) throw();
 
-	/**
-	 * Returns the real number variable associated to the given name
-	 * if no parameter was defined for the given name 0 (zero) is returned.
-	 * This method does not throw.
-	 * @param floatName: the name of the float parameter
-	 * @return the value of the float parameter with the specified name
-	 */
-	float getFloat(const string& floatName) throw();
+    /**
+     * Returns the string associated to stringName
+     * If no string parameter exists with the given name empty string is returned.
+     * This method does not throw.
+     * @param stringName: the name of the string parameter
+     * @return the value of the string parameter with the specified name.
+     */
+    string getString ( const string& stringName ) throw();
 
-	/**
-	 * Returns the boolean value associated to the given name
-	 * if no parameter was defined for the given name false is returned
-	 * This method does not throw.
-	 * @param floatName: the name of the boolean parameter
-	 * @return the value of the boolean parameter with the specified name
-	 */
-	bool getBool(const string& boolName) throw();
+    /**
+     * Returns the integer variable associated with the given name
+     * if no parameter was defined for the given name 0 (zero) is returned.
+     * This method does not throw.
+     * @param intName: the name of the integer parameter
+     * @return the value of the int parameter with the specified name
+     */
+    int getInt ( const string& intName ) throw();
 
-	/**
-	 * Returns the long value associated to the given name
-	 * if no parameter was defined for the given name 0 is returned
-	 * This method does not throw.
-	 * @param floatName: the name of the long parameter
-	 * @return the value of the long parameter with the specified name
-	 */
-	long getLong(const string& longName) throw();
+    /**
+     * Returns the real number variable associated to the given name
+     * if no parameter was defined for the given name 0 (zero) is returned.
+     * This method does not throw.
+     * @param floatName: the name of the float parameter
+     * @return the value of the float parameter with the specified name
+     */
+    float getFloat ( const string& floatName ) throw();
 
-	/**
-	 * Returns the double value associated to the given name
-	 * if no parameter was defined for the given name 0 is returned
-	 * This method does not throw.
-	 * @param floatName: the name of the real number
-	 * @return the of the double parameter with the specified name
-	 */
-	double getDouble(const string& doubleName) throw();
+    /**
+     * Returns the boolean value associated to the given name
+     * if no parameter was defined for the given name false is returned
+     * This method does not throw.
+     * @param floatName: the name of the boolean parameter
+     * @return the value of the boolean parameter with the specified name
+     */
+    bool getBool ( const string& boolName ) throw();
 
-	/**
-	 * Retrieves a parameter (read-only access only). In case there is no parameter with the
-	 * requested name, this method will THROW an exception in form of a string. To spare some
-	 * construction time, catch it with a reference. This operator is being used in the
-	 * Receiver::receive method (actually YOUR derived class's receive method), where the parameter
-	 * is "const Message&" so there be prepared to catch this exception.
-	 * @param name - the name of the parameter
-	 */
-	const Parameter& operator[] (const string& name) const throw(parameter_not_found);
+    /**
+     * Returns the long value associated to the given name
+     * if no parameter was defined for the given name 0 is returned
+     * This method does not throw.
+     * @param floatName: the name of the long parameter
+     * @return the value of the long parameter with the specified name
+     */
+    long getLong ( const string& longName ) throw();
+
+    /**
+     * Returns the double value associated to the given name
+     * if no parameter was defined for the given name 0 is returned
+     * This method does not throw.
+     * @param floatName: the name of the real number
+     * @return the of the double parameter with the specified name
+     */
+    double getDouble ( const string& doubleName ) throw();
+
+    /**
+     * Retrieves a parameter (read-only access only). In case there is no parameter with the
+     * requested name, this method will THROW an exception in form of a string. To spare some
+     * construction time, catch it with a reference. This operator is being used in the
+     * Receiver::receive method (actually YOUR derived class's receive method), where the parameter
+     * is "const Message&" so there be prepared to catch this exception.
+     * @param name - the name of the parameter
+     */
+    const Parameter& operator[] ( const string& name ) const throw ( parameter_not_found );
 
 private:
 
-	/* 
-	 * Unimplemented copy constructor
-	 */
-	Message(const Message& other);
+    /*
+     * Unimplemented copy constructor
+     */
+    Message ( const Message& other );
 
-	/*
-	 * Unimplemented assignment operator
-	 */
-	Message& operator = (const Message& rhs);
+    /*
+     * Unimplemented assignment operator
+     */
+    Message& operator = ( const Message& rhs );
 
 };

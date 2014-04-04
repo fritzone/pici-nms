@@ -17,43 +17,43 @@ class DynamicClientInitializer : public AbstractClientInitializer
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	DynamicClientInitializer();
+    /**
+     * Constructor
+     */
+    DynamicClientInitializer();
 
-	/**
-	 * Destructor
-	 */
-	~DynamicClientInitializer();
+    /**
+     * Destructor
+     */
+    ~DynamicClientInitializer();
 
-	/**
-	 * Initialize the client and retrieve the client identity
-	 */
-	virtual bool initializeClient();
-
-private:
-
-	/**
-	 * Initialize the UDP socket for this initializer
-	 */
-	bool setupUdpSocket();
-
-	/**
-	 * Sends the UDP message, waits for msec milliseconds before giving up
-	 */
-	bool sendUdpMessage(int timeoutMsec = 3000);
+    /**
+     * Initialize the client and retrieve the client identity
+     */
+    virtual bool initializeClient();
 
 private:
 
-	// Socket which goes to the Daemon in the dynamic initialization phase in
-	PnmsUDPSocket* udpSocket;
+    /**
+     * Initialize the UDP socket for this initializer
+     */
+    bool setupUdpSocket();
 
-	// the address which is prepared for broadcasting
-	NetworkAddress* broadcastAddress;
+    /**
+     * Sends the UDP message, waits for msec milliseconds before giving up
+     */
+    bool sendUdpMessage ( int timeoutMsec = 3000 );
 
-	// the response which is received as a reply to the udp broadcast from the Daemon
-	string daemonFirstResponse;
+private:
+
+    // Socket which goes to the Daemon in the dynamic initialization phase in
+    PnmsUDPSocket* udpSocket;
+
+    // the address which is prepared for broadcasting
+    NetworkAddress* broadcastAddress;
+
+    // the response which is received as a reply to the udp broadcast from the Daemon
+    string daemonFirstResponse;
 };
 
 #endif

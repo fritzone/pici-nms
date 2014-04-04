@@ -4,7 +4,7 @@
 /**
  * Constructor
  */
-PnmsDynamicClientImpl::PnmsDynamicClientImpl(const string &name) : PnmsGenericClientImpl(name, DYNAMIC_CLIENT)
+PnmsDynamicClientImpl::PnmsDynamicClientImpl ( const string& name ) : PnmsGenericClientImpl ( name, DYNAMIC_CLIENT )
 {
 
 }

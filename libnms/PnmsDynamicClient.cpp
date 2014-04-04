@@ -8,17 +8,20 @@
 /**
  * Constructor. Creates a new Dynamic client
  */
-PnmsDynamicClient::PnmsDynamicClient(const std::string & clientName) 
+PnmsDynamicClient::PnmsDynamicClient ( const std::string& clientName )
 {
-	if(!PnmsNetwork::initialized) PnmsNetwork::initialize();
+    if ( !PnmsNetwork::initialized )
+    {
+        PnmsNetwork::initialize();
+    }
 
-PnmsDynamicClientImpl* pdimpl = new (std::nothrow) PnmsDynamicClientImpl(clientName);
-	if(NULL == pdimpl)
-	{
-		LOG_ERR("Not enough memory to create a new PnmsDynamicClientImpl");
-		return;
-	}
-	ObjImplMapper<PnmsDynamicClient,PnmsDynamicClientImpl>::mapObjToImpl(this, pdimpl);
+    PnmsDynamicClientImpl* pdimpl = new ( std::nothrow ) PnmsDynamicClientImpl ( clientName );
+    if ( NULL == pdimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new PnmsDynamicClientImpl" );
+        return;
+    }
+    ObjImplMapper<PnmsDynamicClient, PnmsDynamicClientImpl>::mapObjToImpl ( this, pdimpl );
 }
 
 /**
@@ -26,9 +29,9 @@ PnmsDynamicClientImpl* pdimpl = new (std::nothrow) PnmsDynamicClientImpl(clientN
  */
 PnmsDynamicClient::~PnmsDynamicClient()
 {
-PnmsDynamicClientImpl* pimpl = ObjImplMapper<PnmsDynamicClient,PnmsDynamicClientImpl>::getImpl(const_cast<PnmsDynamicClient*>(this));
-	ObjImplMapper<PnmsDynamicClient,PnmsDynamicClientImpl>::removeImpl(this);
-	delete pimpl;
+    PnmsDynamicClientImpl* pimpl = ObjImplMapper<PnmsDynamicClient, PnmsDynamicClientImpl>::getImpl ( const_cast<PnmsDynamicClient*> ( this ) );
+    ObjImplMapper<PnmsDynamicClient, PnmsDynamicClientImpl>::removeImpl ( this );
+    delete pimpl;
 }
 
 /**
@@ -36,22 +39,22 @@ PnmsDynamicClientImpl* pimpl = ObjImplMapper<PnmsDynamicClient,PnmsDynamicClient
  */
 bool PnmsDynamicClient::isInitialized() const
 {
-	return ObjImplMapper<PnmsDynamicClient,PnmsDynamicClientImpl>::getImpl(const_cast<PnmsDynamicClient*>(this))->isInitialized();
+    return ObjImplMapper<PnmsDynamicClient, PnmsDynamicClientImpl>::getImpl ( const_cast<PnmsDynamicClient*> ( this ) )->isInitialized();
 }
 
 /**
  * Subscribe to the given subject
  */
-bool PnmsDynamicClient::subscribe(const std::string &subject, Receiver *receiver)
+bool PnmsDynamicClient::subscribe ( const std::string& subject, Receiver* receiver )
 {
-	return ObjImplMapper<PnmsDynamicClient,PnmsDynamicClientImpl>::getImpl(const_cast<PnmsDynamicClient*>(this))->subscribe(subject, receiver);
+    return ObjImplMapper<PnmsDynamicClient, PnmsDynamicClientImpl>::getImpl ( const_cast<PnmsDynamicClient*> ( this ) )->subscribe ( subject, receiver );
 }
 
 /**
  * Publishes the message to the Pnms network
  */
-bool PnmsDynamicClient::publishMessage(const std::string &subject, const Message &msg)
+bool PnmsDynamicClient::publishMessage ( const std::string& subject, const Message& msg )
 {
-	return ObjImplMapper<PnmsDynamicClient,PnmsDynamicClientImpl>::getImpl(const_cast<PnmsDynamicClient*>(this))->publishMessage(subject, msg);
+    return ObjImplMapper<PnmsDynamicClient, PnmsDynamicClientImpl>::getImpl ( const_cast<PnmsDynamicClient*> ( this ) )->publishMessage ( subject, msg );
 }
 

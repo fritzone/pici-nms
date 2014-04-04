@@ -13,21 +13,21 @@ class UDPServer : public BasicServerImpl
 
 public:
 
-	/**
-	 * Constructor
-	 */
-	UDPServer();
+    /**
+     * Constructor
+     */
+    UDPServer();
 
-	/**
-	 * Constructor	
-	 */
-	UDPServer(ClientAcceptor* acc);
-	
-	/**
-	 * Returns the socket object of the server
-	 * @return the socket
-	 */
-	UDPSocket* getSocket() const;
+    /**
+     * Constructor
+     */
+    UDPServer ( ClientAcceptor* acc );
+
+    /**
+     * Returns the socket object of the server
+     * @return the socket
+     */
+    UDPSocket* getSocket() const;
 };
 
 #endif

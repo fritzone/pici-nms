@@ -6,22 +6,22 @@
 using namespace std;
 
 
-string IntImpl::TYPESTR_INTEGER ("INT"); 
+string IntImpl::TYPESTR_INTEGER ( "INT" );
 
 
-IntImpl::IntImpl() : val(0)
+IntImpl::IntImpl() : val ( 0 )
 {
 
 }
 
-IntImpl::IntImpl(int _val) : val(_val)
+IntImpl::IntImpl ( int _val ) : val ( _val )
 {
 
 }
 
-IntImpl::IntImpl(const string& sv) : val(0)
+IntImpl::IntImpl ( const string& sv ) : val ( 0 )
 {
-	buildFromString(sv);	// ignore the status, if it did not succeed, it'll be the default
+    buildFromString ( sv ); // ignore the status, if it did not succeed, it'll be the default
 }
 
 
@@ -36,12 +36,12 @@ IntImpl::IntImpl(const string& sv) : val(0)
  */
 string IntImpl::serialize()
 {
-stringstream ss;
-	ss  << val;
-string result = "<Content><Value>";
-	result += ss.str();
-	result += "</Value></Content>";		
-	return result;
+    stringstream ss;
+    ss  << val;
+    string result = "<Content><Value>";
+    result += ss.str();
+    result += "</Value></Content>";
+    return result;
 }
 
 /**
@@ -49,9 +49,9 @@ string result = "<Content><Value>";
  * @param ser - the number, as a string
  * @return ture in case of success, false in case of failure
  */
-bool IntImpl::deserialize(const string& ser)
+bool IntImpl::deserialize ( const string& ser )
 {
-	return buildFromString(ser);
+    return buildFromString ( ser );
 }
 
 
@@ -61,10 +61,10 @@ bool IntImpl::deserialize(const string& ser)
  * @param node - the Content node of the integer
  * @return true in case of success, false in case of failure
  */
-bool IntImpl::deserialize(xmlDocPtr doc ,xmlNodePtr node)
+bool IntImpl::deserialize ( xmlDocPtr doc , xmlNodePtr node )
 {
-string valFromXml = getXmlValue(doc, node, "Value");
-	return deserialize(valFromXml);
+    string valFromXml = getXmlValue ( doc, node, "Value" );
+    return deserialize ( valFromXml );
 }
 
 /**
@@ -73,33 +73,36 @@ string valFromXml = getXmlValue(doc, node, "Value");
  * @param node - is the Content node
  * @return a new Integer object
  */
-Object* IntImpl::deserializeInteger(xmlDocPtr doc, xmlNodePtr node)
+Object* IntImpl::deserializeInteger ( xmlDocPtr doc, xmlNodePtr node )
 {
-IntImpl* newValue = new(std::nothrow) IntImpl();
-	if(NULL == newValue)
-	{
-		LOG_ERR("Not enough memory to create a integer implementation");
-		return NULL;
-	}
-	newValue->deserialize(doc, node);
-Integer* newInt = new(std::nothrow) Integer(newValue->val);
-	if(NULL == newInt)
-	{
-		LOG_ERR("Not enough memory to create a new integer");
-		delete newValue;
-		return NULL;
-	}
-	return newInt;
+    IntImpl* newValue = new ( std::nothrow ) IntImpl();
+    if ( NULL == newValue )
+    {
+        LOG_ERR ( "Not enough memory to create a integer implementation" );
+        return NULL;
+    }
+    newValue->deserialize ( doc, node );
+    Integer* newInt = new ( std::nothrow ) Integer ( newValue->val );
+    if ( NULL == newInt )
+    {
+        LOG_ERR ( "Not enough memory to create a new integer" );
+        delete newValue;
+        return NULL;
+    }
+    return newInt;
 }
 
 /**
  * Serializes the given integer value and returns its serialized form
  */
-string IntImpl::serializeInteger(SerializableObject* intToSer)
+string IntImpl::serializeInteger ( SerializableObject* intToSer )
 {
-Integer* theInt = dynamic_cast<Integer*>(intToSer);
-	if(!theInt) return "";
-	return ObjImplMapper<Integer,IntImpl>::getImpl(theInt)->serialize();
+    Integer* theInt = dynamic_cast<Integer*> ( intToSer );
+    if ( !theInt )
+    {
+        return "";
+    }
+    return ObjImplMapper<Integer, IntImpl>::getImpl ( theInt )->serialize();
 }
 
 /**
@@ -108,9 +111,9 @@ Integer* theInt = dynamic_cast<Integer*>(intToSer);
  * @param ser - the string containing a serialized integer
  * @return true in case of success, false in case of a failure
  */
-bool IntImpl::buildFromString(const string& ser)
+bool IntImpl::buildFromString ( const string& ser )
 {
-istringstream iss (ser);
-	iss.setf(ios::dec);
-	return !(iss >> val).fail();
+    istringstream iss ( ser );
+    iss.setf ( ios::dec );
+    return ! ( iss >> val ).fail();
 }

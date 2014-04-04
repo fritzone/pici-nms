@@ -11,7 +11,7 @@ endif()
 
 INCLUDE_DIRECTORIES(common)
 
-if(NOT WIN32)
+if(NOT _WIN32)
   add_definitions(-Wall -Wextra -Wcomment -Wformat -Winit-self -Wno-long-long -Wmissing-include-dirs)
 else()
   add_definitions(/W4)

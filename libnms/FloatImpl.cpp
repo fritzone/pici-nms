@@ -5,38 +5,38 @@
 
 using namespace std;
 
-string FloatImpl::TYPESTR_FLOAT ("FLOAT"); 
+string FloatImpl::TYPESTR_FLOAT ( "FLOAT" );
 
 /**
  * Constructor
  */
-FloatImpl::FloatImpl() : val(0.0F)
+FloatImpl::FloatImpl() : val ( 0.0F )
 {
 }
 
 /**
  * Constructor
  */
-FloatImpl::FloatImpl(float _val) : val(_val)
+FloatImpl::FloatImpl ( float _val ) : val ( _val )
 {
 }
 
 /**
  * Constructor
  */
-FloatImpl::FloatImpl(const string& _sval) : val(0)
+FloatImpl::FloatImpl ( const string& _sval ) : val ( 0 )
 {
-	buildFromString(_sval);
+    buildFromString ( _sval );
 }
 
 /**
  * Builds the float from the string
  */
-bool FloatImpl::buildFromString(const std::string &str)
+bool FloatImpl::buildFromString ( const std::string& str )
 {
-istringstream iss (str);
-	iss.setf(ios::dec);
-	return !(iss >> val).fail();
+    istringstream iss ( str );
+    iss.setf ( ios::dec );
+    return ! ( iss >> val ).fail();
 
 }
 
@@ -51,12 +51,12 @@ istringstream iss (str);
  */
 string FloatImpl::serialize()
 {
-stringstream ss;
-	ss  << val;
-string result = "<Content><Value>";
-	result += ss.str();
-	result += "</Value></Content>";		
-	return result;
+    stringstream ss;
+    ss  << val;
+    string result = "<Content><Value>";
+    result += ss.str();
+    result += "</Value></Content>";
+    return result;
 }
 
 
@@ -65,9 +65,9 @@ string result = "<Content><Value>";
  * @param ser - the number, as a string
  * @return ture in case of success, false in case of failure
  */
-bool FloatImpl::deserialize(const string& ser)
+bool FloatImpl::deserialize ( const string& ser )
 {
-	return buildFromString(ser);
+    return buildFromString ( ser );
 }
 
 /**
@@ -76,10 +76,10 @@ bool FloatImpl::deserialize(const string& ser)
  * @param node - the Content node of the Float
  * @return true in case of success, false in case of failure
  */
-bool FloatImpl::deserialize(xmlDocPtr doc ,xmlNodePtr node)
+bool FloatImpl::deserialize ( xmlDocPtr doc , xmlNodePtr node )
 {
-string valFromXml = getXmlValue(doc, node, "Value");
-	return deserialize(valFromXml);
+    string valFromXml = getXmlValue ( doc, node, "Value" );
+    return deserialize ( valFromXml );
 }
 
 /**
@@ -88,32 +88,35 @@ string valFromXml = getXmlValue(doc, node, "Value");
  * @param node - is the Content node
  * @return a new Float object
  */
-Object* FloatImpl::deserializeFloat(xmlDocPtr doc, xmlNodePtr node)
+Object* FloatImpl::deserializeFloat ( xmlDocPtr doc, xmlNodePtr node )
 {
-FloatImpl* newValue = new(std::nothrow) FloatImpl();
-	if(NULL == newValue)
-	{
-		LOG_ERR("Not enough memory to create a float implementation");
-		return NULL;
-	}
-	newValue->deserialize(doc, node);
-Float* newFloat = new(std::nothrow) Float(newValue->val);
-	if(NULL == newFloat)	
-	{
-		LOG_ERR("Not enough memory to create a float");
-		delete newValue;
-		return NULL;
-	}
-	return newFloat;
+    FloatImpl* newValue = new ( std::nothrow ) FloatImpl();
+    if ( NULL == newValue )
+    {
+        LOG_ERR ( "Not enough memory to create a float implementation" );
+        return NULL;
+    }
+    newValue->deserialize ( doc, node );
+    Float* newFloat = new ( std::nothrow ) Float ( newValue->val );
+    if ( NULL == newFloat )
+    {
+        LOG_ERR ( "Not enough memory to create a float" );
+        delete newValue;
+        return NULL;
+    }
+    return newFloat;
 }
 
 /**
  * Serializes the given Float value and returns its serialized form
  */
-string FloatImpl::serializeFloat(SerializableObject* FloatToSer)
+string FloatImpl::serializeFloat ( SerializableObject* FloatToSer )
 {
-Float* theFloat = dynamic_cast<Float*>(FloatToSer);
-	if(!theFloat) return "";
-	return ObjImplMapper<Float,FloatImpl>::getImpl(theFloat)->serialize();
+    Float* theFloat = dynamic_cast<Float*> ( FloatToSer );
+    if ( !theFloat )
+    {
+        return "";
+    }
+    return ObjImplMapper<Float, FloatImpl>::getImpl ( theFloat )->serialize();
 }
 

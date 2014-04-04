@@ -13,19 +13,19 @@ class LocalTCPClientFactory : public AbstractServerClientFactory
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	LocalTCPClientFactory(TransporterImpl* timpl);
+    /**
+     * Constructor
+     */
+    LocalTCPClientFactory ( TransporterImpl* timpl );
 
-	/**
-	 * Create a new object
-	 */
-	virtual AbstractServerClient* newObject();
+    /**
+     * Create a new object
+     */
+    virtual AbstractServerClient* newObject();
 
 private:
 
-	TransporterImpl* transp;
+    TransporterImpl* transp;
 };
 
 #endif

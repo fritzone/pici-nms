@@ -14,41 +14,41 @@ using namespace std;
  */
 Long::Long()
 {
-LongImpl* limpl = new(std::nothrow) LongImpl();
-	if(NULL == limpl)
-	{
-		LOG_ERR("Not enough memory to create a new long implementation");
-		return;
-	}
-	ObjImplMapper<Long,LongImpl>::mapObjToImpl(this, limpl);
+    LongImpl* limpl = new ( std::nothrow ) LongImpl();
+    if ( NULL == limpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new long implementation" );
+        return;
+    }
+    ObjImplMapper<Long, LongImpl>::mapObjToImpl ( this, limpl );
 }
 
 /**
  * Constructor, creates an Long with the given value
  */
-Long::Long(long _val)
+Long::Long ( long _val )
 {
-LongImpl* limpl = new(std::nothrow) LongImpl(_val);
-	if(NULL == limpl)
-	{
-		LOG_ERR("Not enough memory to create a new long implementation");
-		return;
-	}
-	ObjImplMapper<Long,LongImpl>::mapObjToImpl(this, limpl);
+    LongImpl* limpl = new ( std::nothrow ) LongImpl ( _val );
+    if ( NULL == limpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new long implementation" );
+        return;
+    }
+    ObjImplMapper<Long, LongImpl>::mapObjToImpl ( this, limpl );
 }
 
 /**
  * Constructor, creates an Long with the value from the given string
  */
-Long::Long(const string& _sval)
+Long::Long ( const string& _sval )
 {
-LongImpl* limpl = new(std::nothrow) LongImpl(_sval);
-	if(NULL == limpl)
-	{
-		LOG_ERR("Not enough memory to create a new long implementation");
-		return;
-	}
-	ObjImplMapper<Long,LongImpl>::mapObjToImpl(this, limpl);
+    LongImpl* limpl = new ( std::nothrow ) LongImpl ( _sval );
+    if ( NULL == limpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new long implementation" );
+        return;
+    }
+    ObjImplMapper<Long, LongImpl>::mapObjToImpl ( this, limpl );
 }
 
 /**
@@ -56,8 +56,8 @@ LongImpl* limpl = new(std::nothrow) LongImpl(_sval);
  */
 Long::~Long()
 {
-	delete ObjImplMapper<Long,LongImpl>::getImpl(this);
-	ObjImplMapper<Long,LongImpl>::removeImpl(this);
+    delete ObjImplMapper<Long, LongImpl>::getImpl ( this );
+    ObjImplMapper<Long, LongImpl>::removeImpl ( this );
 }
 
 /**
@@ -65,7 +65,7 @@ Long::~Long()
  */
 Long::operator long () const
 {
-	return ObjImplMapper<Long,LongImpl>::getImpl(const_cast<Long*>(this))->getValue();
+    return ObjImplMapper<Long, LongImpl>::getImpl ( const_cast<Long*> ( this ) )->getValue();
 }
 
 /**
@@ -73,7 +73,7 @@ Long::operator long () const
  */
 const string& Long::type() const
 {
-	return LongImpl::TYPESTR_LONG;
+    return LongImpl::TYPESTR_LONG;
 }
 
 /**
@@ -81,7 +81,7 @@ const string& Long::type() const
  */
 const string Long::toString() const
 {
-stringstream ss;
-	ss << (ObjImplMapper<Long,LongImpl>::getImpl(const_cast<Long*>(this)))->getValue();
-	return ss.str();
+    stringstream ss;
+    ss << ( ObjImplMapper<Long, LongImpl>::getImpl ( const_cast<Long*> ( this ) ) )->getValue();
+    return ss.str();
 }

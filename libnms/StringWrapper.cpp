@@ -13,41 +13,41 @@ using namespace std;
  */
 String::String()
 {
-StringImpl* simpl = new (std::nothrow) StringImpl();
-	if(NULL == simpl)
-	{
-		LOG_ERR("Not enough memory to create a new String implementation");
-		return;
-	}
-	ObjImplMapper<String,StringImpl>::mapObjToImpl(this, simpl);
+    StringImpl* simpl = new ( std::nothrow ) StringImpl();
+    if ( NULL == simpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new String implementation" );
+        return;
+    }
+    ObjImplMapper<String, StringImpl>::mapObjToImpl ( this, simpl );
 }
 
 /**
  * Constructor, creates an String with the given value
  */
-String::String(const char* _val)
+String::String ( const char* _val )
 {
-StringImpl* simpl = new (std::nothrow) StringImpl(_val);
-	if(NULL == simpl)
-	{
-		LOG_ERR("Not enough memory to create a new String implementation");
-		return;
-	}
-	ObjImplMapper<String,StringImpl>::mapObjToImpl(this, simpl);
+    StringImpl* simpl = new ( std::nothrow ) StringImpl ( _val );
+    if ( NULL == simpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new String implementation" );
+        return;
+    }
+    ObjImplMapper<String, StringImpl>::mapObjToImpl ( this, simpl );
 }
 
 /**
  * Constructor, creates an String with the value from the given string
  */
-String::String(const string& _sval)
+String::String ( const string& _sval )
 {
-StringImpl* simpl = new (std::nothrow) StringImpl(_sval);
-	if(NULL == simpl)
-	{
-		LOG_ERR("Not enough memory to create a new String implementation");
-		return;
-	}
-	ObjImplMapper<String,StringImpl>::mapObjToImpl(this, simpl);
+    StringImpl* simpl = new ( std::nothrow ) StringImpl ( _sval );
+    if ( NULL == simpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new String implementation" );
+        return;
+    }
+    ObjImplMapper<String, StringImpl>::mapObjToImpl ( this, simpl );
 }
 
 /**
@@ -55,8 +55,8 @@ StringImpl* simpl = new (std::nothrow) StringImpl(_sval);
  */
 String::~String()
 {
-	delete ObjImplMapper<String,StringImpl>::getImpl(this);
-	ObjImplMapper<String,StringImpl>::removeImpl(this);
+    delete ObjImplMapper<String, StringImpl>::getImpl ( this );
+    ObjImplMapper<String, StringImpl>::removeImpl ( this );
 }
 
 /**
@@ -64,7 +64,7 @@ String::~String()
  */
 const char* String::c_str() const
 {
-	return ObjImplMapper<String,StringImpl>::getImpl(const_cast<String*>(this))->getValue().c_str();
+    return ObjImplMapper<String, StringImpl>::getImpl ( const_cast<String*> ( this ) )->getValue().c_str();
 }
 
 /**
@@ -72,7 +72,7 @@ const char* String::c_str() const
  */
 const string& String::type() const
 {
-	return StringImpl::TYPESTR_STRING;
+    return StringImpl::TYPESTR_STRING;
 }
 
 /**
@@ -80,8 +80,8 @@ const string& String::type() const
  */
 const string String::toString() const
 {
-stringstream ss;
-	ss << (ObjImplMapper<String,StringImpl>::getImpl(const_cast<String*>(this)))->getValue();
-	return ss.str();
+    stringstream ss;
+    ss << ( ObjImplMapper<String, StringImpl>::getImpl ( const_cast<String*> ( this ) ) )->getValue();
+    return ss.str();
 }
 

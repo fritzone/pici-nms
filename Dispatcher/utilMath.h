@@ -7,8 +7,8 @@
 
 namespace util
 {
-	namespace Math
-	{
-		LONG lnround(LONG arg);
-	}
+namespace Math
+{
+LONG lnround ( LONG arg );
+}
 }

@@ -14,42 +14,42 @@ using namespace std;
  */
 Float::Float()
 {
-FloatImpl* fimpl = new(std::nothrow) FloatImpl();
-	if(NULL == fimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Float implementation");
-		return;
-	}
-	ObjImplMapper<Float,FloatImpl>::mapObjToImpl(this, fimpl);
+    FloatImpl* fimpl = new ( std::nothrow ) FloatImpl();
+    if ( NULL == fimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Float implementation" );
+        return;
+    }
+    ObjImplMapper<Float, FloatImpl>::mapObjToImpl ( this, fimpl );
 }
 
 /**
  * Constructor, creates an Float with the given value
  */
-Float::Float(float _val)
+Float::Float ( float _val )
 {
-FloatImpl* fimpl = new(std::nothrow) FloatImpl(_val);
-	if(NULL == fimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Float implementation");
-		return;
-	}
-	ObjImplMapper<Float,FloatImpl>::mapObjToImpl(this, fimpl);
+    FloatImpl* fimpl = new ( std::nothrow ) FloatImpl ( _val );
+    if ( NULL == fimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Float implementation" );
+        return;
+    }
+    ObjImplMapper<Float, FloatImpl>::mapObjToImpl ( this, fimpl );
 }
 
 /**
  * Constructor, creates an Float with the value from the given string
  */
-Float::Float(const string& _sval)
+Float::Float ( const string& _sval )
 {
-FloatImpl* fimpl = new(std::nothrow) FloatImpl(_sval);
-	if(NULL == fimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Float implementation");
-		return;
-	}
+    FloatImpl* fimpl = new ( std::nothrow ) FloatImpl ( _sval );
+    if ( NULL == fimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Float implementation" );
+        return;
+    }
 
-	ObjImplMapper<Float,FloatImpl>::mapObjToImpl(this, fimpl);
+    ObjImplMapper<Float, FloatImpl>::mapObjToImpl ( this, fimpl );
 }
 
 /**
@@ -57,8 +57,8 @@ FloatImpl* fimpl = new(std::nothrow) FloatImpl(_sval);
  */
 Float::~Float()
 {
-	delete ObjImplMapper<Float,FloatImpl>::getImpl(this);
-	ObjImplMapper<Float,FloatImpl>::removeImpl(this);
+    delete ObjImplMapper<Float, FloatImpl>::getImpl ( this );
+    ObjImplMapper<Float, FloatImpl>::removeImpl ( this );
 }
 
 /**
@@ -66,7 +66,7 @@ Float::~Float()
  */
 Float::operator float () const
 {
-	return ObjImplMapper<Float,FloatImpl>::getImpl(const_cast<Float*>(this))->getValue();
+    return ObjImplMapper<Float, FloatImpl>::getImpl ( const_cast<Float*> ( this ) )->getValue();
 }
 
 /**
@@ -74,7 +74,7 @@ Float::operator float () const
  */
 const string& Float::type() const
 {
-	return FloatImpl::TYPESTR_FLOAT;
+    return FloatImpl::TYPESTR_FLOAT;
 }
 
 /**
@@ -82,7 +82,7 @@ const string& Float::type() const
  */
 const string Float::toString() const
 {
-stringstream ss;
-	ss << (ObjImplMapper<Float,FloatImpl>::getImpl(const_cast<Float*>(this)))->getValue();
-	return ss.str();
+    stringstream ss;
+    ss << ( ObjImplMapper<Float, FloatImpl>::getImpl ( const_cast<Float*> ( this ) ) )->getValue();
+    return ss.str();
 }

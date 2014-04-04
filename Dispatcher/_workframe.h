@@ -1,13 +1,13 @@
 #pragma once
 
-#include "base.h"		
+#include "base.h"
 
 #include "baseConsoleProcess.h"
 #include "baseDateTime.h"
 #include "baseLocale.h"
 #include "baseUserData.h"
 
-#include "DBHelper.h"	
+#include "DBHelper.h"
 #include "DBConnection.h"
 #include "DBRecordset.h"
 
@@ -45,8 +45,8 @@
 #include "ExceptionWSA.h"
 #include "ExceptionUnsuportedType.h"
 
-#include "INETWSAScope.h"		
-#include "INETHTTP.h"	
+#include "INETWSAScope.h"
+#include "INETHTTP.h"
 
 #include "utilConversion.h"
 #include "utilMath.h"

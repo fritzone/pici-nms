@@ -4,22 +4,22 @@
 /**
  * Creates a new subscription object
  **/
-Subscription::Subscription(string subj, Receiver* receiver)
+Subscription::Subscription ( string subj, Receiver* receiver )
 {
-	subject = subj;
-	theReceiver = receiver;
-size_t i = 0;
-string subjField;
-	while(i<subject.length())
-	{
-		subjField = "";
-		while (subject[i] != '.' && i<subject.length()) 
-		{
-			subjField += subj[i++];
-		}
-		fields.push_back(subjField);
-		i++;
-	}
+    subject = subj;
+    theReceiver = receiver;
+    size_t i = 0;
+    string subjField;
+    while ( i < subject.length() )
+    {
+        subjField = "";
+        while ( subject[i] != '.' && i < subject.length() )
+        {
+            subjField += subj[i++];
+        }
+        fields.push_back ( subjField );
+        i++;
+    }
 }
 
 /**
@@ -28,53 +28,53 @@ string subjField;
  * The following cases should be handled:
  * X.Y.* this means the rest of the subjects after X.Y. More fields may come
  **/
-bool Subscription::receives(string subj)
+bool Subscription::receives ( string subj )
 {
-size_t i = 0;
-size_t subjFieldVectorCounter = 0;
-string subjField;
-bool canAcc = true;
+    size_t i = 0;
+    size_t subjFieldVectorCounter = 0;
+    string subjField;
+    bool canAcc = true;
 
-	while (i<subj.length()) 
-	{
-		subjField = "";
-		while(subj[i] != '.' && i<subj.length())
-		{
-			subjField += subj[i++];
-		}
-		
-		if(fields[subjFieldVectorCounter] != "*" && fields[subjFieldVectorCounter] != "*")
-		{
-			if(fields[subjFieldVectorCounter] != subjField)
-			{
-				canAcc = false;
-				break;
-			}
-		}
-		else
-		{
-			if(fields[subjFieldVectorCounter] == "*")
-			{
-				break;
-			}
-			else
-			{
-				i++;
-				while (i < subj.length()) 
-				{
-					if(subj[i] == '.')
-					{
-						canAcc = false;
-						break;
-					}
-					i++;
-				}
-				break;
-			}
-		}
+    while ( i < subj.length() )
+    {
+        subjField = "";
+        while ( subj[i] != '.' && i < subj.length() )
+        {
+            subjField += subj[i++];
+        }
 
-		i++;
-		subjFieldVectorCounter ++;
-	}
-	return canAcc;
+        if ( fields[subjFieldVectorCounter] != "*" && fields[subjFieldVectorCounter] != "*" )
+        {
+            if ( fields[subjFieldVectorCounter] != subjField )
+            {
+                canAcc = false;
+                break;
+            }
+        }
+        else
+        {
+            if ( fields[subjFieldVectorCounter] == "*" )
+            {
+                break;
+            }
+            else
+            {
+                i++;
+                while ( i < subj.length() )
+                {
+                    if ( subj[i] == '.' )
+                    {
+                        canAcc = false;
+                        break;
+                    }
+                    i++;
+                }
+                break;
+            }
+        }
+
+        i++;
+        subjFieldVectorCounter ++;
+    }
+    return canAcc;
 }

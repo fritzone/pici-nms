@@ -11,43 +11,43 @@ class Float : public Number
 {
 public:
 
-	/**
-	 * Constructs a new Float object, sets the value to default 0.
-	 */
-	Float();
+    /**
+     * Constructs a new Float object, sets the value to default 0.
+     */
+    Float();
 
-	/**
-	 * Constructs a new Float object, setting the value to the parameter.
-	 * @param _val - the new value of the float
-	 */
-	Float(float _val);
+    /**
+     * Constructs a new Float object, setting the value to the parameter.
+     * @param _val - the new value of the float
+     */
+    Float ( float _val );
 
-	/**
-	 * Constructs a new Float value from the given string.
-	 * @param _sval - the string 
-	 */
-	Float(const string& _sval);
+    /**
+     * Constructs a new Float value from the given string.
+     * @param _sval - the string
+     */
+    Float ( const string& _sval );
 
-	/**
-	 * Destructor
-	 */
-	~Float();
+    /**
+     * Destructor
+     */
+    ~Float();
 
-	/**
-	 * Default casting of the Integer to an int value
-	 */
-	operator float () const ;
+    /**
+     * Default casting of the Integer to an int value
+     */
+    operator float () const ;
 
-	/**
-	 * Returns the type description of the Float class. 
-	 * @return the type description of the Float class
-	 */
-	virtual const string& type() const;
+    /**
+     * Returns the type description of the Float class.
+     * @return the type description of the Float class
+     */
+    virtual const string& type() const;
 
-	/**
-	 * Returns a string representation of the given number
-	 */
-	virtual const string toString() const;
+    /**
+     * Returns a string representation of the given number
+     */
+    virtual const string toString() const;
 
 };
 

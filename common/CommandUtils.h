@@ -11,23 +11,23 @@ using namespace std;
 class CommandUtils
 {
 public:
-	/**
-	 * Fetch the leading part of the s till sep
-	 */
-	static string consume(std::string &s, char sep)
-	{
-	string resp = "";
-		while(s[0] != sep && s.length() > 1)
-		{
-			resp += s[0];
-			s = s.substr(1);
-		}
-		if(s.length() >0)
-		{
-			s = s.substr(1);	// consumes the separator too
-		}
-		return resp;
-	}
+    /**
+     * Fetch the leading part of the s till sep
+     */
+    static string consume ( std::string& s, char sep )
+    {
+        string resp = "";
+        while ( s[0] != sep && s.length() > 1 )
+        {
+            resp += s[0];
+            s = s.substr ( 1 );
+        }
+        if ( s.length() > 0 )
+        {
+            s = s.substr ( 1 ); // consumes the separator too
+        }
+        return resp;
+    }
 };
 
 #endif

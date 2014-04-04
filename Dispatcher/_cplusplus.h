@@ -10,8 +10,8 @@
 #define BYTE(x) (unsigned char)(x)
 #define _T(x) x
 #ifndef WIN32
-	typedef unsigned long ULONG;
-	typedef unsigned char BYTE;
-	typedef long int LONG;
-	typedef double DOUBLE;
+typedef unsigned long ULONG;
+typedef unsigned char BYTE;
+typedef long int LONG;
+typedef double DOUBLE;
 #endif

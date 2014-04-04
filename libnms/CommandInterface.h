@@ -11,18 +11,18 @@ using namespace std;
 class CommandInterface
 {
 public:
-	
-	/**
-	 * Returns the command as a string object so that it can be sent over the wire.
-	 * DO NOT RETURN A LOCAL OBJECT FROM THIS METHOD
-	 */
-	const string asString() const
-	{
-		return result;
-	}
+
+    /**
+     * Returns the command as a string object so that it can be sent over the wire.
+     * DO NOT RETURN A LOCAL OBJECT FROM THIS METHOD
+     */
+    const string asString() const
+    {
+        return result;
+    }
 
 protected:
-	string result;
+    string result;
 };
 
 #endif

@@ -13,7 +13,7 @@
 #define CATCH catch
 #define WHILE while
 
-#define _TRACE(...) { (void) printf ( __VA_ARGS__ ); } 
+#define _TRACE(...) { (void) printf ( __VA_ARGS__ ); }
 #define _LOG(...) logfile << c_format( __VA_ARGS__ ) << flush
 #define _LOGFILE(x) std::ofstream logfile(x)
 

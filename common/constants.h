@@ -10,123 +10,132 @@ using namespace std;
  * PICI/NMS Commands
  * \defgroup ERROR_CODES
  *
- *	PICI/NMS Commands
+ *  PICI/NMS Commands
  *  @{
  */
-static const char* COMMAND_NMS_INIT		= "NMS_INIT";
-static const char* COMMAND_NOINIT		= "NOINIT";
-static const char* COMMAND_NMS_OK		= "NMS_OK";
-static const char* COMMAND_HELLO		= "HELLO";
-static const char* COMMAND_MESSAGE		= "MESSAGE";
-static const char* COMMAND_SUBSCRIBE	= "SUBSCRIBE";
-static const char* COMMAND_UNSUBSCRIBE	= "UNSUBSCRIBE";
-static const char* STR_ERROR			= "ERROR";
-static const char* STR_NO_RESPONSE		= "NO_RESPONSE";
+extern const char* COMMAND_NMS_INIT;
+extern const char* COMMAND_NOINIT;
+extern const char* COMMAND_NMS_OK;
+extern const char* COMMAND_HELLO;
+extern const char* COMMAND_MESSAGE;
+extern const char* COMMAND_SUBSCRIBE;
+extern const char* COMMAND_UNSUBSCRIBE;
+extern const char* COMMAND_DSP_PING;
+extern const char* STR_ERROR;
+extern const char* STR_NO_RESPONSE;
 
-static const char COMMAND_SEPARATOR1	= '#';
-static const char COMMAND_SEPARATOR2	= ':';
-static const char COMMAND_SEPARATOR3	= '@';
+extern const char COMMAND_SEPARATOR1;
+extern const char COMMAND_SEPARATOR2;
+extern const char COMMAND_SEPARATOR3;
 
 /*@}*/
-	
+
 /**
  * PICI/NMS Settings
  * \defgroup ERROR_CODES
  *
- *	PICI/NMS Settings
+ *  PICI/NMS Settings
  *  @{
  */
-static const char* CONFIG_DISPATCHER_PROTOCOL	= "tcp";
-static const char* CONFIG_DISPATCHER_PORT		= "7566";
+extern const char* CONFIG_DISPATCHER_PROTOCOL;
+extern const char* CONFIG_DISPATCHER_PORT;
 
-const int DAEMON_PORT			= 5150;
-const int STARTING_TCP_PORT		= 45000;
-const int LAST_CHECKED_TCP_PORT	= 65530;
-const int DISPATCHER_PORT		= 7566;
+const int DAEMON_PORT           = 5150;
+const int STARTING_TCP_PORT     = 45000;
+const int LAST_CHECKED_TCP_PORT = 65530;
+extern int DISPATCHER_PORT;
 
-const int SEC_WAIT_FOR_DAEMON	= 10;
-const int MSEC_PING_SLEEP_TIME	= 5000;
-const int MSEC_QUEUE_SLEEP_TIME	= 10000;
+const int SEC_WAIT_FOR_DAEMON   = 10;
+const int MSEC_PING_SLEEP_TIME  = 5000;
+const int MSEC_QUEUE_SLEEP_TIME = 10000;
 /*@}*/
 
 /**
  * Message Types
  * \defgroup ERROR_CODES
  *
- *	Message Types
+ *  Message Types
  *  @{
  */
-static const char* STR_SYNCH	= "SYNCH";
-static const char* STR_ASYNCH	= "ASYNCH";
+extern const char* STR_SYNCH;
+extern const char* STR_ASYNCH;
 /*@}*/
 
 
 // these messages can appear while calling WSAStartup
-static const char* ERR_NOTREADY			= "The network susbsystem is not ready";
-static const char* ERR_VERNOTSUPPORTED	= "The requested version is not supported";
-static const char* ERR_BLOCKINPROGRESS	= "A blocking Winsock1.1 op. in progress";
-static const char* ERR_PROCLIM			= "Maximum limit of Socket tasks reached";
-static const char* ERR_EFAULT			= "Invalid address for WSADATA";
-static const char* ERR_NO				= "All is ok";
+extern const char* ERR_NOTREADY;
+extern const char* ERR_VERNOTSUPPORTED;
+extern const char* ERR_BLOCKINPROGRESS;
+extern const char* ERR_PROCLIM;
+extern const char* ERR_EFAULT;
+extern const char* ERR_NO;
 
 /// these messages can appear, while calling socket()
-static const char* ERR_NETDOWN			= "The network subsystem or the associated service provider has failed.";
-static const char* ERR_NOSUPPORT		= "The specified address family is not supported.";
-static const char* ERR_NOMORESOCK		= "No more socket descriptors are available";
-static const char* ERR_NOBUF			= "No buffer space is available";
-static const char* ERR_NOSOCKTSUPP		= "The specified socket type is not supported in this address family";
-static const char* ERR_WRONGPROTOTYPE	= "The specified protocol is the wrong type for this socket";
-static const char* ERR_WRONGPROTOCOL	= "The specified protocol is not supported";
+extern const char* ERR_NETDOWN;
+extern const char* ERR_NOSUPPORT;
+extern const char* ERR_NOMORESOCK;
+extern const char* ERR_NOBUF;
+extern const char* ERR_NOSOCKTSUPP;
+extern const char* ERR_WRONGPROTOTYPE;
+extern const char* ERR_WRONGPROTOCOL;
 
 // strigs used in the program
-static const char* DISPATCHER_MUTEX		= "dispatcherMutex";
-static const char* QUEUE_MUTEX			= "queueMutex";
-static const char* PONG					= "PONG";
-static const char* PING					= "PING";
-static const char* ACK					= "ACK";
+extern const char* DISPATCHER_MUTEX;
+extern const char* QUEUE_MUTEX;
+extern const char* PONG;
+extern const char* PING;
+extern const char* ACK;
 
 /**
  * Field Codes for messages
  * \defgroup FIELDCODES
  *
- *	PICI/NMS Field Codes
+ *  PICI/NMS Field Codes
  *  @{
  */
 
 /// The String, which identifies an error field. Type: DT_STRING
-static const char* STR_FIELD_ERROR		= "$ERROR";
+extern const char* STR_FIELD_ERROR;
 /// The String, whcih identifies the timeout field. Type: DT_INT
-static const char* STR_FIELD_TIMEOUT	= "$TIMEOUT";
+extern const char* STR_FIELD_TIMEOUT;
 /*@}*/
 
+/**
+ * Error codes
+ * \defgroup ERROR_CODES
+ *
+ *  PICI/NMS Error Codes
+ *  @{
+ */
+const int INTERNAL_ERROR        = -7;
+const int TIMEOUT               = -6;
+const int MALFORMED_RESPONSE    = -4;
+const int WRONG_NUMBER          = -5;
+const int NO_RESPONSE           = -3;
+const int NOT_ENOUGH_MEMORY     = -1;
+
+/*@}*/
 
 /**
  * Messages from different parts of program
  * \defgroup MESSAGES
  *
- *	PICI/NMS Error Messages
+ *  PICI/NMS Error Messages
  *  @{
  */
-static const char* ERR_CANNOT_CREATE_SOCKET				= "Cannot create socket to dispatcher";
-static const char* ERR_CANNOT_SEND_DATA_SIZE			= "Could not send data size to dispatcher";
-static const char* ERR_CANNOT_RECEIVE_DATA_SIZE_ACK		= "Could not receive acknowledgement to msg size";
-static const char* ERR_SIZE_NOT_EQUAL					= "Received acknowledgement size is not equal to original size";
-static const char* ERR_CANNOT_SEND_DATA					= "Could not send data to transporter";
-static const char* ERR_CANNOT_RECEIVE_MSG_SIZE_ACK		= "Could not receive acknowledgement as received message size";
-static const char* ERR_NOT_ENOUGH_MEMORY				= "Not enough memory for input buffer";
-static const char* ERR_CANNOT_SEND_SIZE_ACK				= "Cannot send size acknowledgement";
-static const char* ERR_CANNOT_RECEIVE_SYNCH_RESPONSE	= "Cannot receive synch message";
-static const char* ERR_UNKNOWN							= "Unknown Error";
-static const char* ERR_TIMEOUT							= "Timeout";
-static const char* ERR_COMMUNICATION					= "Communication error";
+extern const char* ERR_CANNOT_CREATE_SOCKET;
+extern const char* ERR_CANNOT_SEND_DATA_SIZE;
+extern const char* ERR_CANNOT_RECEIVE_DATA_SIZE_ACK;
+extern const char* ERR_SIZE_NOT_EQUAL;
+extern const char* ERR_CANNOT_SEND_DATA;
+extern const char* ERR_CANNOT_RECEIVE_MSG_SIZE_ACK;
+extern const char* ERR_NOT_ENOUGH_MEMORY;
+extern const char* ERR_CANNOT_SEND_SIZE_ACK;
+extern const char* ERR_CANNOT_RECEIVE_SYNCH_RESPONSE;
+extern const char* ERR_UNKNOWN;
+extern const char* ERR_TIMEOUT;
+extern const char* ERR_COMMUNICATION;
 
-static string DIRSEP()
-{
-#ifdef WIN32
-	return string("\\");
-#else
-	return string("/");
-#endif
-}
+string DIRSEP();
 
 #endif

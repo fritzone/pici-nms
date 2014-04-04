@@ -11,12 +11,12 @@ class Parameter;
 /**
  * This class is responsible for encapsulating the messages that are sent through the network.
  * Messages contain:
- * 1. different kind and type variables that are added by the specific add*** functions, 
- * or can be queried by the get*** functions. 
+ * 1. different kind and type variables that are added by the specific add*** functions,
+ * or can be queried by the get*** functions.
  * 2. a subject (you name it as address too) where the messages are sent.
  *
  * The logic of the variables is the following:
- * 1. Each variable has 
+ * 1. Each variable has
  *   - a name (such as: TESTVARIABLE)
  *   - a type (such as String)
  *   - a value (such as "Hello world")
@@ -26,106 +26,106 @@ class Parameter;
 class MessageImpl
 {
 public:
-	
-	/**
-	 *  Creates a new Message
-	 */
-	MessageImpl(int _ttl);
 
-	/**
-	 * Destroys a message, destroys all the variables
-	 */
-	virtual ~MessageImpl(void);
+    /**
+     *  Creates a new Message
+     */
+    MessageImpl ( int _ttl );
 
-	/**
-	 * Serializes this object. The result is the XML of all the parameters of the message
-	 * @return the serialized string as XML
-	 */
-	string serialize();
+    /**
+     * Destroys a message, destroys all the variables
+     */
+    virtual ~MessageImpl ( void );
 
-	/**
-	 * Returns the string value associated to the variable stringName
-	 * if no string variable was defined with the given name empty string is returned
-	 * @param stringName: the name of the string vatriable
-	 */
-	string getString(const string& stringName);
+    /**
+     * Serializes this object. The result is the XML of all the parameters of the message
+     * @return the serialized string as XML
+     */
+    string serialize();
 
-	/**
-	 * Returns the numeric variable associated with the given name
-	 * if no numeric variable was defined for the given name 0 (zero) is returned
-	 * @param intName: the name of the numeric variable
-	 */
-	int getInt(const string& intName);
+    /**
+     * Returns the string value associated to the variable stringName
+     * if no string variable was defined with the given name empty string is returned
+     * @param stringName: the name of the string vatriable
+     */
+    string getString ( const string& stringName );
 
-	/**
-	 * Returns the real number variable associated to the given name
-	 * if no variable was defined for the given name 0 (zero) is returned
-	 * @param floatName: the name of the real number
-	 */
-	float getFloat(const string& floatName);
+    /**
+     * Returns the numeric variable associated with the given name
+     * if no numeric variable was defined for the given name 0 (zero) is returned
+     * @param intName: the name of the numeric variable
+     */
+    int getInt ( const string& intName );
 
-	/**
-	 * Returns the bool associated to the given name
-	 */
-	bool getBool(const string& boolName);
+    /**
+     * Returns the real number variable associated to the given name
+     * if no variable was defined for the given name 0 (zero) is returned
+     * @param floatName: the name of the real number
+     */
+    float getFloat ( const string& floatName );
 
-	/**
-	 * Returns the long associated to the given name
-	 */
-	long getLong(const string& longName);
+    /**
+     * Returns the bool associated to the given name
+     */
+    bool getBool ( const string& boolName );
 
-	/**
-	 * Returns the double associated to the given name
-	 */
-	double getDouble(const string& doubleName);
+    /**
+     * Returns the long associated to the given name
+     */
+    long getLong ( const string& longName );
+
+    /**
+     * Returns the double associated to the given name
+     */
+    double getDouble ( const string& doubleName );
 
 
-	/**
-	 * Adds a parameter to this message implementation. The parameter is already set up with a name and a value.
-	 * This method is used by the Message class to pass in the parameters from the API user
-	 */
-	void addParameter(Parameter* data);
+    /**
+     * Adds a parameter to this message implementation. The parameter is already set up with a name and a value.
+     * This method is used by the Message class to pass in the parameters from the API user
+     */
+    void addParameter ( Parameter* data );
 
-	/**
-	 * Retrieves the TTL of the message
-	 */
-	long getTtl() const
-	{
-		return ttl;
-	}
+    /**
+     * Retrieves the TTL of the message
+     */
+    long getTtl() const
+    {
+        return ttl;
+    }
 
-	/**
-	 * Retrieves the parameter with the given value
-	 */
-	Parameter* getParameter(const string& name);
+    /**
+     * Retrieves the parameter with the given value
+     */
+    Parameter* getParameter ( const string& name );
 
 public:
 
-	/**
-	 * Deserializes the message from the given string. The format must be identical to the one
-	 * supplied by the serialize method.
-	 */
-	static Message *deserialize(const char* src);
+    /**
+     * Deserializes the message from the given string. The format must be identical to the one
+     * supplied by the serialize method.
+     */
+    static Message* deserialize ( const char* src );
 
 private:
-	
-	// all the data of this class
-	vector<Parameter*> parameters;
 
-	// the subject to which this message will be sent
-	string sendSubject;
+    // all the data of this class
+    vector<Parameter*> parameters;
 
-	// the ID of the message (each message has a unique ID based on timestamp and an index)
-	string messageId;
+    // the subject to which this message will be sent
+    string sendSubject;
 
-	// this counts the messages sent by an application
-	static int messageCounter;
+    // the ID of the message (each message has a unique ID based on timestamp and an index)
+    string messageId;
 
-	// this can be or the subject, where it was sent, or the sync-requester's ID
-	string dest;
+    // this counts the messages sent by an application
+    static int messageCounter;
 
-	// the time to live of the message
-	long ttl;
+    // this can be or the subject, where it was sent, or the sync-requester's ID
+    string dest;
+
+    // the time to live of the message
+    long ttl;
 
 };
 

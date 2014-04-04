@@ -13,27 +13,27 @@ class ThreadedUDPServer : public UDPServer
 {
 public:
 
-	/**
-	 * Constructor. The thread object SHOULD NOT be started, this server does it.
-	 */
-	ThreadedUDPServer(UDPServerThread* thrd) : UDPServer(), serverThread(thrd)
-	{
-	}
+    /**
+     * Constructor. The thread object SHOULD NOT be started, this server does it.
+     */
+    ThreadedUDPServer ( UDPServerThread* thrd ) : UDPServer(), serverThread ( thrd )
+    {
+    }
 
-	/**
-	 * Starts the thread of the server
-	 */
-	bool start();
+    /**
+     * Starts the thread of the server
+     */
+    bool start();
 
-	/**
-	 * Stops the UDP server
-	 */
-	bool stop();
+    /**
+     * Stops the UDP server
+     */
+    bool stop();
 
 private:
 
-	// this is the thread of the server
-	UDPServerThread* serverThread;
+    // this is the thread of the server
+    UDPServerThread* serverThread;
 };
 
 #endif

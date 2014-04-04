@@ -9,12 +9,12 @@
 class PnmsDynamicClientImpl : public PnmsGenericClientImpl
 {
 public:
-	/**
-	 * Constructor
-	 */
-	PnmsDynamicClientImpl(const string& name);
+    /**
+     * Constructor
+     */
+    PnmsDynamicClientImpl ( const string& name );
 
-	~PnmsDynamicClientImpl();
+    ~PnmsDynamicClientImpl();
 
 
 };

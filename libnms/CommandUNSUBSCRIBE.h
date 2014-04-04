@@ -15,15 +15,15 @@ class CommandUNSUBSCRIBE : public CommandInterface
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	CommandUNSUBSCRIBE(ClientIdentity* cid, const string& subject)
-	{
-	stringstream ss;
-		ss << COMMAND_UNSUBSCRIBE << COMMAND_SEPARATOR1 << cid->getIdentityDescriptor() << COMMAND_SEPARATOR2 << subject;
-		result = ss.str();
-	}
+    /**
+     * Constructor
+     */
+    CommandUNSUBSCRIBE ( ClientIdentity* cid, const string& subject )
+    {
+        stringstream ss;
+        ss << COMMAND_UNSUBSCRIBE << COMMAND_SEPARATOR1 << cid->getIdentityDescriptor() << COMMAND_SEPARATOR2 << subject;
+        result = ss.str();
+    }
 };
 
 #endif

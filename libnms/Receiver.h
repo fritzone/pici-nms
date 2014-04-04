@@ -14,13 +14,13 @@ public:
 
     virtual ~Receiver() {}
 
-	/**
-	 * This method is called when a message was received that was sent to the subject the instances of this
-	 * class are subscribed to.
-	 * @param message - is the message that actually is sent to the instance of this class by the client on the
-	 * other end of the wire
-	 */
-	virtual void receive(const Message& msg) = 0;
+    /**
+     * This method is called when a message was received that was sent to the subject the instances of this
+     * class are subscribed to.
+     * @param message - is the message that actually is sent to the instance of this class by the client on the
+     * other end of the wire
+     */
+    virtual void receive ( const Message& msg ) = 0;
 
 };
 

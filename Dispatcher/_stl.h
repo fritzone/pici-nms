@@ -5,7 +5,7 @@
 #include <map>
 
 
-#define NPOS std::string::npos	
+#define NPOS std::string::npos
 #define MAP(x,y) std::map<x,y>
 #define MAP_E(x,y,z) std::map<x,y,z>
 #define MAP_NOTFOUND(x,y) x.find(y) == x.end()

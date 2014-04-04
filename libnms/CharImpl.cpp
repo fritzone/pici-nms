@@ -5,38 +5,38 @@
 
 using namespace std;
 
-string CharImpl::TYPESTR_CHAR ("CHAR"); 
+string CharImpl::TYPESTR_CHAR ( "CHAR" );
 
 /**
  * Constructor
  */
-CharImpl::CharImpl() : val(0)
+CharImpl::CharImpl() : val ( 0 )
 {
 }
 
 /**
  * Constructor
  */
-CharImpl::CharImpl(char _val) : val(_val)
+CharImpl::CharImpl ( char _val ) : val ( _val )
 {
 }
 
 /**
  * Constructor
  */
-CharImpl::CharImpl(const string& _sval) : val(0)
+CharImpl::CharImpl ( const string& _sval ) : val ( 0 )
 {
-	buildFromString(_sval);
+    buildFromString ( _sval );
 }
 
 /**
  * Builds the char from the string
  */
-bool CharImpl::buildFromString(const std::string &str)
+bool CharImpl::buildFromString ( const std::string& str )
 {
-istringstream iss (str);
-	iss.setf(ios::dec);
-	return !(iss >> val).fail();
+    istringstream iss ( str );
+    iss.setf ( ios::dec );
+    return ! ( iss >> val ).fail();
 
 }
 
@@ -51,12 +51,12 @@ istringstream iss (str);
  */
 string CharImpl::serialize()
 {
-stringstream ss;
-	ss  << val;
-string result = "<Content><Value>";
-	result += ss.str();
-	result += "</Value></Content>";		
-	return result;
+    stringstream ss;
+    ss  << val;
+    string result = "<Content><Value>";
+    result += ss.str();
+    result += "</Value></Content>";
+    return result;
 }
 
 
@@ -65,9 +65,9 @@ string result = "<Content><Value>";
  * @param ser - the number, as a string
  * @return ture in case of success, false in case of failure
  */
-bool CharImpl::deserialize(const string& ser)
+bool CharImpl::deserialize ( const string& ser )
 {
-	return buildFromString(ser);
+    return buildFromString ( ser );
 }
 
 /**
@@ -76,10 +76,10 @@ bool CharImpl::deserialize(const string& ser)
  * @param node - the Content node of the Char
  * @return true in case of success, false in case of failure
  */
-bool CharImpl::deserialize(xmlDocPtr doc ,xmlNodePtr node)
+bool CharImpl::deserialize ( xmlDocPtr doc , xmlNodePtr node )
 {
-string valFromXml = getXmlValue(doc, node, "Value");
-	return deserialize(valFromXml);
+    string valFromXml = getXmlValue ( doc, node, "Value" );
+    return deserialize ( valFromXml );
 }
 
 /**
@@ -88,32 +88,35 @@ string valFromXml = getXmlValue(doc, node, "Value");
  * @param node - is the Content node
  * @return a new Char object
  */
-Object* CharImpl::deserializeChar(xmlDocPtr doc, xmlNodePtr node)
+Object* CharImpl::deserializeChar ( xmlDocPtr doc, xmlNodePtr node )
 {
-CharImpl* newValue = new(std::nothrow) CharImpl();
-	if(NULL == newValue)
-	{
-		LOG_ERR("Not enough memory to create a char implementation");
-		return NULL;
-	}
-	newValue->deserialize(doc, node);
-Char* newChar = new(std::nothrow) Char(newValue->val);
-	if(NULL == newChar)	
-	{
-		LOG_ERR("Not enough memory to create a char");
-		delete newValue;
-		return NULL;
-	}
-	return newChar;
+    CharImpl* newValue = new ( std::nothrow ) CharImpl();
+    if ( NULL == newValue )
+    {
+        LOG_ERR ( "Not enough memory to create a char implementation" );
+        return NULL;
+    }
+    newValue->deserialize ( doc, node );
+    Char* newChar = new ( std::nothrow ) Char ( newValue->val );
+    if ( NULL == newChar )
+    {
+        LOG_ERR ( "Not enough memory to create a char" );
+        delete newValue;
+        return NULL;
+    }
+    return newChar;
 }
 
 /**
  * Serializes the given Char value and returns its serialized form
  */
-string CharImpl::serializeChar(SerializableObject* CharToSer)
+string CharImpl::serializeChar ( SerializableObject* CharToSer )
 {
-Char* theChar = dynamic_cast<Char*>(CharToSer);
-	if(!theChar) return "";
-	return ObjImplMapper<Char,CharImpl>::getImpl(theChar)->serialize();
+    Char* theChar = dynamic_cast<Char*> ( CharToSer );
+    if ( !theChar )
+    {
+        return "";
+    }
+    return ObjImplMapper<Char, CharImpl>::getImpl ( theChar )->serialize();
 }
 

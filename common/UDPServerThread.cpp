@@ -6,11 +6,11 @@
 #include "ClientAcceptor.h"
 #include "AbstractServerClient.h"
 
-#ifdef WIN32
-	#include <WinSock2.h>
+#ifdef _WIN32
+#include <WinSock2.h>
 #endif
 
-void UDPServerThread::setServer(ThreadedUDPServer* srv)
+void UDPServerThread::setServer ( ThreadedUDPServer* srv )
 {
-	server = srv;
+    server = srv;
 }

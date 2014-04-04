@@ -11,29 +11,29 @@ class Mutex;
 /**
  * Class responsible for one connection's thread.
  */
-class ConnectionThread:public Thread
+class ConnectionThread: public Thread
 {
 public:
 
-	/**
-	 * Constructor. 
-	 */
-	ConnectionThread(Connection*);
+    /**
+     * Constructor.
+     */
+    ConnectionThread ( Connection* );
 
-	/**
-	 * Does the threads work
-	 */
-	virtual void* process();
-	
-private:
-
-	// mutex for the connection thread
-	static Mutex connectionThreadMutex;
+    /**
+     * Does the threads work
+     */
+    virtual void* process();
 
 private:
 
-	// the connection object of the class
-	Connection* connection;
+    // mutex for the connection thread
+    static Mutex connectionThreadMutex;
+
+private:
+
+    // the connection object of the class
+    Connection* connection;
 
 
 };

@@ -6,21 +6,21 @@
 class TransporterImpl;
 
 /**
- * Class representing the TCP Server Thread 
+ * Class representing the TCP Server Thread
  */
 class TcpThread : public TCPServerThread
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	TcpThread(TransporterImpl*);
+    /**
+     * Constructor
+     */
+    TcpThread ( TransporterImpl* );
 
 private:
 
-	// the transporter implementation
-	TransporterImpl* transp;
+    // the transporter implementation
+    TransporterImpl* transp;
 };
 
 #endif

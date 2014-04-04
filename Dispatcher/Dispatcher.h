@@ -5,9 +5,9 @@
 #include "SubscriptionInfo.h"
 #include "util.h"
 
-typedef VECTOR(QueuedMessage*) STL_QUEUEDMESSAGE;
-typedef VECTOR(SubscriptionInfo*) STL_SUBSCRIPTIONINFO;
-typedef MAP(int,ClientInfo*) STL_CLIENTINFO;
+typedef VECTOR ( QueuedMessage* ) STL_QUEUEDMESSAGE;
+typedef VECTOR ( SubscriptionInfo* ) STL_SUBSCRIPTIONINFO;
+typedef MAP ( int, ClientInfo* ) STL_CLIENTINFO;
 
 extern boost::asio::io_service IO;
 extern boost::mutex dispatcherMutex; // the mutex handle to the dispatcher thread

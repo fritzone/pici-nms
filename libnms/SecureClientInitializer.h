@@ -16,35 +16,35 @@ class SecureClientInitializer : public AbstractClientInitializer
 {
 public:
 
-	/**
-	 * Constructor. Searches for the config file
-	 */
-	SecureClientInitializer();
+    /**
+     * Constructor. Searches for the config file
+     */
+    SecureClientInitializer();
 
-	/**
-	 * Destructor
-	 */
-	~SecureClientInitializer();
+    /**
+     * Destructor
+     */
+    ~SecureClientInitializer();
 
-	/**
-	 * Initializer from the given config file
-	 */
-	SecureClientInitializer(const string& configFile);
+    /**
+     * Initializer from the given config file
+     */
+    SecureClientInitializer ( const string& configFile );
 
-	/**
-	 * Initializes the client
-	 */
-	virtual bool initializeClient();
+    /**
+     * Initializes the client
+     */
+    virtual bool initializeClient();
 
-	/**
-	 * If the client was initialized or not
-	 */
-	bool initialized() const;
+    /**
+     * If the client was initialized or not
+     */
+    bool initialized() const;
 
 private:
 
-	// the configuration object
-	ClientConfiguration* cfg;
+    // the configuration object
+    ClientConfiguration* cfg;
 };
 
 #endif

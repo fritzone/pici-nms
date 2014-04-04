@@ -6,38 +6,38 @@
 
 using namespace std;
 
-string LongImpl::TYPESTR_LONG ("LONG"); 
+string LongImpl::TYPESTR_LONG ( "LONG" );
 
 /**
  * Constructor
  */
-LongImpl::LongImpl() : val(0)
+LongImpl::LongImpl() : val ( 0 )
 {
 }
 
 /**
  * Constructor
  */
-LongImpl::LongImpl(long _val) : val(_val)
+LongImpl::LongImpl ( long _val ) : val ( _val )
 {
 }
 
 /**
  * Constructor
  */
-LongImpl::LongImpl(const string& _sval) : val(0)
+LongImpl::LongImpl ( const string& _sval ) : val ( 0 )
 {
-	buildFromString(_sval);
+    buildFromString ( _sval );
 }
 
 /**
  * Builds the Long from the string
  */
-bool LongImpl::buildFromString(const std::string &str)
+bool LongImpl::buildFromString ( const std::string& str )
 {
-istringstream iss (str);
-	iss.setf(ios::dec);
-	return !(iss >> val).fail();
+    istringstream iss ( str );
+    iss.setf ( ios::dec );
+    return ! ( iss >> val ).fail();
 
 }
 
@@ -52,12 +52,12 @@ istringstream iss (str);
  */
 string LongImpl::serialize()
 {
-stringstream ss;
-	ss  << val;
-string result = "<Content><Value>";
-	result += ss.str();
-	result += "</Value></Content>";		
-	return result;
+    stringstream ss;
+    ss  << val;
+    string result = "<Content><Value>";
+    result += ss.str();
+    result += "</Value></Content>";
+    return result;
 }
 
 
@@ -66,9 +66,9 @@ string result = "<Content><Value>";
  * @param ser - the number, as a string
  * @return ture in case of success, false in case of failure
  */
-bool LongImpl::deserialize(const string& ser)
+bool LongImpl::deserialize ( const string& ser )
 {
-	return buildFromString(ser);
+    return buildFromString ( ser );
 }
 
 /**
@@ -77,10 +77,10 @@ bool LongImpl::deserialize(const string& ser)
  * @param node - the Content node of the Long
  * @return true in case of success, false in case of failure
  */
-bool LongImpl::deserialize(xmlDocPtr doc ,xmlNodePtr node)
+bool LongImpl::deserialize ( xmlDocPtr doc , xmlNodePtr node )
 {
-string valFromXml = getXmlValue(doc, node, "Value");
-	return deserialize(valFromXml);
+    string valFromXml = getXmlValue ( doc, node, "Value" );
+    return deserialize ( valFromXml );
 }
 
 /**
@@ -89,32 +89,35 @@ string valFromXml = getXmlValue(doc, node, "Value");
  * @param node - is the Content node
  * @return a new Long object
  */
-Object* LongImpl::deserializeLong(xmlDocPtr doc, xmlNodePtr node)
+Object* LongImpl::deserializeLong ( xmlDocPtr doc, xmlNodePtr node )
 {
-LongImpl* newValue = new (std::nothrow) LongImpl();
-	if(NULL == newValue)
-	{
-		LOG_ERR("Cannot create a new Long implementation");
-		return NULL;
-	}
-	newValue->deserialize(doc, node);
-Long* newLong = new (std::nothrow) Long(newValue->val);
-	if(NULL == newLong)
-	{
-		LOG_ERR("Cannot create a new long object");
-		delete newValue;
-		return NULL;
-	}
-	return newLong;
+    LongImpl* newValue = new ( std::nothrow ) LongImpl();
+    if ( NULL == newValue )
+    {
+        LOG_ERR ( "Cannot create a new Long implementation" );
+        return NULL;
+    }
+    newValue->deserialize ( doc, node );
+    Long* newLong = new ( std::nothrow ) Long ( newValue->val );
+    if ( NULL == newLong )
+    {
+        LOG_ERR ( "Cannot create a new long object" );
+        delete newValue;
+        return NULL;
+    }
+    return newLong;
 }
 
 /**
  * Serializes the given Long value and returns its serialized form
  */
-string LongImpl::serializeLong(SerializableObject* LongToSer)
+string LongImpl::serializeLong ( SerializableObject* LongToSer )
 {
-Long* theLong = dynamic_cast<Long*>(LongToSer);
-	if(!theLong) return "";
-	return ObjImplMapper<Long,LongImpl>::getImpl(theLong)->serialize();
+    Long* theLong = dynamic_cast<Long*> ( LongToSer );
+    if ( !theLong )
+    {
+        return "";
+    }
+    return ObjImplMapper<Long, LongImpl>::getImpl ( theLong )->serialize();
 }
 

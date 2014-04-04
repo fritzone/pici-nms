@@ -19,16 +19,16 @@ using namespace std;
 /**
  * Returns the XMLs value for the node with the given name. The node must be a child node of the nNode".
  */
-string getXmlValue(xmlDocPtr doc, xmlNodePtr node, string nodeName);
+string getXmlValue ( xmlDocPtr doc, xmlNodePtr node, string nodeName );
 
 /**
  * Returns a list of nodes that can be found under the "node" with the given name
  */
-vector <xmlNodePtr> getNodeList(xmlDocPtr doc, xmlNodePtr node, string nodeName);
+vector <xmlNodePtr> getNodeList ( xmlDocPtr doc, xmlNodePtr node, string nodeName );
 
 /**
  * Returns the first node with the given name
  */
-xmlNodePtr getNamedNode(xmlDocPtr doc, xmlNodePtr node, string nodeName);
+xmlNodePtr getNamedNode ( xmlDocPtr doc, xmlNodePtr node, string nodeName );
 
 #endif

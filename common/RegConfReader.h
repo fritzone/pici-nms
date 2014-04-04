@@ -1,4 +1,4 @@
-#ifdef WIN32
+#ifdef _WIN32
 
 #ifndef _REG_CONF_READER_H_
 #define _REG_CONF_READER_H_
@@ -14,10 +14,10 @@ class RegConfReader
 {
 public:
 
-	/**
-	 * Returns the location of the configuration file
-	 */
-	static string getConfigFileLocation(const string& comp);
+    /**
+     * Returns the location of the configuration file
+     */
+    static string getConfigFileLocation ( const string& comp );
 };
 
 #endif

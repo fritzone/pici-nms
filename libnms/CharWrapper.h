@@ -11,43 +11,43 @@ class Char : public DefaultSerializableObject
 {
 public:
 
-	/**
-	 * Constructs a new Char object, sets the value to default false.
-	 */
-	Char();
+    /**
+     * Constructs a new Char object, sets the value to default false.
+     */
+    Char();
 
-	/**
-	 * Constructs a new Char object, setting the value to the parameter.
-	 * @param _val - the new value of the char
-	 */
-	Char(char _val);
+    /**
+     * Constructs a new Char object, setting the value to the parameter.
+     * @param _val - the new value of the char
+     */
+    Char ( char _val );
 
-	/**
-	 * Constructs a new Char value from the given string.
-	 * @param _sval - the string (either "true" or "false")
-	 */
-	Char(const string& _sval);
+    /**
+     * Constructs a new Char value from the given string.
+     * @param _sval - the string (either "true" or "false")
+     */
+    Char ( const string& _sval );
 
-	/**
-	 * Destructor
-	 */
-	~Char();
+    /**
+     * Destructor
+     */
+    ~Char();
 
-	/**
-	 * Default casting of the Char to a char value
-	 */
-	operator char () const ;
+    /**
+     * Default casting of the Char to a char value
+     */
+    operator char () const ;
 
-	/**
-	 * Returns the type description of the Char class. 
-	 * @return the type description of the Char class
-	 */
-	virtual const string& type() const;
+    /**
+     * Returns the type description of the Char class.
+     * @return the type description of the Char class
+     */
+    virtual const string& type() const;
 
-	/**
-	 * Returns a string representation of the Char object
-	 */
-	virtual const string toString() const;
+    /**
+     * Returns a string representation of the Char object
+     */
+    virtual const string toString() const;
 
 };
 

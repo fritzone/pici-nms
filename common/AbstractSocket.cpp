@@ -6,7 +6,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-#ifndef WIN32
+#ifndef _WIN32
 #include <unistd.h>
 #endif
 
@@ -15,24 +15,24 @@
  */
 bool AbstractSocket::close()
 {
-	//printf("Trying to close socket [%d]", (int)theSocket);
-	closed = true;
-	if( 
-	#ifdef WIN32 
-		closesocket
-	#else
-		::close
-	#endif
-		(theSocket) == SOCKET_ERROR )
-	{
-		populateErrorCode(
-		#ifndef WIN32
-		SocketErrorCodes::OPERATION_CLOSE
-		#endif
-		);
-		closed = false;
-	}
-	return closed;
+    //printf("Trying to close socket [%d]", (int)theSocket);
+    closed = true;
+    if (
+#ifdef _WIN32
+        closesocket
+#else
+        ::close
+#endif
+        ( theSocket ) == SOCKET_ERROR )
+    {
+        populateErrorCode (
+#ifndef _WIN32
+            SocketErrorCodes::OPERATION_CLOSE
+#endif
+        );
+        closed = false;
+    }
+    return closed;
 }
 
 /**
@@ -40,24 +40,24 @@ bool AbstractSocket::close()
  */
 bool AbstractSocket::setNonBlocking()
 {
-	//printf("[AbstractSocket::setNonBlocking] socket [%d]\n", (int)theSocket);
-DWORD nonblock = 1;
-	if(
-	#ifdef WIN32
-		ioctlsocket
-	#else
-		::ioctl
-	#endif
-		(theSocket, FIONBIO, &nonblock) == SOCKET_ERROR)
-	{
-		populateErrorCode(
-		#ifndef WIN32
-		SocketErrorCodes::OPERATION_IOCTL
-		#endif
-		);
-		return false;
-	}
-	return true;
+    //printf("[AbstractSocket::setNonBlocking] socket [%d]\n", (int)theSocket);
+    DWORD nonblock = 1;
+    if (
+#ifdef _WIN32
+        ioctlsocket
+#else
+        ::ioctl
+#endif
+        ( theSocket, FIONBIO, &nonblock ) == SOCKET_ERROR )
+    {
+        populateErrorCode (
+#ifndef _WIN32
+            SocketErrorCodes::OPERATION_IOCTL
+#endif
+        );
+        return false;
+    }
+    return true;
 }
 
 /**
@@ -65,23 +65,23 @@ DWORD nonblock = 1;
  */
 bool AbstractSocket::setBlocking()
 {
-DWORD nonblock = 0;
-	if(
-	#ifdef WIN32
-		ioctlsocket
-	#else
-		::ioctl
-	#endif
-		(theSocket, FIONBIO, &nonblock) == SOCKET_ERROR)
-	{
-		populateErrorCode(
-		#ifndef WIN32
-		SocketErrorCodes::OPERATION_IOCTL
-		#endif
-		);
-		return false;
-	}
-	return true;
+    DWORD nonblock = 0;
+    if (
+#ifdef _WIN32
+        ioctlsocket
+#else
+        ::ioctl
+#endif
+        ( theSocket, FIONBIO, &nonblock ) == SOCKET_ERROR )
+    {
+        populateErrorCode (
+#ifndef _WIN32
+            SocketErrorCodes::OPERATION_IOCTL
+#endif
+        );
+        return false;
+    }
+    return true;
 }
 
 

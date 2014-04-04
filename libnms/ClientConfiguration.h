@@ -14,56 +14,56 @@ class ClientConfiguration
 {
 public:
 
-	/**
-	 * Constructor. Searches the "well-known" locations for the settings of the client
-	 * The order is: 
-	 * - the directory where the application started
-	 * - the user's home directory
-	 */
-	ClientConfiguration();
+    /**
+     * Constructor. Searches the "well-known" locations for the settings of the client
+     * The order is:
+     * - the directory where the application started
+     * - the user's home directory
+     */
+    ClientConfiguration();
 
-	/**
-	 * Destructor
-	 */
-	~ClientConfiguration();
+    /**
+     * Destructor
+     */
+    ~ClientConfiguration();
 
-	/**
-	 * Constructor. Provided is the configuration file
-	 */
-	ClientConfiguration(const string& directory);
+    /**
+     * Constructor. Provided is the configuration file
+     */
+    ClientConfiguration ( const string& directory );
 
-	/**
-	 * Tells us if this was initialized or not
-	 */
-	bool initialized() const
-	{
-		return initSuccess;
-	}
+    /**
+     * Tells us if this was initialized or not
+     */
+    bool initialized() const
+    {
+        return initSuccess;
+    }
 
 public:
 
-	/**
-	 * Returns the IP address of the daemon
-	 */
-	string getDaemonIP();
+    /**
+     * Returns the IP address of the daemon
+     */
+    string getDaemonIP();
 
-	/**
-	 * Returns the TCP port of the daemon
-	 */
-	int getDaemonTCPPort();
+    /**
+     * Returns the TCP port of the daemon
+     */
+    int getDaemonTCPPort();
 
-	/**
-	 * Returns the dispatcher port on which this client wants to communicate
-	 */
-	int preferredDispatcherPort();
+    /**
+     * Returns the dispatcher port on which this client wants to communicate
+     */
+    int preferredDispatcherPort();
 
 private:
 
-	// the configuration reader
-	ConfigReader* cfg;
+    // the configuration reader
+    ConfigReader* cfg;
 
-	// if this was succesfully initialized or not
-	bool initSuccess;
+    // if this was succesfully initialized or not
+    bool initSuccess;
 
 };
 

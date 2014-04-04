@@ -3,16 +3,17 @@
 
 #include <pthread.h>
 
-class Mutex {
+class Mutex
+{
 
 private:
-    
-	pthread_mutex_t Dmutex;
+
+    pthread_mutex_t Dmutex;
     pthread_mutexattr_t attr;
 
 private:
-	Mutex(const Mutex&);
-	Mutex& operator= (const Mutex&);
+    Mutex ( const Mutex& );
+    Mutex& operator= ( const Mutex& );
 
 public:
     Mutex();

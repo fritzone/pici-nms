@@ -3,6 +3,6 @@
 class CConnection
 {
 public:
-	CConnection(void);
-	~CConnection(void);
+    CConnection ( void );
+    ~CConnection ( void );
 };

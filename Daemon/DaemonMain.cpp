@@ -1,7 +1,7 @@
 #include "Daemon.h"
 #include "Logger.h"
 
-#ifdef WIN32
+#ifdef _WIN32
 #include "DaemonService.h"
 #include <Windows.h>
 #endif
@@ -14,35 +14,35 @@
  */
 void daemonExit()
 {
-    LOG("Daemon is being shut down... cleaning up the mess");
+    LOG ( "Daemon is being shut down... cleaning up the mess" );
 }
 
 /**
  * Main entry point
  */
-#ifdef WIN32
-int WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR cmdLine, int ) 
+#ifdef _WIN32
+int WINAPI WinMain ( HINSTANCE, HINSTANCE, LPSTR cmdLine, int )
 #else
 int main()
 #endif
 {
-	Logger::init((char *)"c:\\daemon.log");
-    LOG("Daemon starting");
-#ifdef WIN32
-	Service dmnServ;
-	dmnServ.Start();
+    Logger::init ( ( char* ) "c:\\daemon.log" );
+    LOG ( "Daemon starting" );
+#ifdef _WIN32
+    Service dmnServ;
+    dmnServ.Start();
 #else
-    atexit(daemonExit);
-Daemon dmn;   
-    if(!dmn.startup())
-	{
-		LOG("Could not start the application");
-		return 1;
-	}
-
-    while (true)
+    atexit ( daemonExit );
+    Daemon dmn;
+    if ( !dmn.startup() )
     {
-        sleep (1);
+        LOG ( "Could not start the application" );
+        return 1;
+    }
+
+    while ( true )
+    {
+        sleep ( 1 );
     }
     return 0;
 

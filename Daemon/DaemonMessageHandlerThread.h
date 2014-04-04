@@ -20,49 +20,49 @@ class DaemonMessageHandlerThread : public Thread
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	DaemonMessageHandlerThread(Daemon* dmn);
+    /**
+     * Constructor
+     */
+    DaemonMessageHandlerThread ( Daemon* dmn );
 
-	/**
-	 * Handles the message in a new thread.
-	 */
-	bool handleMessage(string message, NetworkAddress fromAddr);
+    /**
+     * Handles the message in a new thread.
+     */
+    bool handleMessage ( string message, NetworkAddress fromAddr );
 
 protected:
 
-	/**
-	 * Processes one message, then ends
-	 */
-	virtual void *process();
+    /**
+     * Processes one message, then ends
+     */
+    virtual void* process();
 
 private:
 
-	/**
-	 * Checks if the message is an INIT message or not
-	 */
-	bool isInitMessage(const string& s);
+    /**
+     * Checks if the message is an INIT message or not
+     */
+    bool isInitMessage ( const string& s );
 
 private:
 
-	/**
-	* Handles the NMS_INIT message
-	*/
-	bool handleInitMessage(const string s, NetworkAddress* fromAddr);
+    /**
+    * Handles the NMS_INIT message
+    */
+    bool handleInitMessage ( const string s, NetworkAddress* fromAddr );
 
 private:
 
-	// the daemon
-	Daemon* daemon;
+    // the daemon
+    Daemon* daemon;
 
-	// the message that will be handled in the thread
-	string msg;
+    // the message that will be handled in the thread
+    string msg;
 
-	// the address from which we've got this message
-	NetworkAddress addrs;
+    // the address from which we've got this message
+    NetworkAddress addrs;
 
-	static DaemonMutex messageMutex;
+    static DaemonMutex messageMutex;
 };
 
 #endif

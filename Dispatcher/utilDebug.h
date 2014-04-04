@@ -3,8 +3,8 @@
 
 namespace util
 {
-	namespace debug
-	{
-		std::string log_time( std::string fmt );
-	}
-}	
+namespace debug
+{
+std::string log_time ( std::string fmt );
+}
+}

@@ -6,5 +6,5 @@
  */
 string SerializableObject::getHashCode()
 {
-	return MessageDigest::getHashCode(serialize());
+    return MessageDigest::getHashCode ( serialize() );
 }

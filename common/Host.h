@@ -16,35 +16,35 @@ class Host : public NetworkComponent
 {
 public:
 
-	/**
-	 * Retrieves the local host
-	 */
-	static Host* localhost();
+    /**
+     * Retrieves the local host
+     */
+    static Host* localhost();
 
 public:
 
-	/**
-	 * Default constructor. 
-	 */
-	Host();
+    /**
+     * Default constructor.
+     */
+    Host();
 
-	/**
-	 * Construcotr from the given name
-	 */
-	Host(string name) ;
+    /**
+     * Construcotr from the given name
+     */
+    Host ( string name ) ;
 
-	/**
-	 * Returns the IP of the host
-	 */
-	string getIp();
+    /**
+     * Returns the IP of the host
+     */
+    string getIp();
 
 private:
 
-	// the name of the host
-	string hostName;
+    // the name of the host
+    string hostName;
 
-	// the address of the host
-	NetworkAddress* address;
+    // the address of the host
+    NetworkAddress* address;
 };
 
 #endif

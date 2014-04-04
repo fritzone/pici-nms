@@ -14,29 +14,29 @@ using namespace std;
 class LIBNMS_API parameter_not_found : public std::exception
 {
 public:
-	/**
-	 * Constructor, takes in the name of the parameter that was not found
-	 */
-	parameter_not_found(const string& _pname) throw() : pname(_pname), fwhat("Parameter not found:")
-	{ 
-		fwhat += pname;
-	}
+    /**
+     * Constructor, takes in the name of the parameter that was not found
+     */
+    parameter_not_found ( const string& _pname ) throw() : pname ( _pname ), fwhat ( "Parameter not found:" )
+    {
+        fwhat += pname;
+    }
 
-	/**
-	 * Destructor
-	 */
-	virtual ~parameter_not_found() throw() { }
+    /**
+     * Destructor
+     */
+    virtual ~parameter_not_found() throw() { }
 
-	/**
-	 * What
-	 */
-	virtual const char* what() const throw() 
-	{
-		return pname.c_str();
-	}
+    /**
+     * What
+     */
+    virtual const char* what() const throw()
+    {
+        return pname.c_str();
+    }
 
-	string pname;
-	string fwhat;
+    string pname;
+    string fwhat;
 };
 
 #endif

@@ -12,31 +12,31 @@ class ObjImplMapper
 {
 public:
 
-	/**
-	 * Maps the given object to the given implementation. Used only internally
-	 */
-	static void mapObjToImpl(OBJTYPE* obj, IMPLTYPE* impl)
-	{
-		mapping.insert(make_pair<OBJTYPE*, IMPLTYPE*>(obj,impl));
-	}
+    /**
+     * Maps the given object to the given implementation. Used only internally
+     */
+    static void mapObjToImpl ( OBJTYPE* obj, IMPLTYPE* impl )
+    {
+        mapping.insert ( make_pair<OBJTYPE*, IMPLTYPE*> ( obj, impl ) );
+    }
 
-	/**
-	 * Returns the implementation for the given object
-	 */
-	static IMPLTYPE* getImpl(OBJTYPE* obj) 
-	{
-		return mapping.find(obj)->second;
-	}
+    /**
+     * Returns the implementation for the given object
+     */
+    static IMPLTYPE* getImpl ( OBJTYPE* obj )
+    {
+        return mapping.find ( obj )->second;
+    }
 
-	static void removeImpl(OBJTYPE* obj)
-	{
-		mapping.erase(obj);
-	}
+    static void removeImpl ( OBJTYPE* obj )
+    {
+        mapping.erase ( obj );
+    }
 
 
 private:
-	// the actual map holding the data
-	static map<OBJTYPE*,IMPLTYPE*> mapping;
+    // the actual map holding the data
+    static map<OBJTYPE*, IMPLTYPE*> mapping;
 };
 
 // the definition of the map

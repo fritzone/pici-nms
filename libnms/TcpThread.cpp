@@ -4,6 +4,6 @@
 #include "Connection.h"
 #include "Logger.h"
 
-TcpThread::TcpThread(TransporterImpl* impl) : TCPServerThread(), transp(impl)
+TcpThread::TcpThread ( TransporterImpl* impl ) : TCPServerThread(), transp ( impl )
 {
 }

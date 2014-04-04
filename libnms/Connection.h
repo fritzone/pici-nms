@@ -14,33 +14,33 @@ class Connection
 {
 public:
 
-	/**
-	 * Constructor. Creates a new object with the given socket and transporter implementation
-	 */
-	Connection(AbstractSocket* sck, TransporterImpl* transp);
+    /**
+     * Constructor. Creates a new object with the given socket and transporter implementation
+     */
+    Connection ( AbstractSocket* sck, TransporterImpl* transp );
 
-	/**
-	 * Destructor
-	 */
-	~Connection();
+    /**
+     * Destructor
+     */
+    ~Connection();
 
-	/**
-	 * Returns the transported
-	 */
-	TransporterImpl* getTransporter();
+    /**
+     * Returns the transported
+     */
+    TransporterImpl* getTransporter();
 
-	/**
-	 * Returns the socket
-	 */
-	AbstractSocket* getSocket();
+    /**
+     * Returns the socket
+     */
+    AbstractSocket* getSocket();
 
 private:
 
-	// the transporter object
-	TransporterImpl *transporter;
+    // the transporter object
+    TransporterImpl* transporter;
 
-	// the socket which came from the disptacher
-	TCPSocket* sock;
+    // the socket which came from the disptacher
+    TCPSocket* sock;
 };
 
 

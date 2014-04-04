@@ -11,43 +11,43 @@ class Double : public DefaultSerializableObject
 {
 public:
 
-	/**
-	 * Constructs a new Double object, sets the value to default false.
-	 */
-	Double();
+    /**
+     * Constructs a new Double object, sets the value to default false.
+     */
+    Double();
 
-	/**
-	 * Constructs a new Double object, setting the value to the parameter.
-	 * @param _val - the new value of the double
-	 */
-	Double(double _val);
+    /**
+     * Constructs a new Double object, setting the value to the parameter.
+     * @param _val - the new value of the double
+     */
+    Double ( double _val );
 
-	/**
-	 * Constructs a new Double value from the given string.
-	 * @param _sval - the string (either "true" or "false")
-	 */
-	Double(const string& _sval);
+    /**
+     * Constructs a new Double value from the given string.
+     * @param _sval - the string (either "true" or "false")
+     */
+    Double ( const string& _sval );
 
-	/**
-	 * Destructor
-	 */
-	~Double();
+    /**
+     * Destructor
+     */
+    ~Double();
 
-	/**
-	 * Default casting of the Double to a double value
-	 */
-	operator double () const ;
+    /**
+     * Default casting of the Double to a double value
+     */
+    operator double () const ;
 
-	/**
-	 * Returns the type description of the Double class. 
-	 * @return the type description of the Double class
-	 */
-	virtual const string& type() const;
+    /**
+     * Returns the type description of the Double class.
+     * @return the type description of the Double class
+     */
+    virtual const string& type() const;
 
-	/**
-	 * Returns a string representation of the Double object
-	 */
-	virtual const string toString() const;
+    /**
+     * Returns a string representation of the Double object
+     */
+    virtual const string toString() const;
 
 };
 

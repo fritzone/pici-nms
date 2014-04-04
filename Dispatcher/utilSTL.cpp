@@ -2,7 +2,7 @@
 
 namespace util
 {
-	namespace stl
-	{
-	}
+namespace stl
+{
+}
 }

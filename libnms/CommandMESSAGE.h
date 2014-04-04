@@ -17,17 +17,17 @@ class CommandMESSAGE : public CommandInterface
 {
 public:
 
-	/**
-	* Constructor
-	*/
-	CommandMESSAGE(ClientIdentity* cid, const string& subject, const Message* msg, bool synch)
-	{
-		stringstream ss;
-		ss << COMMAND_MESSAGE << COMMAND_SEPARATOR1 << cid->getIdentityDescriptor() << COMMAND_SEPARATOR2 << subject << COMMAND_SEPARATOR2
-			<< (synch?STR_SYNCH:STR_ASYNCH) << COMMAND_SEPARATOR2 << 
-			ObjImplMapper<Message, MessageImpl>::getImpl(const_cast<Message*>(msg))->getTtl() << COMMAND_SEPARATOR2 << ObjImplMapper<Message, MessageImpl>::getImpl(const_cast<Message*>(msg))->serialize();
-		result = ss.str();
-	}
+    /**
+    * Constructor
+    */
+    CommandMESSAGE ( ClientIdentity* cid, const string& subject, const Message* msg, bool synch )
+    {
+        stringstream ss;
+        ss << COMMAND_MESSAGE << COMMAND_SEPARATOR1 << cid->getIdentityDescriptor() << COMMAND_SEPARATOR2 << subject << COMMAND_SEPARATOR2
+           << ( synch ? STR_SYNCH : STR_ASYNCH ) << COMMAND_SEPARATOR2 <<
+           ObjImplMapper<Message, MessageImpl>::getImpl ( const_cast<Message*> ( msg ) )->getTtl() << COMMAND_SEPARATOR2 << ObjImplMapper<Message, MessageImpl>::getImpl ( const_cast<Message*> ( msg ) )->serialize();
+        result = ss.str();
+    }
 };
 
 #endif

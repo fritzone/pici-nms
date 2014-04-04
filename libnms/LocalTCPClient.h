@@ -14,20 +14,20 @@ class TransporterImpl;
 class LocalTCPClient : public AbstractServerClient
 {
 public:
-	/**
-	 * Constructor. Creates a new object
-	 */
-	LocalTCPClient(TransporterImpl*);
+    /**
+     * Constructor. Creates a new object
+     */
+    LocalTCPClient ( TransporterImpl* );
 
-	/**
-	 * Called when the Local TCP Server has accepted a client from the Dispatcher (or someone else)
-	 */
-	bool onConnect(AbstractSocket* sock, NetworkAddress* addr);
+    /**
+     * Called when the Local TCP Server has accepted a client from the Dispatcher (or someone else)
+     */
+    bool onConnect ( AbstractSocket* sock, NetworkAddress* addr );
 
 private:
 
-	// the transporter object
-	TransporterImpl* transp;
+    // the transporter object
+    TransporterImpl* transp;
 };
 
 #endif

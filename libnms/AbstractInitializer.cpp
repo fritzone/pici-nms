@@ -3,22 +3,22 @@
 /**
  * Construcotr
  */
-AbstractInitializer::AbstractInitializer() : lastErrorCode(-1), initSuccess(false)
+AbstractInitializer::AbstractInitializer() : lastErrorCode ( -1 ), initSuccess ( false )
 {
 
 }
 
 bool AbstractInitializer::initialized() const
 {
-	return initSuccess;
+    return initSuccess;
 }
 
 int AbstractInitializer::getLastErrorCode() const
 {
-	return lastErrorCode;
+    return lastErrorCode;
 }
 
-void AbstractInitializer::setLastErrorCode(int code)
+void AbstractInitializer::setLastErrorCode ( int code )
 {
-	lastErrorCode = code;
+    lastErrorCode = code;
 }

@@ -13,17 +13,17 @@ using namespace std;
 class DefaultSerializableObject : public SerializableObject
 {
 public:
-	/**
-	 * Serializes this object, providing a way to send it over the network
-	 */
-	virtual string serialize();
+    /**
+     * Serializes this object, providing a way to send it over the network
+     */
+    virtual string serialize();
 
-	/**
-	 * De-serializes this object, reconstructing from the data that was sent over the network
-	 * @param ser - the serialized string, containing just the serialized form of the object, without the XML tags
-	 * @return true in case of success, false in case of failure
-	 */
-	virtual bool deserialize(const string& ser);
+    /**
+     * De-serializes this object, reconstructing from the data that was sent over the network
+     * @param ser - the serialized string, containing just the serialized form of the object, without the XML tags
+     * @return true in case of success, false in case of failure
+     */
+    virtual bool deserialize ( const string& ser );
 
 };
 

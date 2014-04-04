@@ -12,33 +12,33 @@ class PnmsSecureClientImpl : public PnmsGenericClientImpl
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	PnmsSecureClientImpl(const string& name);
+    /**
+     * Constructor
+     */
+    PnmsSecureClientImpl ( const string& name );
 
-	/**
-	 * Destructor
-	 */
-	~PnmsSecureClientImpl();
+    /**
+     * Destructor
+     */
+    ~PnmsSecureClientImpl();
 
-	/**
-	 * Constructor
-	 */
-	PnmsSecureClientImpl(const string& _name, const string& configFileLocation);
+    /**
+     * Constructor
+     */
+    PnmsSecureClientImpl ( const string& _name, const string& configFileLocation );
 
-	/**
-	 * Initialized? MUST be used before PnmsGenericClientImpl::isInitialized
-	 */
-	bool initialized() const;
+    /**
+     * Initialized? MUST be used before PnmsGenericClientImpl::isInitialized
+     */
+    bool initialized() const;
 
 private:
 
-	// the initializer
-	SecureClientInitializer* sci;
+    // the initializer
+    SecureClientInitializer* sci;
 
-	// whether we've created the transporter or not
-	bool ownsTransporter;
+    // whether we've created the transporter or not
+    bool ownsTransporter;
 };
 
 #endif

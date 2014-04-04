@@ -12,22 +12,22 @@ class DaemonPingerThread : public Thread
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	DaemonPingerThread(Daemon* _dmn);
-	
+    /**
+     * Constructor
+     */
+    DaemonPingerThread ( Daemon* _dmn );
+
 protected:
 
-	/**
-	 * Processes pings all the daemons at some interval 
-	 */
-	virtual void *process();
+    /**
+     * Processes pings all the daemons at some interval
+     */
+    virtual void* process();
 
 private:
 
-	// the daemon associated with this thread
-	Daemon* dmn;
+    // the daemon associated with this thread
+    Daemon* dmn;
 
 };
 

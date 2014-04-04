@@ -15,11 +15,11 @@ using namespace std;
 class MessageDigest
 {
 public:
-	static string getHashCode(const string& input);
+    static string getHashCode ( const string& input );
 
 private:
 
-	static char *spc_digest_message(const EVP_MD *type, const char *in, unsigned long n, unsigned int *outlen); 
+    static char* spc_digest_message ( const EVP_MD* type, const char* in, unsigned long n, unsigned int* outlen );
 };
 
 #endif

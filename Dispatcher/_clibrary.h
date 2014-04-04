@@ -9,7 +9,7 @@
 #include <cerrno>
 #include <cmath>
 
-#define DEBUG(...) { (void) printf ( __VA_ARGS__ ); } 
+#define DEBUG(...) { (void) printf ( __VA_ARGS__ ); }
 #define STRFTIME(str,fmt,tmt) strftime(str,sizeof(str),fmt, localtime(&tmt) )
 #define COPY(source,dest) memcpy(&dest,&source,sizeof(source))
 #define TYPEID(x) typeid(x).name()

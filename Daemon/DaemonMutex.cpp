@@ -9,21 +9,21 @@
 
 DaemonMutex::DaemonMutex()
 {
-	pthread_mutexattr_init (&attr);
-	pthread_mutex_init(&Dmutex, &attr);
+    pthread_mutexattr_init ( &attr );
+    pthread_mutex_init ( &Dmutex, &attr );
 }
 
 int DaemonMutex::lock()
 {
-    int waitResult = pthread_mutex_lock(&Dmutex);
-    if(waitResult != 0)
+    int waitResult = pthread_mutex_lock ( &Dmutex );
+    if ( waitResult != 0 )
     {
-        LOG("Wait Failed");
+        LOG ( "Wait Failed" );
     }
-    return ((int)waitResult);
+    return ( ( int ) waitResult );
 }
 
 int DaemonMutex::unlock()
 {
-    return pthread_mutex_unlock(&Dmutex);
+    return pthread_mutex_unlock ( &Dmutex );
 }

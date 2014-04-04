@@ -5,38 +5,38 @@
 
 using namespace std;
 
-string DoubleImpl::TYPESTR_DOUBLE ("DOUBLE"); 
+string DoubleImpl::TYPESTR_DOUBLE ( "DOUBLE" );
 
 /**
  * Constructor
  */
-DoubleImpl::DoubleImpl() : val(0.0F)
+DoubleImpl::DoubleImpl() : val ( 0.0F )
 {
 }
 
 /**
  * Constructor
  */
-DoubleImpl::DoubleImpl(double _val) : val(_val)
+DoubleImpl::DoubleImpl ( double _val ) : val ( _val )
 {
 }
 
 /**
  * Constructor
  */
-DoubleImpl::DoubleImpl(const string& _sval) : val(0)
+DoubleImpl::DoubleImpl ( const string& _sval ) : val ( 0 )
 {
-	buildFromString(_sval);
+    buildFromString ( _sval );
 }
 
 /**
  * Builds the double from the string
  */
-bool DoubleImpl::buildFromString(const std::string &str)
+bool DoubleImpl::buildFromString ( const std::string& str )
 {
-istringstream iss (str);
-	iss.setf(ios::dec);
-	return !(iss >> val).fail();
+    istringstream iss ( str );
+    iss.setf ( ios::dec );
+    return ! ( iss >> val ).fail();
 
 }
 
@@ -51,12 +51,12 @@ istringstream iss (str);
  */
 string DoubleImpl::serialize()
 {
-stringstream ss;
-	ss  << val;
-string result = "<Content><Value>";
-	result += ss.str();
-	result += "</Value></Content>";		
-	return result;
+    stringstream ss;
+    ss  << val;
+    string result = "<Content><Value>";
+    result += ss.str();
+    result += "</Value></Content>";
+    return result;
 }
 
 
@@ -65,9 +65,9 @@ string result = "<Content><Value>";
  * @param ser - the number, as a string
  * @return ture in case of success, false in case of failure
  */
-bool DoubleImpl::deserialize(const string& ser)
+bool DoubleImpl::deserialize ( const string& ser )
 {
-	return buildFromString(ser);
+    return buildFromString ( ser );
 }
 
 /**
@@ -76,10 +76,10 @@ bool DoubleImpl::deserialize(const string& ser)
  * @param node - the Content node of the Double
  * @return true in case of success, false in case of failure
  */
-bool DoubleImpl::deserialize(xmlDocPtr doc ,xmlNodePtr node)
+bool DoubleImpl::deserialize ( xmlDocPtr doc , xmlNodePtr node )
 {
-string valFromXml = getXmlValue(doc, node, "Value");
-	return deserialize(valFromXml);
+    string valFromXml = getXmlValue ( doc, node, "Value" );
+    return deserialize ( valFromXml );
 }
 
 /**
@@ -88,32 +88,35 @@ string valFromXml = getXmlValue(doc, node, "Value");
  * @param node - is the Content node
  * @return a new Double object
  */
-Object* DoubleImpl::deserializeDouble(xmlDocPtr doc, xmlNodePtr node)
+Object* DoubleImpl::deserializeDouble ( xmlDocPtr doc, xmlNodePtr node )
 {
-DoubleImpl* newValue = new(std::nothrow) DoubleImpl();
-	if(NULL == newValue)
-	{
-		LOG_ERR("Not enough memory to create a double implementation");
-		return NULL;
-	}
-	newValue->deserialize(doc, node);
-Double* newDouble = new(std::nothrow) Double(newValue->val);
-	if(NULL == newDouble)	
-	{
-		LOG_ERR("Not enough memory to create a double");
-		delete newValue;
-		return NULL;
-	}
-	return newDouble;
+    DoubleImpl* newValue = new ( std::nothrow ) DoubleImpl();
+    if ( NULL == newValue )
+    {
+        LOG_ERR ( "Not enough memory to create a double implementation" );
+        return NULL;
+    }
+    newValue->deserialize ( doc, node );
+    Double* newDouble = new ( std::nothrow ) Double ( newValue->val );
+    if ( NULL == newDouble )
+    {
+        LOG_ERR ( "Not enough memory to create a double" );
+        delete newValue;
+        return NULL;
+    }
+    return newDouble;
 }
 
 /**
  * Serializes the given Double value and returns its serialized form
  */
-string DoubleImpl::serializeDouble(SerializableObject* DoubleToSer)
+string DoubleImpl::serializeDouble ( SerializableObject* DoubleToSer )
 {
-Double* theDouble = dynamic_cast<Double*>(DoubleToSer);
-	if(!theDouble) return "";
-	return ObjImplMapper<Double,DoubleImpl>::getImpl(theDouble)->serialize();
+    Double* theDouble = dynamic_cast<Double*> ( DoubleToSer );
+    if ( !theDouble )
+    {
+        return "";
+    }
+    return ObjImplMapper<Double, DoubleImpl>::getImpl ( theDouble )->serialize();
 }
 

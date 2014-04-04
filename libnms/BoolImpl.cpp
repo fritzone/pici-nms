@@ -2,42 +2,42 @@
 #include "Logger.h"
 #include "BoolWrapper.h"
 
-string BoolImpl::TYPESTR_BOOL ("BOOL"); 
+string BoolImpl::TYPESTR_BOOL ( "BOOL" );
 
 /**
  * Constructor
  */
-BoolImpl::BoolImpl() : val(false)
+BoolImpl::BoolImpl() : val ( false )
 {
 }
 
 /**
  * Constructor
  */
-BoolImpl::BoolImpl(bool _val) : val(_val)
+BoolImpl::BoolImpl ( bool _val ) : val ( _val )
 {
 }
 
 /**
  * Constructor
  */
-BoolImpl::BoolImpl(const string& _sval) : val(0)
+BoolImpl::BoolImpl ( const string& _sval ) : val ( 0 )
 {
-	buildFromString(_sval);
+    buildFromString ( _sval );
 }
 
 /**
  * Builds the bool from the string
  */
-bool BoolImpl::buildFromString(const std::string &str)
+bool BoolImpl::buildFromString ( const std::string& str )
 {
     val = false;
-    if("true" == str) 
+    if ( "true" == str )
     {
         val = true;
         return true;
     }
-    if("false" == str)
+    if ( "false" == str )
     {
         return true;
     }
@@ -55,10 +55,10 @@ bool BoolImpl::buildFromString(const std::string &str)
  */
 string BoolImpl::serialize()
 {
-string result = "<Content><Value>";
-	result += val?"true":"false";
-	result += "</Value></Content>";		
-	return result;
+    string result = "<Content><Value>";
+    result += val ? "true" : "false";
+    result += "</Value></Content>";
+    return result;
 }
 
 
@@ -67,9 +67,9 @@ string result = "<Content><Value>";
  * @param ser - the number, as a string
  * @return ture in case of success, false in case of failure
  */
-bool BoolImpl::deserialize(const string& ser)
+bool BoolImpl::deserialize ( const string& ser )
 {
-	return buildFromString(ser);
+    return buildFromString ( ser );
 }
 
 /**
@@ -78,10 +78,10 @@ bool BoolImpl::deserialize(const string& ser)
  * @param node - the Content node of the Bool
  * @return true in case of success, false in case of failure
  */
-bool BoolImpl::deserialize(xmlDocPtr doc ,xmlNodePtr node)
+bool BoolImpl::deserialize ( xmlDocPtr doc , xmlNodePtr node )
 {
-string valFromXml = getXmlValue(doc, node, "Value");
-	return deserialize(valFromXml);
+    string valFromXml = getXmlValue ( doc, node, "Value" );
+    return deserialize ( valFromXml );
 }
 
 /**
@@ -90,32 +90,35 @@ string valFromXml = getXmlValue(doc, node, "Value");
  * @param node - is the Content node
  * @return a new Bool object
  */
-Object* BoolImpl::deserializeBool(xmlDocPtr doc, xmlNodePtr node)
+Object* BoolImpl::deserializeBool ( xmlDocPtr doc, xmlNodePtr node )
 {
-BoolImpl* newValue = new(std::nothrow) BoolImpl();
-	if(NULL == newValue)
-	{
-		LOG_ERR("Not enough memory to create a new BoolImpl");
-		return NULL;
-	}
-	newValue->deserialize(doc, node);
-Bool* newBool = new (std::nothrow)Bool(newValue->val);
-	if(NULL == newBool)
-	{
-		LOG_ERR("Not enough memory to create a new Bool");
-		delete newValue;
-		return NULL;
-	}
-	return newBool;
+    BoolImpl* newValue = new ( std::nothrow ) BoolImpl();
+    if ( NULL == newValue )
+    {
+        LOG_ERR ( "Not enough memory to create a new BoolImpl" );
+        return NULL;
+    }
+    newValue->deserialize ( doc, node );
+    Bool* newBool = new ( std::nothrow ) Bool ( newValue->val );
+    if ( NULL == newBool )
+    {
+        LOG_ERR ( "Not enough memory to create a new Bool" );
+        delete newValue;
+        return NULL;
+    }
+    return newBool;
 }
 
 /**
  * Serializes the given Bool value and returns its serialized form
  */
-string BoolImpl::serializeBool(SerializableObject* BoolToSer)
+string BoolImpl::serializeBool ( SerializableObject* BoolToSer )
 {
-Bool* theBool = dynamic_cast<Bool*>(BoolToSer);
-	if(!theBool) return "";
-	return ObjImplMapper<Bool,BoolImpl>::getImpl(theBool)->serialize();
+    Bool* theBool = dynamic_cast<Bool*> ( BoolToSer );
+    if ( !theBool )
+    {
+        return "";
+    }
+    return ObjImplMapper<Bool, BoolImpl>::getImpl ( theBool )->serialize();
 }
 

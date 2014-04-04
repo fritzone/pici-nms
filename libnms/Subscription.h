@@ -15,20 +15,20 @@ class Receiver;
 class Subscription
 {
 public:
-	// creates a new subscription class
-	Subscription(string, Receiver*);
+    // creates a new subscription class
+    Subscription ( string, Receiver* );
 
-	/// the subject
-	string subject;
+    /// the subject
+    string subject;
 
-	/// The receiver, that is subscribed	
-	Receiver* theReceiver;
+    /// The receiver, that is subscribed
+    Receiver* theReceiver;
 
-	/// return true when this object must receive the given message
-	bool receives(string);
+    /// return true when this object must receive the given message
+    bool receives ( string );
 
 private:
-	/// message field mechanism
-	vector<string> fields;
+    /// message field mechanism
+    vector<string> fields;
 
 };

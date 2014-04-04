@@ -10,10 +10,10 @@ class AbstractServerClientFactory
 {
 public:
 
-	/**
-	 * Creates a new object
-	 */
-	virtual AbstractServerClient* newObject() = 0;
+    /**
+     * Creates a new object
+     */
+    virtual AbstractServerClient* newObject() = 0;
 
     virtual ~AbstractServerClientFactory() {}
 

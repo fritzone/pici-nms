@@ -20,25 +20,25 @@ class DaemonUDPServerThread : public UDPServerThread
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	DaemonUDPServerThread(Daemon*);
+    /**
+     * Constructor
+     */
+    DaemonUDPServerThread ( Daemon* );
 
-	/**
-	 * Processes the threads
-	 */
-	virtual void* process();
-
-private:
-
-	// mutex for the UDP thread
-	static DaemonMutex udpMutex;
+    /**
+     * Processes the threads
+     */
+    virtual void* process();
 
 private:
 
-	// the daemon running this thread
-	Daemon* daemon;
+    // mutex for the UDP thread
+    static DaemonMutex udpMutex;
+
+private:
+
+    // the daemon running this thread
+    Daemon* daemon;
 };
 
 #endif

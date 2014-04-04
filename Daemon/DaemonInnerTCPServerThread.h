@@ -12,15 +12,15 @@ class DaemonInnerTCPServerThread : public TCPServerThread
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	DaemonInnerTCPServerThread(Daemon*);
+    /**
+     * Constructor
+     */
+    DaemonInnerTCPServerThread ( Daemon* );
 
 private:
 
-	// the daemon which holds this thread
-	Daemon* daemon;
+    // the daemon which holds this thread
+    Daemon* daemon;
 };
 
 #endif

@@ -8,14 +8,14 @@ class PnmsNetwork
 {
 public:
 
-	/**
-	 * Initializes the library, this is done in a totally transparent way to the user
-	 * at the creation of the first client.
-	 */
-	static bool initialize();
+    /**
+     * Initializes the library, this is done in a totally transparent way to the user
+     * at the creation of the first client.
+     */
+    static bool initialize();
 
-	// true if the network was initialized, false if not
-	static bool initialized;
+    // true if the network was initialized, false if not
+    static bool initialized;
 };
 
 #endif

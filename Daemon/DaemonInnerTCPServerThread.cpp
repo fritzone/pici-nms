@@ -1,5 +1,5 @@
 #include "DaemonInnerTCPServerThread.h"
 
-DaemonInnerTCPServerThread::DaemonInnerTCPServerThread(Daemon* dmn) : TCPServerThread(), daemon(dmn)
+DaemonInnerTCPServerThread::DaemonInnerTCPServerThread ( Daemon* dmn ) : TCPServerThread(), daemon ( dmn )
 {
 }

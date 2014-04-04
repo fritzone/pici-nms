@@ -13,41 +13,41 @@ using namespace std;
  */
 Bool::Bool()
 {
-BoolImpl* bimpl = new(std::nothrow) BoolImpl();
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Bool implementation");
-		return;
-	}
-	ObjImplMapper<Bool,BoolImpl>::mapObjToImpl(this, bimpl);
+    BoolImpl* bimpl = new ( std::nothrow ) BoolImpl();
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Bool implementation" );
+        return;
+    }
+    ObjImplMapper<Bool, BoolImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
  * Constructor, creates an Bool with the given value
  */
-Bool::Bool(bool _val)
+Bool::Bool ( bool _val )
 {
-BoolImpl* bimpl = new(std::nothrow) BoolImpl(_val);
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Bool implementation");
-		return;
-	}
-	ObjImplMapper<Bool,BoolImpl>::mapObjToImpl(this, bimpl);
+    BoolImpl* bimpl = new ( std::nothrow ) BoolImpl ( _val );
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Bool implementation" );
+        return;
+    }
+    ObjImplMapper<Bool, BoolImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
  * Constructor, creates an Bool with the value from the given string
  */
-Bool::Bool(const string& _sval)
+Bool::Bool ( const string& _sval )
 {
-BoolImpl* bimpl = new(std::nothrow) BoolImpl(_sval);
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Bool implementation");
-		return;
-	}
-	ObjImplMapper<Bool,BoolImpl>::mapObjToImpl(this, bimpl);
+    BoolImpl* bimpl = new ( std::nothrow ) BoolImpl ( _sval );
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Bool implementation" );
+        return;
+    }
+    ObjImplMapper<Bool, BoolImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
@@ -55,8 +55,8 @@ BoolImpl* bimpl = new(std::nothrow) BoolImpl(_sval);
  */
 Bool::~Bool()
 {
-	delete ObjImplMapper<Bool,BoolImpl>::getImpl(this);
-	ObjImplMapper<Bool,BoolImpl>::removeImpl(this);
+    delete ObjImplMapper<Bool, BoolImpl>::getImpl ( this );
+    ObjImplMapper<Bool, BoolImpl>::removeImpl ( this );
 }
 
 /**
@@ -64,7 +64,7 @@ Bool::~Bool()
  */
 Bool::operator bool () const
 {
-	return ObjImplMapper<Bool,BoolImpl>::getImpl(const_cast<Bool*>(this))->getValue();
+    return ObjImplMapper<Bool, BoolImpl>::getImpl ( const_cast<Bool*> ( this ) )->getValue();
 }
 
 /**
@@ -72,7 +72,7 @@ Bool::operator bool () const
  */
 const string& Bool::type() const
 {
-	return BoolImpl::TYPESTR_BOOL;
+    return BoolImpl::TYPESTR_BOOL;
 }
 
 /**
@@ -80,8 +80,8 @@ const string& Bool::type() const
  */
 const string Bool::toString() const
 {
-stringstream ss;
-	ss << (ObjImplMapper<Bool,BoolImpl>::getImpl(const_cast<Bool*>(this)))->getValue();
-	return ss.str();
+    stringstream ss;
+    ss << ( ObjImplMapper<Bool, BoolImpl>::getImpl ( const_cast<Bool*> ( this ) ) )->getValue();
+    return ss.str();
 }
 

@@ -13,41 +13,41 @@ using namespace std;
  */
 Char::Char()
 {
-CharImpl* bimpl = new(std::nothrow) CharImpl();
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Char implementation");
-		return;
-	}
-	ObjImplMapper<Char,CharImpl>::mapObjToImpl(this, bimpl);
+    CharImpl* bimpl = new ( std::nothrow ) CharImpl();
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Char implementation" );
+        return;
+    }
+    ObjImplMapper<Char, CharImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
  * Constructor, creates an Char with the given value
  */
-Char::Char(char _val)
+Char::Char ( char _val )
 {
-CharImpl* bimpl = new(std::nothrow) CharImpl(_val);
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Char implementation");
-		return;
-	}
-	ObjImplMapper<Char,CharImpl>::mapObjToImpl(this, bimpl);
+    CharImpl* bimpl = new ( std::nothrow ) CharImpl ( _val );
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Char implementation" );
+        return;
+    }
+    ObjImplMapper<Char, CharImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
  * Constructor, creates an Char with the value from the given string
  */
-Char::Char(const string& _sval)
+Char::Char ( const string& _sval )
 {
-CharImpl* bimpl = new(std::nothrow) CharImpl(_sval);
-	if(NULL == bimpl)
-	{
-		LOG_ERR("Not enough memory to create a new Char implementation");
-		return;
-	}
-	ObjImplMapper<Char,CharImpl>::mapObjToImpl(this, bimpl);
+    CharImpl* bimpl = new ( std::nothrow ) CharImpl ( _sval );
+    if ( NULL == bimpl )
+    {
+        LOG_ERR ( "Not enough memory to create a new Char implementation" );
+        return;
+    }
+    ObjImplMapper<Char, CharImpl>::mapObjToImpl ( this, bimpl );
 }
 
 /**
@@ -55,8 +55,8 @@ CharImpl* bimpl = new(std::nothrow) CharImpl(_sval);
  */
 Char::~Char()
 {
-	delete ObjImplMapper<Char,CharImpl>::getImpl(this);
-	ObjImplMapper<Char,CharImpl>::removeImpl(this);
+    delete ObjImplMapper<Char, CharImpl>::getImpl ( this );
+    ObjImplMapper<Char, CharImpl>::removeImpl ( this );
 }
 
 /**
@@ -64,7 +64,7 @@ Char::~Char()
  */
 Char::operator char () const
 {
-	return ObjImplMapper<Char,CharImpl>::getImpl(const_cast<Char*>(this))->getValue();
+    return ObjImplMapper<Char, CharImpl>::getImpl ( const_cast<Char*> ( this ) )->getValue();
 }
 
 /**
@@ -72,7 +72,7 @@ Char::operator char () const
  */
 const string& Char::type() const
 {
-	return CharImpl::TYPESTR_CHAR;
+    return CharImpl::TYPESTR_CHAR;
 }
 
 /**
@@ -80,8 +80,8 @@ const string& Char::type() const
  */
 const string Char::toString() const
 {
-stringstream ss;
-	ss << (ObjImplMapper<Char,CharImpl>::getImpl(const_cast<Char*>(this)))->getValue();
-	return ss.str();
+    stringstream ss;
+    ss << ( ObjImplMapper<Char, CharImpl>::getImpl ( const_cast<Char*> ( this ) ) )->getValue();
+    return ss.str();
 }
 

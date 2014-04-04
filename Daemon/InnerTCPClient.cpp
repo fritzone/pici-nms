@@ -10,26 +10,26 @@ using namespace std;
 /**
  * Constructor, creates a new Inner TCP client object
  */
-InnerTCPClient::InnerTCPClient(Daemon *dmn) : AbstractServerClient(), daemon(dmn)
+InnerTCPClient::InnerTCPClient ( Daemon* dmn ) : AbstractServerClient(), daemon ( dmn )
 {
 }
 
 /**
  * Called when a new client has connected to the daemon
  */
-bool InnerTCPClient::onConnect(AbstractSocket *sock, NetworkAddress *addr)
+bool InnerTCPClient::onConnect ( AbstractSocket* sock, NetworkAddress* addr )
 {
-	LOG("New TCP client connected");
+    LOG ( "New TCP client connected" );
 
-string msg = sock->receive();		// receive the message itself
-stringstream ss;
-	ss << msg.length();
-	LOG(msg);
-	// and handle it
-	if(!DaemonMessageHandler::handleMessage(msg, addr, daemon, sock))
-	{
-		LOG("Could not handle the message");
-		return false;
-	}
-	return true;
+    string msg = sock->receive();       // receive the message itself
+    stringstream ss;
+    ss << msg.length();
+    LOG ( msg );
+    // and handle it
+    if ( !DaemonMessageHandler::handleMessage ( msg, addr, daemon, sock ) )
+    {
+        LOG ( "Could not handle the message" );
+        return false;
+    }
+    return true;
 }

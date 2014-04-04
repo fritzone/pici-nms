@@ -12,19 +12,19 @@ class InnerTCPClientFactory : public AbstractServerClientFactory
 {
 public:
 
-	/**
-	 * Constructor
-	 */
-	InnerTCPClientFactory(Daemon* dmn);
+    /**
+     * Constructor
+     */
+    InnerTCPClientFactory ( Daemon* dmn );
 
-	/**
-	 * Creates a new object
-	 */
-	virtual AbstractServerClient* newObject();
+    /**
+     * Creates a new object
+     */
+    virtual AbstractServerClient* newObject();
 
 private:
 
-	Daemon* daemon;
+    Daemon* daemon;
 };
 
 #endif
