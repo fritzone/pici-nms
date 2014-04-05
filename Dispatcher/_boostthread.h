@@ -6,6 +6,10 @@
 #include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>
 
+#include <boost/version.hpp>
+#if BOOST_VERSION < 105000
+#define TIME_UTC_ TIME_UTC
+#endif
 
 #define NAME(x) x
 #define COND(x) x
@@ -18,5 +22,5 @@
 #define WAIT(cond,mutex) cond.wait(mutex)
 #define NOTIFY_ALL(cond) cond.notify_all()
 #define NOTIFY_ONE(cond) cond.notify_one()
-#define SLEEP(s) boost::xtime xt; boost::xtime_get(&xt, boost::TIME_UTC);  xt.sec += s; boost::thread::sleep(xt);
+#define SLEEP(s) boost::xtime xt; boost::xtime_get(&xt, boost::TIME_UTC_);  xt.sec += s; boost::thread::sleep(xt);
 
