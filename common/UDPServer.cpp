@@ -14,6 +14,11 @@ UDPServer::UDPServer() : BasicServerImpl()
     }
 }
 
+UDPServer::~UDPServer()
+{
+    delete sock;
+}
+
 UDPServer::UDPServer ( ClientAcceptor* acc ) : BasicServerImpl ( acc )
 {
     sock = new ( std::nothrow ) UDPSocket();

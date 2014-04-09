@@ -1,6 +1,7 @@
 #include "UDPSocket.h"
 #include "NetworkAddress.h"
 #include "SocketErrorCodes.h"
+#include "Logger.h"
 
 #include <stdlib.h>
 
@@ -10,6 +11,15 @@
 UDPSocket::UDPSocket() : AbstractSocket()
 {
     initialized = createSocket();
+    buffer = NULL;
+}
+
+UDPSocket::~UDPSocket()
+{
+    if(buffer)
+    {
+        free(buffer);
+    }
 }
 
 /**
@@ -68,7 +78,11 @@ string UDPSocket::receive ( NetworkAddress* from )
 {
     int clen = 1024;
     int max_accepted = 65537;
-    char* buffer = ( char* ) malloc ( clen * sizeof ( char ) ); // initial buffer
+    if(buffer)
+    {
+        free(buffer);
+    }
+    buffer = ( char* ) malloc ( clen * sizeof ( char ) ); // initial buffer
     if ( NULL == buffer )
     {
         return string ( "" );
@@ -83,7 +97,7 @@ string UDPSocket::receive ( NetworkAddress* from )
     addrSize = sizeof ( SOCKADDR );
     while ( can_go && clen < max_accepted )
     {
-        //printf("U.");
+        LOG("trying to read");
         int gotLen = recvfrom ( theSocket, buffer, clen - 1, MSG_PEEK, tempAddr, &addrSize ); // firstly just "peek" the message
         if ( gotLen == clen - 1 ) // filled up all the buffer, so let's suppose more is to come
         {
@@ -96,8 +110,11 @@ string UDPSocket::receive ( NetworkAddress* from )
                 return string ( "" );
             }
         }
-        else if ( gotLen == SOCKET_ERROR ) // did not receive anything for now
+        else
+        if ( gotLen == SOCKET_ERROR ) // did not receive anything for now
         {
+            LOG("Nothing to receive");
+            free (buffer);
             return "";
         }
         else    // did not fill up the buffer, so this must be the final message

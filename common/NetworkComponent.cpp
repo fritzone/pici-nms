@@ -31,5 +31,5 @@ void NetworkComponent::populateErrorCode (
 void NetworkComponent::clearError()
 {
     errorCode = 0;
-    errorText = NETWORK_COMPONENT_ERROR_NO_ERROR;
+    errorText = "No Error";
 }

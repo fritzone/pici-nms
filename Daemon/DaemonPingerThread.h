@@ -17,6 +17,8 @@ public:
      */
     DaemonPingerThread ( Daemon* _dmn );
 
+    ~DaemonPingerThread();
+
 protected:
 
     /**

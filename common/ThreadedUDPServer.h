@@ -30,6 +30,11 @@ public:
      */
     bool stop();
 
+    UDPServerThread* thread()
+    {
+        return serverThread;
+    }
+
 private:
 
     // this is the thread of the server

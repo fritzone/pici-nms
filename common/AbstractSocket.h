@@ -28,6 +28,16 @@ class AbstractSocket : public NetworkComponent
 public:
 
     /**
+     * Destructor. Closes the socket.
+     */
+    virtual ~AbstractSocket()
+    {
+        if ( !closed )
+        {
+            close();
+        }
+    }
+    /**
      * Closes the socket
      * @return true if the close operation was succesfull or false if not
      */
@@ -92,17 +102,6 @@ protected:
      */
     AbstractSocket ( SOCKET sock ) : NetworkComponent(), theSocket ( sock ), naddress ( NULL ), closed ( false )
     {
-    }
-
-    /**
-     * Destructor. Closes the socket.
-     */
-    virtual ~AbstractSocket()
-    {
-        if ( !closed )
-        {
-            close();
-        }
     }
 
 protected:

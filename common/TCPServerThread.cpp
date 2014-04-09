@@ -20,14 +20,13 @@
 void TCPServerThread::setServer ( ThreadedTCPServer* srv )
 {
     server = srv;
-    alive = true;
 }
 
 
 void* TCPServerThread::process()
 {
     socklen_t addrLen = sizeof ( SOCKADDR_IN );
-    while ( true && alive )
+    while ( isAlive() )
     {
         Thread::suspendCurrent ( 100 );
         SOCKADDR_IN fromAddr;
@@ -122,10 +121,3 @@ void* TCPServerThread::process()
     }
     return NULL;
 }
-
-
-bool TCPServerThread::stop()
-{
-    alive = false;
-    return true;
-};

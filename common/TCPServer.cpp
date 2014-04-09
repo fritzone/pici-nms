@@ -17,6 +17,11 @@ TCPServer::TCPServer() : BasicServerImpl()
     }
 }
 
+TCPServer::~TCPServer()
+{
+    delete sock;
+}
+
 TCPServer::TCPServer ( ClientAcceptor* acc ) : BasicServerImpl ( acc )
 {
     sock = new ( std::nothrow ) TCPSocket();

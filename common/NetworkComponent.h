@@ -5,8 +5,6 @@
 
 using namespace std;
 
-static const string NETWORK_COMPONENT_ERROR_NO_ERROR = "No error";
-
 /**
  * Some basic class for components based on network object, purely for error handling.
  */

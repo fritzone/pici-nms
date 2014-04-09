@@ -1,19 +1,20 @@
 <?xml version="1.0"?>
 <daemon>
-	<socket>
-		<socketinfo>
-			<UDP_DAEMON_PORT>5150</UDP_DAEMON_PORT>
-			<TCP_DAEMON_PORT>5151</TCP_DAEMON_PORT>
-		</socketinfo>
-	</socket>
-	<network>
-		<inner>
-			<IP>10.27.2.115</IP>
-		</inner>
-	</network>
-	<run>
-		<feedback>
-			<runmode>service</runmode>
-		</feedback>
-	</run>
+    <socket>
+    <socketinfo>
+	    <UDP_DAEMON_PORT>5150</UDP_DAEMON_PORT>
+	    <TCP_DAEMON_PORT>5151</TCP_DAEMON_PORT>
+        </socketinfo>
+    </socket>
+    <network>
+	<inner>
+	    <IP>10.27.2.115</IP>
+	</inner>
+    </network>
+    <log>
+	<file>
+	    <name>pnms_log.log</name>
+	    <location>/home/ferencd</location>
+	</file>
+    </log>
 </daemon>

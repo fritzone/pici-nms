@@ -4,8 +4,6 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class ThreadedUDPServer;
 class NetworkAddress;
 class DaemonUDPServerThread;
@@ -42,14 +40,18 @@ public:
     /**
      * Starts the Daemon. Returns true in case of success, false in case of failure
      */
-    bool startup();
+    bool startup(const char *config_file = "daemon.xml");
+
+    bool run();
+
+    bool shutdown();
 
 private:
 
     /**
      * Loads the configuration file and sets up the variables used by the daemon
      */
-    bool loadConfig();
+    bool loadConfig(const char *config_file);
 
     /**
      * Initializes the interfaces of the daemon
@@ -91,7 +93,7 @@ protected:
     /**
      * Get the vector of transporters as a read only object
      */
-    const vector<RegisteredDispatcher*>& getDispatchers() const
+    const std::vector<RegisteredDispatcher*>& getDispatchers() const
     {
         return dispatchers;
     }
@@ -99,12 +101,12 @@ protected:
     /**
      * Verifies the correctness of the sitekey received from the given address
      */
-    bool isValidSitekey ( const string& sitekey, const NetworkAddress* from ) const;
+    bool isValidSitekey ( const std::string& sitekey, const NetworkAddress* from ) const;
 
     /**
      * Adds a new dispatcher to the daemon internals
      */
-    bool addDispatcher ( const string& ip, const string& port, const string& sitekey );
+    bool addDispatcher ( const std::string& ip, const std::string& port, const std::string& sitekey );
 
 protected:
 
@@ -139,7 +141,7 @@ private:
     NetworkAddress* udpNetAddr;
 
     // The Thread of the UDP server
-    DaemonUDPServerThread* dups;
+    DaemonUDPServerThread* udpServerThread;
 
     // the server that will "accept" clients from the inner network
     ThreadedTCPServer* innerTCPServer;
@@ -157,10 +159,10 @@ private:
     ClientAcceptor* ca;
 
     // the IP of the network that will hold the inner communication (meaning, secure clients connect to this net, dispatcher also)
-    string innerIP;
+    std::string innerIP;
 
     // the vector of client requests
-    vector < RegisteredDispatcher* > dispatchers;
+    std::vector < RegisteredDispatcher* > dispatchers;
 
 private:
 
@@ -169,6 +171,8 @@ private:
 
     // counts the attached dispatchers
     static int dispatcherIdCount;
+
+    static bool shutdownRequest;
 
 };
 

@@ -21,6 +21,8 @@ public:
      */
     UDPSocket();
 
+    ~UDPSocket();
+
     /**
      * Sets this socket in a broadcasting mode. This only works for UDP sockets
      * @return the status of the operation (true - success, false failure)
@@ -56,6 +58,9 @@ protected:
      * @return the status of the operation (true - success, false failure)
      */
     bool createSocket();
+
+    /* a buffer to read the data */
+    char* buffer;
 };
 
 #endif

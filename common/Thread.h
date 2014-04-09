@@ -48,7 +48,7 @@ public:
     /**
      * Suspends the calling thread to wait for this thread to finish what it's doing
      */
-    void waitToFinish();
+    int waitToFinish();
 
 public:
 

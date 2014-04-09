@@ -24,16 +24,6 @@ public:
      */
     void setServer ( ThreadedTCPServer* srv );
 
-    /**
-     * Stops this thread
-     */
-    bool stop();
-
-    bool isAlive() const
-    {
-        return alive;
-    }
-
 protected:
 
     /**
@@ -46,8 +36,6 @@ private:
     // the server object
     ThreadedTCPServer* server;
 
-    // whether this thread is alive or not
-    bool alive;
 };
 
 #endif

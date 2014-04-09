@@ -16,7 +16,7 @@
 /**
  * Constructor
  */
-Thread::Thread() : handle ( NULL ), threadAttrs ( NULL ), tid ( 0 ), started ( false )
+Thread::Thread() : handle ( NULL ), threadAttrs ( NULL ), tid ( 0 ), started ( false ), alive(false)
 {
     threadAttrs = ( pthread_attr_t* ) malloc ( sizeof ( pthread_attr_t ) );
     memset ( threadAttrs, 0, sizeof ( pthread_attr_t ) );
@@ -29,10 +29,13 @@ Thread::~Thread()
 {
     if ( NULL != handle )
     {
+        LOG("Freeing handle");
         free ( handle );
     }
     if ( NULL != threadAttrs )
     {
+        LOG("Freeing thrattrs");
+        pthread_attr_destroy(threadAttrs);
         free ( threadAttrs );
     }
 }
@@ -68,12 +71,18 @@ bool Thread::start()
 bool Thread::stop()
 {
     alive = false;
+
+    LOG("Canceling thread");
+    pthread_cancel(*handle);
+
     return true;
 }
 
-void Thread::waitToFinish()
+int Thread::waitToFinish()
 {
-    pthread_join ( *handle, NULL );
+    return pthread_join( *handle, NULL );
+
+    return 0;
 }
 
 void Thread::suspendCurrent ( int msec )

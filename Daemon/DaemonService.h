@@ -6,6 +6,7 @@
 #endif
 
 #include <string>
+#include <boost/shared_ptr.hpp>
 
 using namespace std;
 
@@ -22,6 +23,8 @@ public:
      * Constructor
      */
     Service ( const char* serviceName = "PICI-NMS Daemon" );
+
+    virtual ~Service();
 
     /**
      * Starts the service
@@ -51,7 +54,7 @@ protected:
 private:
 
     // the actual daemon
-    Daemon* dmn;
+    boost::shared_ptr<Daemon> dmn;
 
 #ifdef _WIN32
     SERVICE_STATUS_HANDLE   ServiceStatusHandle;
@@ -60,8 +63,6 @@ private:
     static void WINAPI ControlHandler ( DWORD control );
     void LogWindowsEvent ( WORD eventType, const char* eventText );
     void UpdateStatus ( DWORD status );
-#else
-    static void TermSignalHandler ( int );
 #endif
 
 };

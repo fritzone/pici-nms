@@ -24,5 +24,8 @@ bool ThreadedTCPServer::start()
  */
 bool ThreadedTCPServer::stop()
 {
-    return serverThread->stop();
+    serverThread->stop();
+    serverThread->waitToFinish();
+
+    return true;
 }

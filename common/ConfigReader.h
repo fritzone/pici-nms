@@ -23,6 +23,8 @@ public:
      */
     ConfigReader ( const string& file );
 
+    virtual ~ConfigReader();
+
     /**
      * Loads the config from the given file. If not found loads the config, from the default locations
      */

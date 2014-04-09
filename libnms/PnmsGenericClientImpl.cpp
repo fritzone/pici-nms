@@ -2,6 +2,10 @@
 #include "Transporter.h"
 #include "Logger.h"
 
+#include <string>
+
+using namespace std;
+
 /**
  * Constructor
  */

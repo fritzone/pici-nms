@@ -25,6 +25,8 @@ public:
      */
     TCPServer();
 
+    ~TCPServer();
+
     /**
      * Constructor. Initializes the acceptor ofthe class.
      * @param acc - the acceptor.

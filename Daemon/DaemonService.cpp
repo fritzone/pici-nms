@@ -18,6 +18,8 @@ Service::Service ( const char* serviceName ) :  ServiceName ( serviceName )
 {
     LOG ( "Service::Service()\n" );
     me = this;
+    dmn.reset(new Daemon());
+
 #ifdef _WIN32
     ServiceStatusHandle = 0;
     ServiceStatus.dwServiceType = SERVICE_WIN32_OWN_PROCESS;
@@ -28,33 +30,29 @@ Service::Service ( const char* serviceName ) :  ServiceName ( serviceName )
     ServiceStatus.dwCheckPoint = 0;
     ServiceStatus.dwWaitHint = 0;
 #endif
+}
 
+Service::~Service()
+{
+#ifdef _WIN32
+    WSACleanup();
+#endif
 }
 
 void Service::Run()
 {
-    dmn = new ( std::nothrow ) Daemon();
-    if ( NULL == dmn )
-    {
-        LOG ( "Not enough memory" );
-        exit ( 1 );
-    }
-
     if ( !dmn->startup() )
     {
         LOG ( "Cannot start the daemon" );
-        delete dmn;
-        exit ( 1 );
+        return;
     }
 
-    dmn->daemonInnerThread->waitToFinish();
-    dmn->dups->waitToFinish();
-    dmn->pinger->waitToFinish();
+    dmn->run();
 }
 
 void Service::Stop()
 {
-
+    dmn->shutdown();
 }
 
 #ifdef _WIN32
@@ -110,16 +108,8 @@ void WINAPI Service::ControlHandler ( DWORD control )
     }
 }
 #else
-void Service::TermSignalHandler ( int )
-{
-    LOG ( "Service::TermSignalHandler()\n" );
-    me->Stop();
-    exit ( 0 );
-}
 void Service::Start()
 {
-    LOG ( "Service::Start()\n" );
-    signal ( SIGTERM, TermSignalHandler );
     me->Run();
 }
 #endif

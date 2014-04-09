@@ -22,11 +22,21 @@
 #include <libxml/parser.h>
 #include <libxml/xmlstring.h>
 
+static string getHomeDir();
+
+
 /**
  * Creates a new config dynamically searching for config file locations.
  */
 ConfigReader::ConfigReader ( const string& file ) : configFile ( file ), doc ( NULL ), initSuccesful ( true )
 {
+    std::string s = getHomeDir();
+    std::string s1 = getHomeDir();
+
+    if(s != s1)
+    {
+        LOG("ff");
+    }
     if ( loadConfig ( provideConfigFile ( 0 ) ) )
     {
         return;
@@ -36,6 +46,11 @@ ConfigReader::ConfigReader ( const string& file ) : configFile ( file ), doc ( N
         return;
     }
     initSuccesful = false;
+}
+
+ConfigReader::~ConfigReader()
+{
+    xmlFreeDoc(doc);
 }
 
 /**
@@ -65,21 +80,10 @@ ConfigReader::ConfigReader ( const string& file, const string& location ) :  doc
 #ifndef _WIN32
 static string getHomeDir()
 {
-    passwd* pw = getpwent();
-    int can_go = true;
-    __uid_t uid = getuid();
-    while ( can_go )
-    {
-        if ( pw->pw_uid == uid )
-        {
-            can_go = false;
-        }
-        else
-        {
-            pw = getpwent();
-        }
-    }
-    return string ( pw->pw_dir );
+    struct passwd *pw = getpwuid(getuid());
+    std::string res( pw->pw_dir);
+    endpwent();
+    return res;
 }
 #else
 static string getHomeDir()
@@ -135,7 +139,7 @@ string ConfigReader::provideConfigFile ( int loc )
  */
 bool ConfigReader::loadConfig ( const string& file )
 {
-    LOG ( "\nUsing config file " );
+    LOG ( "Using config file " );
     LOG ( file.c_str() );
     try
     {

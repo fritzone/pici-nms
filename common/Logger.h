@@ -3,36 +3,13 @@
 
 #include <string>
 
-using namespace std;
-
 // the Logger macros
 #define LOGFILE(s) Logger::init(s)
-#define LOG LOG_INF
 
-#ifdef _WIN32
-#ifdef _DEBUG
+#define LOG LOG_INF
 #define LOG_INF(s) Logger::getInstance().Log(s, 0, __FILE__, __FUNCTION__, __LINE__);
 #define LOG_ERR(s) Logger::getInstance().Log(s, 1, __FILE__, __FUNCTION__, __LINE__);
 #define LOG_DBG(s) Logger::getInstance().Log(s, 2, __FILE__, __FUNCTION__, __LINE__);
-#else
-#define LOG(s)
-#define LOG_INF(s)
-#define LOG_ERR(s)
-#define LOG_DBG(s)
-#endif
-#else
-#ifdef DEBUG
-#define LOG_INF(s) Logger::getInstance().Log(s, 0, __FILE__, __FUNCTION__, __LINE__);
-#define LOG_ERR(s) Logger::getInstance().Log(s, 1, __FILE__, __FUNCTION__, __LINE__);
-#define LOG_DBG(s) Logger::getInstance().Log(s, 2, __FILE__, __FUNCTION__, __LINE__);
-#else
-#undef LOG
-#define LOG(s)
-#define LOG_INF(s)
-#define LOG_ERR(s)
-#define LOG_DBG(s)
-#endif
-#endif
 
 /**
  * Class responsible for logging of data.
@@ -57,12 +34,15 @@ public:
     /**
      * Logs the given error message, and the error code.
      */
-    int Log ( const string& msg, int code, const char* file, const char* func, int line );
+    int Log ( const std::string& msg, int code, const char* file, const char* func, int line ) const;
 
     /**
      * Destroys the Logger
      */
     int destroy();
+
+    void setDirectory(const char* dir);
+
 
 public:
 
@@ -84,7 +64,8 @@ private:
 private:
 
     // the file which will contain the log messages
-    static string logFile;
+    mutable std::string logFile;
+
 
 };
 

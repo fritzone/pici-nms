@@ -12,11 +12,13 @@ bool ThreadedUDPServer::start()
     LOG ( "Starting UDP server" );
     if ( serverThread->isStarted() )
     {
+        LOG_ERR("Server thread is already started");
         return false;
     }
     bool succ = serverThread->start();
     if ( succ )
     {
+        LOG("Started succesfully");
         return true;
     }
     LOG_ERR ( "Could not start the UDP Server's thread" );

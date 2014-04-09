@@ -10,7 +10,6 @@
 using namespace std;
 
 const Logger& Logger::instance = Logger();
-string Logger::logFile ( "" );
 
 /**
  * Creates a new logger
@@ -31,7 +30,7 @@ Logger::~Logger()
 /**
  * Logs the given message
  */
-int Logger::Log ( const string& msg, int code, const char* file, const char* func, int line )
+int Logger::Log ( const string& msg, int code, const char* file, const char* func, int line ) const
 {
     if ( logFile.length() == 0 )
     {
@@ -70,7 +69,7 @@ int Logger::destroy()
 
 void Logger::init ( const char* fn )
 {
+    getInstance();
     instance.logFile = fn;
     LOG ( "Logger started" );
-    getInstance();
 }

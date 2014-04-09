@@ -23,19 +23,20 @@
 #include <stdio.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <unistd.h>
 #endif
 
 #include <new>
 
 int Daemon::dynamicHostCount = 0;
 int Daemon::dispatcherIdCount = 0;
+bool Daemon::shutdownRequest = false;
 
 /**
  * Constructor. Creates a new object
  */
-Daemon::Daemon() :  udpDaemonPort ( 0 ), tcpInnerDaemonPort ( 0 ), udpserv ( NULL ), udpNetAddr ( NULL ), dups ( NULL ),
-    innerTCPServer ( NULL ), daemonInnerThread ( NULL ), innerTcpClFac ( NULL ), ca ( NULL ), innerIP ( "" )
-
+Daemon::Daemon() :  udpDaemonPort ( 0 ), tcpInnerDaemonPort ( 0 ), udpserv ( NULL ), udpNetAddr ( NULL ), udpServerThread ( NULL ),
+    innerTCPServer ( NULL ), daemonInnerThread ( NULL ), pinger(NULL), innerTcpClFac ( NULL ), ca ( NULL ), innerIP ( "" )
 {
     LOG_DBG ( "Daemon constructor" );
 }
@@ -45,12 +46,6 @@ Daemon::Daemon() :  udpDaemonPort ( 0 ), tcpInnerDaemonPort ( 0 ), udpserv ( NUL
  */
 Daemon::~Daemon()
 {
-    LOG_DBG ( "Daemon object being destroyed" );
-
-#ifdef _WIN32
-    WSACleanup();
-#endif
-
     if ( udpserv != NULL )
     {
         delete udpserv;
@@ -59,9 +54,9 @@ Daemon::~Daemon()
     {
         delete udpNetAddr;
     }
-    if ( dups != NULL )
+    if ( udpServerThread != NULL )
     {
-        delete dups;
+        delete udpServerThread;
     }
     if ( innerTCPServer != NULL )
     {
@@ -75,11 +70,14 @@ Daemon::~Daemon()
     {
         delete innerTcpClFac;
     }
+    if(pinger != NULL)
+    {
+        delete pinger;
+    }
     if ( ca != NULL )
     {
         delete ca;
     }
-
 }
 
 /**
@@ -170,18 +168,19 @@ bool Daemon::initWinsock()
 /**
  * Loads the daemon configuration file
  */
-bool Daemon::loadConfig()
+bool Daemon::loadConfig(const char* config_file)
 {
 #ifdef _WIN32
     std::string confLocation = RegConfReader::getConfigFileLocation ( "Daemon" );
     ConfigReader cfg ( "daemon.xml", confLocation );
 #else
-    ConfigReader cfg ( "daemon.xml" );  // deleted a few lines below
+    ConfigReader cfg ( config_file );  // deleted a few lines below
 #endif
 
     if ( !cfg.configLoaded() )
     {
-        LOG ( "Config file was not parsed succesfully, leaving" );
+        LOG_ERR (config_file);
+        LOG_ERR ( "Config file was not parsed succesfully, leaving" );
         return false;
     }
 
@@ -216,19 +215,19 @@ bool Daemon::loadConfig()
 bool Daemon::createUDPServer()
 {
     LOG ( "Creating udp serv" );
-    dups = new ( std::nothrow ) DaemonUDPServerThread ( this );
-    if ( NULL == dups )
+    udpServerThread = new ( std::nothrow ) DaemonUDPServerThread ( this );
+    if ( NULL == udpServerThread )
     {
         LOG_ERR ( "Could not create UDP server's thread" );
         return false;
     }
 
-    udpserv = new ( std::nothrow ) ThreadedUDPServer ( dups );
+    udpserv = new ( std::nothrow ) ThreadedUDPServer ( udpServerThread );
     if ( NULL == udpserv )
     {
         LOG_ERR ( "Could not create UDP server" );
-        delete dups;
-        dups = NULL;
+        delete udpServerThread;
+        udpServerThread = NULL;
         return false;
     }
 
@@ -236,8 +235,8 @@ bool Daemon::createUDPServer()
     if ( NULL == udpNetAddr )
     {
         LOG_ERR ( "Could not create network address" );
-        delete dups;
-        dups = NULL;
+        delete udpServerThread;
+        udpServerThread = NULL;
         delete udpserv;
         udpserv = NULL;
         return false;
@@ -247,8 +246,8 @@ bool Daemon::createUDPServer()
     {
         LOG_ERR ( "Cannot bind server" );
 
-        delete dups;
-        dups = NULL;
+        delete udpServerThread;
+        udpServerThread = NULL;
 
         delete udpserv;
         udpserv = NULL;
@@ -357,18 +356,19 @@ bool Daemon::createInnerTCPServer()
 /**
  * Loads the configuration, Starts the windows sockets and creates the daemon socket
  */
-bool Daemon::startup()
+bool Daemon::startup(const char* config_file)
 {
+    // Parse xml file to get the config elements.
+    if ( !loadConfig(config_file) )
+    {
+        LOG_ERR ( "Configuration was not loaded succesfully" );
+        return false;
+    }
+
     pinger = new DaemonPingerThread ( this );
     if ( !pinger->start() )
     {
-        printf ( "Cannot start the pinger thread ,,,\n" );
-    }
-
-    // Parse xml file to get the config elements.
-    if ( !loadConfig() )
-    {
-        LOG_ERR ( "Configuration was not loaded succesfully" );
+        LOG_ERR( "Cannot start the pinger thread\n" );
         return false;
     }
 
@@ -398,8 +398,8 @@ bool Daemon::startup()
     {
         LOG_ERR ( "Cannot start UDP server" );
 
-        delete dups;
-        dups = NULL;
+        delete udpServerThread;
+        udpServerThread = NULL;
 
         delete udpserv;
         udpserv = NULL;
@@ -416,8 +416,8 @@ bool Daemon::startup()
         // stop the UDP server
         udpserv->stop();
 
-        delete dups;
-        dups = NULL;
+        delete udpServerThread;
+        udpServerThread = NULL;
 
         delete udpserv;
         udpserv = NULL;
@@ -434,8 +434,8 @@ bool Daemon::startup()
         // Stop the UDP
         udpserv->stop();
 
-        delete dups;
-        dups = NULL;
+        delete udpServerThread;
+        udpServerThread = NULL;
 
         delete udpserv;
         udpserv = NULL;
@@ -459,6 +459,37 @@ bool Daemon::startup()
 
     return true;
 }
+
+bool Daemon::run()
+{
+    while(! shutdownRequest && (daemonInnerThread->isAlive()
+          || innerTCPServer->thread()->isAlive()
+          || pinger->isAlive()) )
+    {
+        usleep(10);
+    }
+    return true;
+}
+
+bool Daemon::shutdown()
+{
+    shutdownRequest = true;
+    usleep(10);
+
+    daemonInnerThread->stop();
+    daemonInnerThread->waitToFinish();
+
+    innerTCPServer->stop();
+
+    pinger->stop();
+    pinger->waitToFinish();
+
+    udpserv->stop();
+
+    return true;
+}
+
+
 
 /**
  * TODO: Implement

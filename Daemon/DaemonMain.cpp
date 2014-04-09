@@ -1,20 +1,19 @@
 #include "Daemon.h"
 #include "Logger.h"
 
-#ifdef _WIN32
 #include "DaemonService.h"
-#include <Windows.h>
-#endif
+#include <signal.h>
+#include <boost/shared_ptr.hpp>
 
 #include <stdlib.h>
 #include <unistd.h>
 
-/**
- * This will be called when the daemon will exit
- */
-void daemonExit()
+boost::shared_ptr<Service> dmnService;
+
+void on_sigint(int)
 {
-    LOG ( "Daemon is being shut down... cleaning up the mess" );
+    signal(SIGINT, 0);
+    dmnService->Stop();
 }
 
 /**
@@ -26,26 +25,12 @@ int WINAPI WinMain ( HINSTANCE, HINSTANCE, LPSTR cmdLine, int )
 int main()
 #endif
 {
-    Logger::init ( ( char* ) "c:\\daemon.log" );
-    LOG ( "Daemon starting" );
-#ifdef _WIN32
-    Service dmnServ;
-    dmnServ.Start();
-#else
-    atexit ( daemonExit );
-    Daemon dmn;
-    if ( !dmn.startup() )
-    {
-        LOG ( "Could not start the application" );
-        return 1;
-    }
+    signal(SIGINT, on_sigint);
+    Logger::init ( ( char* ) "pnms-daemon.log" );
 
-    while ( true )
-    {
-        sleep ( 1 );
-    }
+    dmnService.reset(new Service());
+    dmnService->Start();
+
     return 0;
-
-#endif
 }
 

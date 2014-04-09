@@ -12,34 +12,39 @@ DaemonPingerThread::DaemonPingerThread ( Daemon* _dmn ) : Thread(), dmn ( _dmn )
 {
 }
 
+DaemonPingerThread::~DaemonPingerThread()
+{
+
+}
+
 void* DaemonPingerThread::process()
 {
-    printf ( "Starting the pringer thread\n" );
-    printf ( "Not really..." );
-    while ( true )
+    pthread_setcancelstate(PTHREAD_CANCEL_ENABLE, NULL);
+
+    while ( isAlive() )
     {
-        printf ( "Before a ping session" );
         if ( dmn == NULL )
         {
-            printf ( "The Daemon is NULL" );
+            fprintf ( stderr, "The Daemon is NULL\n" );
+            return NULL;
         }
 
         const vector<RegisteredDispatcher*>& disps = dmn->getDispatchers();
 
         for ( size_t i = 0; i < disps.size(); i++ )
         {
-            printf ( "Pinging daemon #%i\n", i );
             if ( !disps[i]->ping() )
             {
                 dmn->removeDispatcher ( disps[i] );
             }
         }
+
+        // TODO: Configurable ping time
 #ifdef _WIN32
         Sleep ( 10000 );
 #else
         sleep ( 10 );
 #endif
     }
-    printf ( "Pringer thread leaving\n" );
-    return NULL;
+    return 0;
 }
